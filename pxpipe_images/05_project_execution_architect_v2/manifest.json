@@ -1,0 +1,24 @@
+{
+  "sourceChars": 16357,
+  "files": [
+    "project_execution_architect_v2.md"
+  ],
+  "pages": [
+    {
+      "filename": "page-001.png",
+      "bytes": 60313,
+      "width": 1568,
+      "height": 432
+    }
+  ],
+  "cols": 312,
+  "model": "claude-sonnet-4-5",
+  "generatedAt": "2026-09-05T17:05:58.564Z",
+  "tokenReport": {
+    "textTokens": 4421,
+    "imageTokens": 896,
+    "percentSaved": 79.7,
+    "factsheetItemCount": 24,
+    "factsheetDropped": 0
+  }
+}

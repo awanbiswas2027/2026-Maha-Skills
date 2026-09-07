@@ -1,0 +1,24 @@
+{
+  "sourceChars": 19669,
+  "files": [
+    "MahaSkills_PRD.md"
+  ],
+  "pages": [
+    {
+      "filename": "page-001.png",
+      "bytes": 77368,
+      "width": 1568,
+      "height": 520
+    }
+  ],
+  "cols": 312,
+  "model": "claude-sonnet-4-5",
+  "generatedAt": "2026-09-06T16:51:02.105Z",
+  "tokenReport": {
+    "textTokens": 5316,
+    "imageTokens": 1064,
+    "percentSaved": 80,
+    "factsheetItemCount": 27,
+    "factsheetDropped": 0
+  }
+}

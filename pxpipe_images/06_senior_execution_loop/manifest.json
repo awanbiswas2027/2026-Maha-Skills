@@ -1,0 +1,24 @@
+{
+  "sourceChars": 9816,
+  "files": [
+    "senior_execution_loop_prompts.md"
+  ],
+  "pages": [
+    {
+      "filename": "page-001.png",
+      "bytes": 36902,
+      "width": 1568,
+      "height": 264
+    }
+  ],
+  "cols": 312,
+  "model": "claude-sonnet-4-5",
+  "generatedAt": "2026-09-05T17:09:40.436Z",
+  "tokenReport": {
+    "textTokens": 2653,
+    "imageTokens": 560,
+    "percentSaved": 78.9,
+    "factsheetItemCount": 1,
+    "factsheetDropped": 0
+  }
+}

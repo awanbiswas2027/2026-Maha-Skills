@@ -1,0 +1,21 @@
+These 6 images contain source code/text rendered as PNG pages by pxpipe.
+
+Source files (7):
+  API_SPECIFICATION.md
+  ARCHITECTURE.md
+  DATABASE_SCHEMA.md
+  DEPLOYMENT.md
+  PROJECT_BREAKDOWN.md
+  PROJECT_STRUCTURE.md
+  UI_UX_DESIGN.md
+
+Instructions for the reading agent:
+1. Read the images in order: page-001.png through page-006.png.
+2. For any path, file name, identifier, hash, version number, or other precision-critical
+   value: check factsheet.txt first — identifiers listed there are verbatim exact.
+   Note: 130 identifier(s) were extracted but not captured due to the 64-item
+   budget — OCR carefully for any exact values not listed in factsheet.txt.
+3. Treat the content as if you had read the source files directly.
+
+Factsheet (verbatim identifiers — quote from here, not from image pixels):
+[Exact identifiers from the rendered context above (paths, ids, versions, numbers) — quote these verbatim instead of transcribing them from the image; ×N marks a token that occurs N times within the imaged content: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://user:password@postgres:5432/mahaskills · AIRFLOW__CORE__EXECUTOR=LocalExecutor · DistrictOfficerDashboard · KEYCLOAK_ADMIN_PASSWORD · AWS_SECRET_ACCESS_KEY · ES_JAVA_OPTS=-Xms512m · PolicyMakerDashboard · MINIO_ROOT_PASSWORD · CandidateDashboard · --console-address · API_SPECIFICATION ×2 · AWS_ACCESS_KEY_ID · ELASTICSEARCH_URL · EmployerDashboard · POSTGRES_PASSWORD · PROJECT_BREAKDOWN · PROJECT_STRUCTURE ×2 · SCRAPER_API_KEYS · DATABASE_SCHEMA ×2 · MINIO_ROOT_USER · SMS_GATEWAY_URL · gapScoreService · sequenceDiagram ×6 · ECR_REPOSITORY ×3 · AWS_S3_BUCKET · DistrictPlans ×3 · OpenTelemetry ×2 · POSTGRES_USER · courseService · BaseSettings ×3 · CourseDetail · CourseSearch · DATABASE_URL · ECR_REGISTRY ×3 · KEYCLOAK_URL · stateDiagram · useGapScores ×2 · DistrictMap · ElastiCache ×7 · POSTGRES_DB · PathwayQuiz · authService · useDebounce ×2 · AWS_REGION ×2 · CloudFront ×4 · CloudWatch ×5 · GapHeatmap · GapScoring ×3 · JWT_SECRET · JobPortals ×4 · MahaSkills ×28 · OpenSearch ×8 · PostgreSQL ×25 · TrendChart · TypeScript ×5 · WeasyPrint · axisFormat · dateFormat · eyJhbGciOi · IMAGE_TAG ×3 · MobileApp · PagerDuty · REDIS_URL · RoleGuard ×2 · SMTP_HOST · erDiagram ×2 · -Xmx512m · 1,50,000 · GovCloud · LinkedIn ×4 · 150,000 · SHA-256 · $1,410 · 334155 ×2 · 2,200 ×3 · 22000 · 26134 · $100 · $150 · $250 · $300 · $400 · 0.10 ×2 · 0.20 · 0.25 ×6 · 0.35 · 20.0 · 2023 ×2 · 2026 ×3 · 3.11 ×7 · 3600 · 4.10 · 5432 ×2 · 6379 ×3 · 78.5 · 8001 ×2]

@@ -1,0 +1,128 @@
+{
+  "sourceChars": 262256,
+  "files": [
+    "01-product/PRD.md",
+    "01-product/REQUIREMENTS_TRACEABILITY.md",
+    "01-product/USER_STORIES.md",
+    "02-architecture/ARCHITECTURE_DECISIONS.md",
+    "02-architecture/BACKEND_ARCHITECTURE.md",
+    "02-architecture/DATABASE_SCHEMA.md",
+    "02-architecture/FRONTEND_ARCHITECTURE.md",
+    "02-architecture/SYSTEM_ARCHITECTURE.md",
+    "03-api/API_CONTRACTS.md",
+    "03-api/API_SPECIFICATION.md",
+    "03-api/AUTHENTICATION.md",
+    "03-api/ERROR_CODES.md",
+    "03-api/openapi.yaml",
+    "04-design/ACCESSIBILITY.md",
+    "04-design/DESIGN_SYSTEM.md",
+    "04-design/INFORMATION_ARCHITECTURE.md",
+    "04-design/UI_UX_SPECIFICATION.md",
+    "05-security/DATA_PRIVACY.md",
+    "05-security/RBAC_MATRIX.md",
+    "05-security/SECURITY_ARCHITECTURE.md",
+    "05-security/THREAT_MODEL.md",
+    "06-data/DATA_DICTIONARY.md",
+    "06-data/DATA_GOVERNANCE.md",
+    "06-data/DATA_INGESTION.md",
+    "06-data/DATA_MODEL.md",
+    "07-development/CODING_STANDARDS.md",
+    "07-development/IMPLEMENTATION_PLAN.md",
+    "07-development/PROJECT_BREAKDOWN.md",
+    "07-development/TESTING_STRATEGY.md",
+    "08-deployment/CI_CD.md",
+    "08-deployment/DEPLOYMENT.md",
+    "08-deployment/DISASTER_RECOVERY.md",
+    "08-deployment/ENVIRONMENT_CONFIGURATION.md",
+    "09-operations/INCIDENT_RESPONSE.md",
+    "09-operations/MAINTENANCE.md",
+    "09-operations/MONITORING.md",
+    "09-operations/RUNBOOK.md",
+    "10-decisions/ADR/ADR-001-react-typescript-frontend.md",
+    "10-decisions/ADR/ADR-002-keycloak-oidc.md",
+    "10-decisions/ADR/ADR-003-tanstack-query-server-state.md",
+    "10-decisions/ADR/ADR-004-postgresql-relational-store.md",
+    "10-decisions/ADR/ADR-005-candidate-pii-anonymisation-dpdp.md",
+    "10-decisions/ADR/ADR-006-openapi-contract-first.md",
+    "10-decisions/ASSUMPTIONS.md",
+    "10-decisions/OPEN_QUESTIONS.md",
+    "11-agent-delivery/DEFINITION_OF_DONE.md",
+    "11-agent-delivery/GUARDRAILS.md",
+    "11-agent-delivery/handoffs/HANDOFF-slice-2-taxonomy.md",
+    "11-agent-delivery/HANDOFF_SPEC_TEMPLATE.md",
+    "11-agent-delivery/README.md",
+    "README.md"
+  ],
+  "pages": [
+    {
+      "filename": "page-001.png",
+      "bytes": 106354,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-002.png",
+      "bytes": 101163,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-003.png",
+      "bytes": 92345,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-004.png",
+      "bytes": 102175,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-005.png",
+      "bytes": 85709,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-006.png",
+      "bytes": 106744,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-007.png",
+      "bytes": 104512,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-008.png",
+      "bytes": 106088,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-009.png",
+      "bytes": 107815,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-010.png",
+      "bytes": 45066,
+      "width": 1568,
+      "height": 320
+    }
+  ],
+  "cols": 312,
+  "model": "claude-sonnet-4-5",
+  "generatedAt": "2026-09-07T18:04:03.958Z",
+  "tokenReport": {
+    "textTokens": 70880,
+    "imageTokens": 13776,
+    "percentSaved": 80.6,
+    "factsheetItemCount": 96,
+    "factsheetDropped": 578
+  }
+}

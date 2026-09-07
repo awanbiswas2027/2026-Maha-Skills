@@ -1,0 +1,30 @@
+{
+  "sourceChars": 39748,
+  "files": [
+    "project_execution_architect_multiagent.md"
+  ],
+  "pages": [
+    {
+      "filename": "page-001.png",
+      "bytes": 93249,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-002.png",
+      "bytes": 41964,
+      "width": 1568,
+      "height": 320
+    }
+  ],
+  "cols": 312,
+  "model": "claude-sonnet-4-5",
+  "generatedAt": "2026-09-05T16:15:44.060Z",
+  "tokenReport": {
+    "textTokens": 10743,
+    "imageTokens": 2128,
+    "percentSaved": 80.2,
+    "factsheetItemCount": 32,
+    "factsheetDropped": 0
+  }
+}

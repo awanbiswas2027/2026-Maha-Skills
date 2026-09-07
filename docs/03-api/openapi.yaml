@@ -1,0 +1,583 @@
+openapi: 3.1.0
+info:
+  title: MahaSkills Core API Contract
+  description: Canonical OpenAPI specification for the MahaSkills Labour-Market Intelligence & Curriculum Alignment Platform (Government of Maharashtra).
+  version: 1.0.0
+servers:
+  - url: https://api.mahaskills.maharashtra.gov.in/v1
+    description: Production API Gateway
+  - url: https://staging-api.mahaskills.maharashtra.gov.in/v1
+    description: Staging Environment
+  - url: http://localhost:8000/v1
+    description: Local Development Environment
+
+security:
+  - KeycloakBearer: []
+
+paths:
+  /auth/me:
+    get:
+      summary: Get current authenticated user profile and scopes
+      operationId: getCurrentUser
+      tags: [Authentication]
+      responses:
+        '200':
+          description: User profile and jurisdictional scopes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /lmi/aggregates:
+    get:
+      summary: Get aggregated labour market demand and vacancy metrics
+      operationId: getLmiAggregates
+      tags: [Labour Market Intelligence]
+      parameters:
+        - name: district_id
+          in: query
+          schema: { type: integer }
+        - name: sector_id
+          in: query
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Aggregated vacancy metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LmiAggregateResponse'
+
+  /taxonomy/tree:
+    get:
+      summary: Retrieve complete hierarchical skill taxonomy
+      operationId: getTaxonomyTree
+      tags: [Skill Taxonomy]
+      responses:
+        '200':
+          description: Hierarchical tree of sectors, SSCs, and job roles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxonomyTreeResponse'
+
+  /gap-scores:
+    get:
+      summary: List calculated skill gap scores
+      operationId: listGapScores
+      tags: [Gap Scoring]
+      parameters:
+        - name: district_id
+          in: query
+          schema: { type: integer }
+        - name: sector_id
+          in: query
+          schema: { type: integer }
+        - name: nsqf_level
+          in: query
+          schema: { type: integer }
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20 }
+      responses:
+        '200':
+          description: Paginated gap scores
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GapScoreListResponse'
+
+  /gap-scores/oversupply:
+    get:
+      summary: Retrieve courses flagged as structurally oversupplied
+      operationId: getOversupplyAlerts
+      tags: [Gap Scoring]
+      parameters:
+        - name: district_id
+          in: query
+          schema: { type: integer }
+      responses:
+        '200':
+          description: List of oversupplied vocational courses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OversupplyListResponse'
+
+  /recommendations:
+    get:
+      summary: List curriculum update recommendations
+      operationId: listRecommendations
+      tags: [Curriculum Recommendations]
+      parameters:
+        - name: status
+          in: query
+          schema: { type: string }
+        - name: ssc_id
+          in: query
+          schema: { type: integer }
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20 }
+      responses:
+        '200':
+          description: Paginated recommendation list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationListResponse'
+
+  /recommendations/{id}/dossier:
+    get:
+      summary: Retrieve empirical evidence dossier for a recommendation
+      operationId: getRecommendationDossier
+      tags: [Curriculum Recommendations]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Evidence dossier details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationDossierResponse'
+
+  /recommendations/{id}/review:
+    post:
+      summary: Submit technical review or approval decision
+      operationId: reviewRecommendation
+      tags: [Curriculum Recommendations]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewActionRequest'
+      responses:
+        '200':
+          description: Action recorded and workflow advanced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccessResponse'
+
+  /employers/skill-needs:
+    post:
+      summary: Submit structured upcoming industrial skill needs
+      operationId: submitSkillNeeds
+      tags: [Employer Engagement]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SkillNeedSubmissionRequest'
+      responses:
+        '201':
+          description: Skill need recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericSuccessResponse'
+
+  /ingestion/placements/upload:
+    post:
+      summary: Upload monthly ITI placement CSV return
+      operationId: uploadPlacementCsv
+      tags: [Placement Returns]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                academic_year:
+                  type: string
+                batch_month:
+                  type: integer
+      responses:
+        '202':
+          description: Batch queued for validation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlacementUploadResponse'
+
+  /ingestion/placements/{batchId}/errors:
+    get:
+      summary: Retrieve validation error items for a rejected placement batch
+      operationId: getPlacementBatchErrors
+      tags: [Placement Returns]
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Cell-level error records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorListResponse'
+
+  /district-plans:
+    get:
+      summary: Get Annual District Training Plan
+      operationId: getDistrictPlan
+      tags: [District Planning]
+      parameters:
+        - name: district_id
+          in: query
+          required: true
+          schema: { type: integer }
+        - name: fiscal_year
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Complete district plan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistrictPlanResponse'
+
+  /candidates/courses:
+    get:
+      summary: Public course directory with verified placement metrics
+      operationId: searchCourses
+      tags: [Candidate Guidance]
+      security: []
+      parameters:
+        - name: search
+          in: query
+          schema: { type: string }
+        - name: district_id
+          in: query
+          schema: { type: integer }
+        - name: sector_id
+          in: query
+          schema: { type: integer }
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20 }
+      responses:
+        '200':
+          description: Verified course catalog
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseSearchResponse'
+
+  /candidates/pathway/recommend:
+    post:
+      summary: Personalized vocational recommendations based on 5-step quiz
+      operationId: recommendPathway
+      tags: [Candidate Guidance]
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PathwayQuizRequest'
+      responses:
+        '200':
+          description: Top 3 recommended courses with rationale
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PathwayRecommendationResponse'
+
+components:
+  securitySchemes:
+    KeycloakBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Keycloak OIDC RS256 Bearer Token
+
+  responses:
+    Unauthorized:
+      description: Authentication missing or expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    GenericSuccessResponse:
+      type: object
+      properties:
+        success: { type: boolean, example: true }
+        data: { type: object, nullable: true }
+        meta: { type: object, nullable: true }
+        error: { type: object, nullable: true }
+
+    ErrorResponse:
+      type: object
+      properties:
+        success: { type: boolean, example: false }
+        data: { type: object, nullable: true }
+        meta: { type: object, nullable: true }
+        error:
+          type: object
+          properties:
+            code: { type: string, example: "AUTH_UNAUTHORIZED" }
+            message: { type: string, example: "Invalid or expired session token." }
+            details:
+              type: array
+              items: { type: object }
+
+    UserResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: object
+          properties:
+            id: { type: string, format: uuid }
+            keycloak_sub: { type: string }
+            email: { type: string, format: email }
+            full_name: { type: string }
+            roles:
+              type: array
+              items: { type: string }
+            scopes: { type: object }
+
+    LmiAggregateResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: object
+          properties:
+            total_vacancies: { type: integer }
+            top_sectors:
+              type: array
+              items:
+                type: object
+                properties:
+                  sector_id: { type: integer }
+                  name: { type: string }
+                  openings: { type: integer }
+                  growth_rate: { type: number }
+
+    TaxonomyTreeResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              sector_id: { type: integer }
+              name_en: { type: string }
+              sscs: { type: array, items: { type: object } }
+
+    GapScoreListResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string, format: uuid }
+              district_name: { type: string }
+              sector_name: { type: string }
+              job_role_title: { type: string }
+              nsqf_level: { type: integer }
+              gap_score: { type: number }
+              severity_level: { type: string }
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+
+    OversupplyListResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              course_id: { type: string, format: uuid }
+              course_code: { type: string }
+              course_title: { type: string }
+              placement_rate: { type: number }
+              local_demand_percentile: { type: integer }
+              recommendation: { type: string }
+
+    RecommendationListResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string, format: uuid }
+              recommendation_code: { type: string }
+              job_role: { type: string }
+              recommendation_type: { type: string }
+              status: { type: string }
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+
+    RecommendationDossierResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: object
+          properties:
+            recommendation_id: { type: string, format: uuid }
+            recommendation_code: { type: string }
+            evidence: { type: object }
+            dossier_pdf_url: { type: string, format: uri }
+
+    ReviewActionRequest:
+      type: object
+      required: [action]
+      properties:
+        action:
+          type: string
+          enum: [APPROVE, REJECT, REQUEST_REVISIONS]
+        comments: { type: string }
+        revised_syllabus_attachment_s3_key: { type: string }
+
+    SkillNeedSubmissionRequest:
+      type: object
+      required: [sector_id, items]
+      properties:
+        sector_id: { type: integer }
+        items:
+          type: array
+          items:
+            type: object
+            required: [job_role_title, headcount, urgency, district_id]
+            properties:
+              job_role_title: { type: string }
+              headcount: { type: integer }
+              urgency: { type: string, enum: [IMMEDIATE, QUARTERLY, FUTURE] }
+              district_id: { type: integer }
+
+    PlacementUploadResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: object
+          properties:
+            batch_id: { type: string, format: uuid }
+            status: { type: string }
+
+    ValidationErrorListResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              row_number: { type: integer }
+              column_name: { type: string }
+              rejected_value: { type: string }
+              error_code: { type: string }
+              error_message: { type: string }
+
+    DistrictPlanResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: object
+          properties:
+            plan_id: { type: string, format: uuid }
+            district_name: { type: string }
+            fiscal_year: { type: string }
+            status: { type: string }
+            total_target_intake: { type: integer }
+            total_estimated_budget: { type: number }
+
+    CourseSearchResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string, format: uuid }
+              course_code: { type: string }
+              title_en: { type: string }
+              title_mr: { type: string }
+              duration_months: { type: integer }
+              nsqf_level: { type: integer }
+              verified_placement_rate: { type: number }
+              median_salary_inr: { type: number }
+
+    PathwayQuizRequest:
+      type: object
+      required: [district_id, education_level, sector_interest_ids]
+      properties:
+        district_id: { type: integer }
+        education_level: { type: string }
+        sector_interest_ids:
+          type: array
+          items: { type: integer }
+        language_preference: { type: string, default: "mr" }
+        willing_to_relocate: { type: boolean, default: false }
+
+    PathwayRecommendationResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              course_id: { type: string, format: uuid }
+              course_title: { type: string }
+              match_score: { type: integer }
+              reason_en: { type: string }
+              reason_mr: { type: string }
+
+    PaginationMeta:
+      type: object
+      properties:
+        page: { type: integer }
+        limit: { type: integer }
+        total_count: { type: integer }
+        total_pages: { type: integer }

@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MahaSkills — Comprehensive Master Architecture Guide</title>
+  <style>
+
+@page {
+  size: A4 portrait;
+  margin: 12mm 14mm 14mm 14mm;
+  @bottom-right {
+    content: "Page " counter(page);
+    font-size: 8pt;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #64748b;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #1e293b;
+  background-color: #ffffff;
+  font-size: 8.6pt;
+  line-height: 1.42;
+  margin: 0;
+  padding: 0;
+}
+
+.page-break {
+  page-break-before: always;
+}
+
+/* Header & Banner */
+.doc-header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0369a1 100%);
+  color: #ffffff;
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.doc-badge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.doc-badge {
+  background: #f59e0b;
+  color: #0f172a;
+  font-size: 7pt;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.doc-dept {
+  font-size: 7.5pt;
+  color: #93c5fd;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.doc-title {
+  font-size: 16pt;
+  font-weight: 900;
+  margin: 2px 0 4px 0;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+}
+
+.doc-subtitle {
+  font-size: 8.8pt;
+  color: #e0f2fe;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Executive Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 10px 0 14px 0;
+}
+
+.stat-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 6.5pt;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.stat-val {
+  font-size: 11pt;
+  font-weight: 900;
+  color: #0369a1;
+  margin-top: 1px;
+}
+
+.stat-sub {
+  font-size: 6.5pt;
+  color: #475569;
+}
+
+/* Chapter Headers */
+.chapter-header {
+  border-bottom: 2px solid #0284c7;
+  padding-bottom: 4px;
+  margin-top: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chapter-title {
+  font-size: 12.5pt;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chapter-badge {
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 7pt;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Callout Boxes */
+.concept-box {
+  background: #fefce8;
+  border-left: 4px solid #eab308;
+  border-radius: 0 6px 6px 0;
+  padding: 8px 12px;
+  margin: 8px 0;
+}
+
+.concept-title {
+  font-size: 8.5pt;
+  font-weight: 800;
+  color: #854d0e;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.concept-body {
+  font-size: 8.2pt;
+  color: #713f12;
+  line-height: 1.4;
+}
+
+.tech-box {
+  background: #f8fafc;
+  border-left: 4px solid #0284c7;
+  border-radius: 0 6px 6px 0;
+  padding: 8px 12px;
+  margin: 8px 0;
+}
+
+.tech-title {
+  font-size: 8.5pt;
+  font-weight: 800;
+  color: #0369a1;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tech-body {
+  font-size: 8.2pt;
+  color: #1e293b;
+  line-height: 1.4;
+}
+
+.policy-box {
+  background: #f0fdf4;
+  border-left: 4px solid #059669;
+  border-radius: 0 6px 6px 0;
+  padding: 8px 12px;
+  margin: 8px 0;
+}
+
+.policy-title {
+  font-size: 8.5pt;
+  font-weight: 800;
+  color: #065f46;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.policy-body {
+  font-size: 8.2pt;
+  color: #064e3b;
+  line-height: 1.4;
+}
+
+/* Diagram Container */
+.diagram-container {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 10px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.diagram-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+
+.diagram-heading {
+  font-size: 8.5pt;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.diagram-source {
+  font-size: 7pt;
+  color: #64748b;
+  font-family: monospace;
+}
+
+.diagram-caption {
+  font-size: 7.2pt;
+  color: #475569;
+  font-style: italic;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* Tables */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8pt;
+  margin: 8px 0;
+}
+
+.spec-table th, .spec-table td {
+  border: 1px solid #cbd5e1;
+  padding: 6px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.spec-table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.spec-table tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+/* Formulas & Callouts */
+.formula-callout {
+  background: #f0f9ff;
+  border: 1.5px solid #0284c7;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: #0369a1;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+
+.page-num {
+  text-align: right;
+  font-size: 7.5pt;
+  color: #94a3b8;
+  font-style: italic;
+  margin-top: 6px;
+}
+
+p {
+  margin: 0 0 6px 0;
+}
+
+ul, ol {
+  margin: 0 0 6px 0;
+  padding-left: 18px;
+}
+
+li {
+  margin-bottom: 3px;
+}
+
+.bold {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1: TITLE & CHAPTER 1 -->
+<div class="doc-header">
+  <div class="doc-badge-row">
+    <span class="doc-badge">SMART INDIA HACKATHON 2026 &middot; PS #26134</span>
+    <span class="doc-dept">Government of Maharashtra &middot; DSEEI / MSInS</span>
+  </div>
+  <h1 class="doc-title">MahaSkills &mdash; Project Master Architecture &amp; System Manual</h1>
+  <p class="doc-subtitle">Autonomous Labour-Market Intelligence &amp; Dynamic Vocational Curriculum Alignment Platform across 36 Districts and 417+ ITIs</p>
+</div>
+
+<!-- EXECUTIVE STATS -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-label">Territorial Scope</div>
+    <div class="stat-val">36 Districts</div>
+    <div class="stat-sub">417+ ITIs &middot; 33 Sectors &middot; 36 SSCs</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Trainee Scale</div>
+    <div class="stat-val">1,50,000+</div>
+    <div class="stat-sub">Annual Vocational Enrolment</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Placement Target</div>
+    <div class="stat-val">+24% Uplift</div>
+    <div class="stat-sub">From ~45% to &gt;69% State Average</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Syllabus Cycle</div>
+    <div class="stat-val">21 Days</div>
+    <div class="stat-sub">Down from 180 Days (5-Yr Static)</div>
+  </div>
+</div>
+
+<!-- CHAPTER 1 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 1: The Maharashtra Vocational Crisis &amp; Problem Statement #26134</h2>
+  <span class="chapter-badge">Product Domain</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; What is this project and why is it desperately needed?</div>
+  <div class="concept-body">
+    Imagine going to a government vocational school for two years to learn how to fix petrol engines, only to graduate and discover that every automotive factory in your district (like Tata Motors or Bajaj in Pune) has switched entirely to electric vehicles and robotic assembly lines! This is the exact crisis facing youth in Maharashtra today.<br><br>
+    The state operates over <strong>417 Industrial Training Institutes (ITIs)</strong> training 1.5 lakh students every year. But their syllabi are revised manually only once every 5 years by government committees. Meanwhile, modern industry introduces new software, tools, and machines every few months. Because of this massive &ldquo;curriculum drift,&rdquo; more than half of all vocational graduates cannot find jobs, while employers complain they cannot find skilled workers.<br><br>
+    <strong>MahaSkills</strong> is an autonomous digital platform that acts as a real-time bridge. It automatically reads live job listings across the state, calculates exactly which skills are needed in each district, and generates the exact administrative paperwork for government officials to update courses in <strong>21 days instead of 5 years</strong>.
+  </div>
+</div>
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Terminology &amp; Key Governance Entities</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>ITI (Industrial Training Institute):</strong> State-run post-secondary vocational training institutes delivering certificate trades (Fitter, Electrician, Welder, Machinist, COPA).</li>
+      <li><strong>DSEEI &amp; DVET:</strong> Department of Skills, Employment, Entrepreneurship and Innovation; and Directorate of Vocational Education and Training (Government of Maharashtra).</li>
+      <li><strong>MSInS:</strong> Maharashtra State Innovation Society, driving technological entrepreneurship and hackathon deployment.</li>
+      <li><strong>NSQF (National Skills Qualification Framework):</strong> A competency-based framework organizing qualifications from levels 1 to 10 based on knowledge, skills, and aptitude.</li>
+      <li><strong>SSC (Sector Skill Council):</strong> Industry-led autonomous bodies (e.g., ASDC for Automotive, NASSCOM for IT) that set occupational standards.</li>
+      <li><strong>LMI (Labour Market Intelligence):</strong> Real-time quantitative aggregation of job vacancies, hiring velocities, wage premiums, and skill demand signals.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="policy-box">
+  <div class="policy-title">🏛️ The Administrative Mandate (Problem Statement #26134)</div>
+  <div class="policy-body">
+    Issued directly by DSEEI / MSInS, Problem Statement 26134 mandates the creation of a closed-loop platform that detects emerging skill demand at the district level, identifies obsolete training courses, and auto-generates evidence-grounded curriculum dossiers and annual district training plans.
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 2: CHAPTER 2 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 2: The Core Innovation &mdash; Closed-Loop Alignment Architecture</h2>
+  <span class="chapter-badge">End-to-End Lifecycle</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; What does &ldquo;Closing the Loop&rdquo; mean?</div>
+  <div class="concept-body">
+    Traditional government portals like National Career Service (NCS) or job boards operate as an &ldquo;open loop&rdquo;: they show job listings, candidates apply, but the vocational schools never learn anything from those job ads! The schools keep teaching the same outdated 2018 syllabus forever.<br><br>
+    MahaSkills <strong>&ldquo;closes the loop&rdquo;</strong>: when hiring for &ldquo;Battery Management Systems&rdquo; or &ldquo;Solar PV Inverters&rdquo; spikes in Pune or Nagpur, our system automatically traces backward into the relevant ITI trade, flags that the current syllabus lacks these modules, drafts the revised lesson plans, routes them to officials for digital sign-off, updates the classroom curriculum, and tracks whether the next batch of students gets hired at higher salaries!
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 1: End-to-End Closed-Loop Alignment Architecture</span>
+    <span class="diagram-source">Source: docs/01-product/PRD.md & docs/02-architecture/SYSTEM_ARCHITECTURE.md</span>
+  </div>
+  <svg width="100%" height="110" viewBox="0 0 740 110" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="110" fill="#f8fafc" rx="5" />
+    <defs>
+      <marker id="arr1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+      </marker>
+    </defs>
+    
+    <!-- Step 1 -->
+    <g transform="translate(10, 10)">
+      <rect width="105" height="50" rx="4" fill="#0f172a" />
+      <text x="52" y="16" fill="#38bdf8" font-size="7.5" font-weight="bold" text-anchor="middle">STEP 1: INGEST</text>
+      <text x="52" y="28" fill="#ffffff" font-size="8" font-weight="600" text-anchor="middle">Live Job Signals</text>
+      <text x="52" y="38" fill="#94a3b8" font-size="6.5" text-anchor="middle">NCS, Naukri, LinkedIn</text>
+    </g>
+    <line x1="115" y1="35" x2="130" y2="35" stroke="#0284c7" stroke-width="2" marker-end="url(#arr1)" />
+
+    <!-- Step 2 -->
+    <g transform="translate(133, 10)">
+      <rect width="105" height="50" rx="4" fill="#1e293b" />
+      <text x="52" y="16" fill="#38bdf8" font-size="7.5" font-weight="bold" text-anchor="middle">STEP 2: MAP</text>
+      <text x="52" y="28" fill="#ffffff" font-size="8" font-weight="600" text-anchor="middle">NLP Taxonomy</text>
+      <text x="52" y="38" fill="#94a3b8" font-size="6.5" text-anchor="middle">spaCy / 2,200 NSQF</text>
+    </g>
+    <line x1="238" y1="35" x2="253" y2="35" stroke="#0284c7" stroke-width="2" marker-end="url(#arr1)" />
+
+    <!-- Step 3 -->
+    <g transform="translate(256, 10)">
+      <rect width="105" height="50" rx="4" fill="#0369a1" />
+      <text x="52" y="16" fill="#e0f2fe" font-size="7.5" font-weight="bold" text-anchor="middle">STEP 3: SCORE</text>
+      <text x="52" y="28" fill="#ffffff" font-size="8" font-weight="600" text-anchor="middle">Quant Gap Engine</text>
+      <text x="52" y="38" fill="#bae6fd" font-size="6.5" text-anchor="middle">0.00 – 1.00 Index</text>
+    </g>
+    <line x1="361" y1="35" x2="376" y2="35" stroke="#0284c7" stroke-width="2" marker-end="url(#arr1)" />
+
+    <!-- Step 4 -->
+    <g transform="translate(379, 10)">
+      <rect width="105" height="50" rx="4" fill="#0284c7" />
+      <text x="52" y="16" fill="#f0f9ff" font-size="7.5" font-weight="bold" text-anchor="middle">STEP 4: DOSSIER</text>
+      <text x="52" y="28" fill="#ffffff" font-size="8" font-weight="600" text-anchor="middle">Curriculum Rec</text>
+      <text x="52" y="38" fill="#e0f2fe" font-size="6.5" text-anchor="middle">12-Mo Evidence Graph</text>
+    </g>
+    <line x1="484" y1="35" x2="499" y2="35" stroke="#0284c7" stroke-width="2" marker-end="url(#arr1)" />
+
+    <!-- Step 5 -->
+    <g transform="translate(502, 10)">
+      <rect width="105" height="50" rx="4" fill="#047857" />
+      <text x="52" y="16" fill="#a7f3d0" font-size="7.5" font-weight="bold" text-anchor="middle">STEP 5: RATIFY</text>
+      <text x="52" y="28" fill="#ffffff" font-size="8" font-weight="600" text-anchor="middle">SSC & DSEEI</text>
+      <text x="52" y="38" fill="#ecfdf5" font-size="6.5" text-anchor="middle">State Review Machine</text>
+    </g>
+    <line x1="607" y1="35" x2="622" y2="35" stroke="#0284c7" stroke-width="2" marker-end="url(#arr1)" />
+
+    <!-- Step 6 -->
+    <g transform="translate(625, 10)">
+      <rect width="105" height="50" rx="4" fill="#065f46" />
+      <text x="52" y="16" fill="#a7f3d0" font-size="7.5" font-weight="bold" text-anchor="middle">STEP 6: ACT</text>
+      <text x="52" y="28" fill="#ffffff" font-size="8" font-weight="600" text-anchor="middle">District Plans</text>
+      <text x="52" y="38" fill="#ecfdf5" font-size="6.5" text-anchor="middle">ITI Seats & Capex</text>
+    </g>
+
+    <!-- Feedback Loop -->
+    <path d="M 677 65 L 677 82 L 62 82 L 62 65" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4,3" fill="none" />
+    <text x="370" y="93" fill="#b45309" font-size="7" font-weight="bold" text-anchor="middle">&larr;&larr;&larr; Continuous Feedback Loop: Monthly ITI Placement Returns Validate Outcome Uplift &amp; Recalibrate Scoring Weights &larr;&larr;&larr;</text>
+  </svg>
+  <div class="diagram-caption">The complete closed-loop lifecycle: market signals are parsed, scored, synthesized into curriculum modifications, ratified by state review bodies, executed across 417+ ITIs, and continually evaluated via verified placement returns.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Step-by-Step Technical Execution of the 6 Stages</div>
+  <div class="tech-body">
+    <ol>
+      <li><strong>Step 1 (Ingest):</strong> Nightly Apache Airflow scrapers ingest public postings from NCS, Naukri, and LinkedIn across 36 district geo-bounds, alongside monthly ITI placement CSV uploads.</li>
+      <li><strong>Step 2 (Map):</strong> Natural Language Processing tokenizes unstructured job text and maps messy titles (&ldquo;CNC Specialist&rdquo;) to canonical NSQF job roles and NOS (National Occupational Standard) units.</li>
+      <li><strong>Step 3 (Score):</strong> Proprietary mathematical Gap Engine calculates a 0.00–1.00 score combining vacancy velocity, wage premiums, curriculum semantic drift, and historical placement rates.</li>
+      <li><strong>Step 4 (Dossier):</strong> Automatically synthesizes an NCVET-compliant Curriculum Modification Dossier complete with 12-month vacancy trends, hiring employer rosters, and syllabus diffs.</li>
+      <li><strong>Step 5 (Ratify):</strong> Routes through an administrative state machine: Sector Skill Council (SSC) technical validation &rarr; DSEEI Joint Secretary digital approval.</li>
+      <li><strong>Step 6 (Act &amp; Evaluate):</strong> Sanctions updated ITI seat quotas, allocates workshop capex budgets, schedules faculty retraining, and measures outcome uplift via subsequent placement returns.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="policy-box">
+  <div class="policy-title">🏛️ Continuous Evaluation &amp; Governance Feedback Loop</div>
+  <div class="policy-body">
+    The feedback loop does not terminate at syllabus publication. Every month, verified ITI placement returns feed back into the scoring engine to evaluate whether the curriculum revision produced actual wage uplift and higher hiring velocity. If placement falls short, scoring weights recalibrate automatically.
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 3: CHAPTER 3 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 3: System Architecture &amp; The 3-Tier Decoupled Platform</h2>
+  <span class="chapter-badge">Engineering &amp; Stack</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; How is the platform engineered under the hood?</div>
+  <div class="concept-body">
+    MahaSkills is designed like a modern, enterprise banking application. Instead of one giant, fragile program where a single bug crashes everything, the platform is divided into three completely decoupled tiers: a lightweight, lightning-fast frontend that works on mobile phones in rural talukas; a high-performance backend API that processes data asynchronously; and an intelligent database layer that combines regular data tables with AI vector search.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 2: C4 Level 1 System Context Architecture</span>
+    <span class="diagram-source">Source: docs/02-architecture/SYSTEM_ARCHITECTURE.md</span>
+  </div>
+  <svg width="100%" height="150" viewBox="0 0 740 150" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="150" fill="#f8fafc" rx="5" />
+    <!-- Actors Top -->
+    <g transform="translate(10, 8)">
+      <rect width="130" height="34" rx="4" fill="#1e293b" />
+      <text x="65" y="14" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">Candidate / Trainee</text>
+      <text x="65" y="25" fill="#94a3b8" font-size="7" text-anchor="middle">Pathway Quiz &amp; SSO</text>
+    </g>
+    <g transform="translate(155, 8)">
+      <rect width="135" height="34" rx="4" fill="#1e293b" />
+      <text x="67" y="14" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">Govt Official (DSEEI)</text>
+      <text x="67" y="25" fill="#94a3b8" font-size="7" text-anchor="middle">Policy &amp; District Plans</text>
+    </g>
+    <g transform="translate(305, 8)">
+      <rect width="130" height="34" rx="4" fill="#1e293b" />
+      <text x="65" y="14" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">ITI Principal (417+)</text>
+      <text x="65" y="25" fill="#94a3b8" font-size="7" text-anchor="middle">Placement CSV Returns</text>
+    </g>
+    <g transform="translate(450, 8)">
+      <rect width="135" height="34" rx="4" fill="#1e293b" />
+      <text x="67" y="14" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">Industry / Employer</text>
+      <text x="67" y="25" fill="#94a3b8" font-size="7" text-anchor="middle">Hiring Demand Signals</text>
+    </g>
+    <g transform="translate(600, 8)">
+      <rect width="130" height="34" rx="4" fill="#1e293b" />
+      <text x="65" y="14" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">SSC Tech Reviewer</text>
+      <text x="65" y="25" fill="#94a3b8" font-size="7" text-anchor="middle">Curriculum Dossiers</text>
+    </g>
+    <!-- Connectors -->
+    <path d="M 75 42 L 75 54 L 370 54 L 370 62" stroke="#0284c7" stroke-width="1.2" fill="none" />
+    <path d="M 222 42 L 222 54" stroke="#0284c7" stroke-width="1.2" fill="none" />
+    <path d="M 370 42 L 370 62" stroke="#0284c7" stroke-width="1.2" fill="none" />
+    <path d="M 517 42 L 517 54" stroke="#0284c7" stroke-width="1.2" fill="none" />
+    <path d="M 665 42 L 665 54 L 370 54" stroke="#0284c7" stroke-width="1.2" fill="none" />
+    <!-- Center Core System -->
+    <g transform="translate(180, 60)">
+      <rect width="380" height="36" rx="4" fill="#0284c7" stroke="#0369a1" stroke-width="1" />
+      <text x="190" y="15" fill="#ffffff" font-size="11" font-weight="800" text-anchor="middle">MahaSkills Platform Core</text>
+      <text x="190" y="27" fill="#e0f2fe" font-size="7.5" text-anchor="middle">FastAPI REST /v1 &middot; Gap Scoring Engine &middot; Celery Workers &middot; React 18 UI</text>
+    </g>
+    <!-- Bottom Connectors -->
+    <path d="M 370 96 L 370 106" stroke="#059669" stroke-width="1.2" fill="none" />
+    <path d="M 80 106 L 660 106" stroke="#059669" stroke-width="1.2" fill="none" />
+    <path d="M 80 106 L 80 114" stroke="#059669" stroke-width="1.2" fill="none" />
+    <path d="M 225 106 L 225 114" stroke="#059669" stroke-width="1.2" fill="none" />
+    <path d="M 370 106 L 370 114" stroke="#059669" stroke-width="1.2" fill="none" />
+    <path d="M 515 106 L 515 114" stroke="#059669" stroke-width="1.2" fill="none" />
+    <path d="M 660 106 L 660 114" stroke="#059669" stroke-width="1.2" fill="none" />
+    <!-- External Systems Bottom -->
+    <g transform="translate(15, 114)">
+      <rect width="130" height="30" rx="3" fill="#065f46" />
+      <text x="65" y="13" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">Keycloak 24 IAM</text>
+      <text x="65" y="23" fill="#a7f3d0" font-size="6.5" text-anchor="middle">OIDC / RS256 / RBAC</text>
+    </g>
+    <g transform="translate(160, 114)">
+      <rect width="130" height="30" rx="3" fill="#065f46" />
+      <text x="65" y="13" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">Mahaswayam Portal</text>
+      <text x="65" y="23" fill="#a7f3d0" font-size="6.5" text-anchor="middle">State Training SSO</text>
+    </g>
+    <g transform="translate(305, 114)">
+      <rect width="130" height="30" rx="3" fill="#065f46" />
+      <text x="65" y="13" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">NCS Open API</text>
+      <text x="65" y="23" fill="#a7f3d0" font-size="6.5" text-anchor="middle">National Vacancies</text>
+    </g>
+    <g transform="translate(450, 114)">
+      <rect width="130" height="30" rx="3" fill="#065f46" />
+      <text x="65" y="13" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">Job Aggregators</text>
+      <text x="65" y="23" fill="#a7f3d0" font-size="6.5" text-anchor="middle">Naukri / LinkedIn / Indeed</text>
+    </g>
+    <g transform="translate(595, 114)">
+      <rect width="130" height="30" rx="3" fill="#065f46" />
+      <text x="65" y="13" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">NCVET / NSDC</text>
+      <text x="65" y="23" fill="#a7f3d0" font-size="6.5" text-anchor="middle">National Qual Registers</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">C4 Level 1 context model: Ingesting high-frequency vacancy feeds & institutional returns into MahaSkills, feeding policy makers, ITIs, and SSC reviewers while federating identity via Keycloak and Mahaswayam.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ The 3-Tier Production Stack Breakdown</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>Presentation Tier (React 18 + Vite + TypeScript):</strong> Strict typing ensures zero <code>any</code> leaks. Styled with Tailwind CSS and accessible shadcn/ui components. State managed via TanStack Query v5 for server data deduplication and Zustand for client UI state. Native internationalization (i18n) supports Marathi, Hindi, and English.</li>
+      <li><strong>Application &amp; API Tier (Python 3.11 + FastAPI + Celery):</strong> Built with non-blocking async IO on Starlette/Uvicorn. Handles RESTful <code>/v1</code> endpoints, automated OpenAPI v3 contracts, and RBAC authorization guards. Celery 5.3 worker pools process heavy background tasks (scraping, vectorization, CSV parsing) via Redis 7.</li>
+      <li><strong>Intelligence &amp; Data Tier (PostgreSQL 16 + pgvector + PostGIS + Elasticsearch 8):</strong> PostgreSQL provides ACID transaction safety. The <code>pgvector</code> extension stores 384-dimensional syllabus embeddings for instant semantic search. PostGIS stores geospatial boundaries for 36 districts. Elasticsearch 8 provides BM25 relevance scoring and Marathi synonym dictionaries. MinIO/S3 stores raw CSV returns and immutable PDF dossiers.</li>
+      <li><strong>Pipeline Tier (Apache Airflow 2.8):</strong> Orchestrates scheduled batch workflows isolated from user-facing REST servers.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 4: CHAPTER 4 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 4: The Mathematical Core &mdash; Gap Scoring &amp; Obsolescence Engine</h2>
+  <span class="chapter-badge">Algorithmic IP</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; How do we mathematically detect an obsolete course without human bias?</div>
+  <div class="concept-body">
+    If a human committee decides which vocational courses to shut down or fund, personal politics and lobbying can influence decisions. MahaSkills removes subjective guesswork by using an empirical formula. It looks at four hard facts: Are employers actively posting jobs for this trade? Are wages rising above minimum wage? Does the current syllabus match modern job descriptions? Are students actually getting hired?<br><br>
+    If job postings are high and wages are soaring, but the syllabus is far behind and placements are dropping, the course receives a high <strong>Gap Score</strong>. If this score stays high for 8 weeks in a row, the platform automatically triggers an administrative intervention.
+  </div>
+</div>
+
+<div class="formula-callout">
+  GapScore(c, d) = 0.35 &middot; Norm(V_12mo) + 0.20 &middot; Norm(&Delta;W) + 0.25 &middot; Dist_cosine(S_market, S_curriculum) &minus; 0.20 &middot; Norm(P_rate)
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 3: Algorithmic Gap & Obsolescence Scoring Pipeline</span>
+    <span class="diagram-source">Source: docs/01-product/PRD.md & docs/02-architecture/BACKEND_ARCHITECTURE.md</span>
+  </div>
+  <svg width="100%" height="110" viewBox="0 0 740 110" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="110" fill="#f8fafc" rx="5" />
+    <defs>
+      <marker id="arr3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+      </marker>
+    </defs>
+    <!-- Inputs -->
+    <g transform="translate(10, 10)">
+      <rect width="150" height="20" rx="3" fill="#0f172a" />
+      <text x="75" y="14" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">12-Mo Vacancy Volume (V_12mo)</text>
+    </g>
+    <g transform="translate(10, 34)">
+      <rect width="150" height="20" rx="3" fill="#0f172a" />
+      <text x="75" y="14" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">Regional Wage Premium (ΔW)</text>
+    </g>
+    <g transform="translate(10, 58)">
+      <rect width="150" height="20" rx="3" fill="#0f172a" />
+      <text x="75" y="14" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">Cosine Syllabus Drift (Dist_cos)</text>
+    </g>
+    <g transform="translate(10, 82)">
+      <rect width="150" height="20" rx="3" fill="#0f172a" />
+      <text x="75" y="14" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">Historical Placement Rate (P_rate)</text>
+    </g>
+
+    <!-- Connectors to Weights -->
+    <path d="M 160 20 L 195 40" stroke="#0284c7" stroke-width="1.5" />
+    <path d="M 160 44 L 195 48" stroke="#0284c7" stroke-width="1.5" />
+    <path d="M 160 68 L 195 62" stroke="#0284c7" stroke-width="1.5" />
+    <path d="M 160 92 L 195 70" stroke="#0284c7" stroke-width="1.5" />
+
+    <!-- Weights & Normalization Engine -->
+    <g transform="translate(195, 22)">
+      <rect width="160" height="66" rx="4" fill="#0369a1" />
+      <text x="80" y="18" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">NORMALIZATION ENGINE</text>
+      <text x="80" y="32" fill="#e0f2fe" font-size="7" text-anchor="middle">0.35·Norm(V) + 0.20·Norm(ΔW)</text>
+      <text x="80" y="44" fill="#e0f2fe" font-size="7" text-anchor="middle">+ 0.25·Dist_cos − 0.20·Norm(P)</text>
+      <text x="80" y="58" fill="#93c5fd" font-size="6.5" text-anchor="middle">Min-Max Scaled [0.00 – 1.00]</text>
+    </g>
+    <line x1="355" y1="55" x2="385" y2="55" stroke="#0284c7" stroke-width="2" marker-end="url(#arr3)" />
+
+    <!-- Decision / Evaluation -->
+    <g transform="translate(390, 22)">
+      <rect width="150" height="66" rx="4" fill="#0284c7" />
+      <text x="75" y="18" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">PERSISTENCE EVALUATOR</text>
+      <text x="75" y="32" fill="#e0f2fe" font-size="7" text-anchor="middle">Checks 8-Week Streak</text>
+      <text x="75" y="46" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">GapScore &gt; 0.60 ?</text>
+      <text x="75" y="58" fill="#e0f2fe" font-size="6.5" text-anchor="middle">Eliminates 1-off Spikes</text>
+    </g>
+    <line x1="540" y1="55" x2="570" y2="55" stroke="#0284c7" stroke-width="2" marker-end="url(#arr3)" />
+
+    <!-- Action Trigger -->
+    <g transform="translate(575, 22)">
+      <rect width="155" height="66" rx="4" fill="#059669" />
+      <text x="77" y="18" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">ACTION DOSSIER GENERATOR</text>
+      <text x="77" y="32" fill="#a7f3d0" font-size="7" text-anchor="middle">&bull; Auto-Drafts NCVET Revision</text>
+      <text x="77" y="44" fill="#a7f3d0" font-size="7" text-anchor="middle">&bull; Flags Capex Equipment Needs</text>
+      <text x="77" y="58" fill="#a7f3d0" font-size="7" text-anchor="middle">&bull; Initiates Faculty Retraining</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">Mathematical scoring pipeline: 4 empirical inputs are normalized, weighted, and evaluated over an 8-week persistence window to trigger automated curriculum revision dossiers.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Mathematical Formulation &amp; Parameter Weights</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>V_12mo (Weight 0.35 &mdash; 12-Month Vacancy Volume):</strong> Total deduplicated job vacancies in district d for course c over the past 12 months, normalized across statewide percentiles using min-max scaling: <code>(V - V_min) / (V_max - V_min)</code>.</li>
+      <li><strong>&Delta;W (Weight 0.20 &mdash; Regional Wage Premium):</strong> Average offered monthly wage relative to the Maharashtra statutory unskilled minimum wage (&approx; &#8377;12,500/mo). High wage premiums indicate high-productivity, high-demand technical roles.</li>
+      <li><strong>Dist_cosine (Weight 0.25 &mdash; Semantic Syllabus Drift):</strong> Cosine distance <code>1 - cos(&theta;)</code> between the 384-dimensional vector embedding of emerging skill n-grams in job postings and the embedding of active course syllabus learning outcomes.</li>
+      <li><strong>P_rate (Weight 0.20 &mdash; Historical Placement Rate):</strong> 4-quarter rolling placement rate verified from ITI CSV returns. This parameter is <em>subtracted</em> from the score to prevent false alarms on trades that still boast near-100% placement.</li>
+      <li><strong>8-Week Persistence Evaluator:</strong> To prevent momentary market noise from disrupting state education, a Gap Score &gt; 0.60 must be maintained for <strong>&ge; 8 consecutive weekly runs</strong> before an automated Curriculum Modification Dossier is generated.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 5: CHAPTER 5 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 5: Semantic Taxonomy Normalization &amp; NLP Processing</h2>
+  <span class="chapter-badge">Data Intelligence</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; How do we make sense of messy, chaotic job postings?</div>
+  <div class="concept-body">
+    Every company invents their own creative titles in job advertisements: one employer asks for a &ldquo;Welding Rock Star,&rdquo; another for a &ldquo;TIG/MIG Fabricator,&rdquo; and a third writes &ldquo;Junior Metal Jointer.&rdquo; If a computer system doesn't understand that these all refer to the same government qualification pack (<em>Welder &mdash; NSQF Level 3</em>), the demand data will be completely fragmented and useless!<br><br>
+    MahaSkills acts like a multilingual universal translator. It takes chaotic job ads, strips out marketing buzzwords, extracts the underlying technical skill competencies, and matches them to official government qualification packs.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 4: 3-Stage Semantic Taxonomy Normalization Flow</span>
+    <span class="diagram-source">Source: docs/04-taxonomy/ & docs/06-data/DATA_MODEL.md</span>
+  </div>
+  <svg width="100%" height="95" viewBox="0 0 740 95" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="95" fill="#f8fafc" rx="5" />
+    <defs>
+      <marker id="arr4" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+      </marker>
+    </defs>
+    <!-- Raw Input -->
+    <g transform="translate(10, 20)">
+      <rect width="120" height="55" rx="4" fill="#0f172a" />
+      <text x="60" y="18" fill="#38bdf8" font-size="8" font-weight="bold" text-anchor="middle">RAW JOB POSTINGS</text>
+      <text x="60" y="30" fill="#ffffff" font-size="7" text-anchor="middle">Unstructured Text</text>
+      <text x="60" y="42" fill="#94a3b8" font-size="6.5" text-anchor="middle">"React Ninja", "EV Tech"</text>
+    </g>
+    <line x1="130" y1="47" x2="155" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr4)" />
+
+    <!-- Stage 1 -->
+    <g transform="translate(160, 20)">
+      <rect width="125" height="55" rx="4" fill="#1e293b" />
+      <text x="62" y="16" fill="#38bdf8" font-size="7.5" font-weight="bold" text-anchor="middle">STAGE 1: REGEX</text>
+      <text x="62" y="28" fill="#ffffff" font-size="7.5" font-weight="600" text-anchor="middle">Exact NSQF Matching</text>
+      <text x="62" y="40" fill="#94a3b8" font-size="6.5" text-anchor="middle">Fast-path lookup for</text>
+      <text x="62" y="50" fill="#94a3b8" font-size="6.5" text-anchor="middle">standard trade titles</text>
+    </g>
+    <line x1="285" y1="47" x2="310" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr4)" />
+
+    <!-- Stage 2 -->
+    <g transform="translate(315, 20)">
+      <rect width="125" height="55" rx="4" fill="#0369a1" />
+      <text x="62" y="16" fill="#e0f2fe" font-size="7.5" font-weight="bold" text-anchor="middle">STAGE 2: SPACY NER</text>
+      <text x="62" y="28" fill="#ffffff" font-size="7.5" font-weight="600" text-anchor="middle">Entity Extraction</text>
+      <text x="62" y="40" fill="#bae6fd" font-size="6.5" text-anchor="middle">Tokenizes noun phrases</text>
+      <text x="62" y="50" fill="#bae6fd" font-size="6.5" text-anchor="middle">&amp; technical skills</text>
+    </g>
+    <line x1="440" y1="47" x2="465" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr4)" />
+
+    <!-- Stage 3 -->
+    <g transform="translate(470, 20)">
+      <rect width="130" height="55" rx="4" fill="#0284c7" />
+      <text x="65" y="16" fill="#f0f9ff" font-size="7.5" font-weight="bold" text-anchor="middle">STAGE 3: EMBEDDINGS</text>
+      <text x="65" y="28" fill="#ffffff" font-size="7.5" font-weight="600" text-anchor="middle">Sentence-Transformers</text>
+      <text x="65" y="40" fill="#e0f2fe" font-size="6.5" text-anchor="middle">384d Dense Vector Search</text>
+      <text x="65" y="50" fill="#e0f2fe" font-size="6.5" text-anchor="middle">+ ES BM25 Synonyms</text>
+    </g>
+
+    <!-- Split Outputs -->
+    <path d="M 600 37 L 625 25" stroke="#059669" stroke-width="1.5" marker-end="url(#arr4)" />
+    <path d="M 600 57 L 625 69" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr4)" />
+
+    <!-- Output Match -->
+    <g transform="translate(630, 8)">
+      <rect width="100" height="34" rx="3" fill="#065f46" />
+      <text x="50" y="14" fill="#a7f3d0" font-size="7" font-weight="bold" text-anchor="middle">COSINE &ge; 0.72</text>
+      <text x="50" y="25" fill="#ffffff" font-size="6.5" text-anchor="middle">Mapped to NSQF Unit</text>
+    </g>
+    <!-- Output Quarantine -->
+    <g transform="translate(630, 52)">
+      <rect width="100" height="34" rx="3" fill="#b45309" />
+      <text x="50" y="14" fill="#fef3c7" font-size="7" font-weight="bold" text-anchor="middle">COSINE &lt; 0.72</text>
+      <text x="50" y="25" fill="#ffffff" font-size="6.5" text-anchor="middle">Quarantine Queue</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">3-stage taxonomy normalization pipeline: Regex fast-path &rarr; spaCy entity extraction &rarr; dense vector similarity + Elasticsearch BM25 synonym expansion.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ 3-Stage Normalization Pipeline Mechanics</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>Stage 1 (Exact Regex Matching):</strong> Fast-path deterministic regex engine scanning for 2,200 canonical NSQF trade codes and standard DGT trade titles (e.g., <code>ELE-01</code>, <code>FIT-02</code>). Resolves &approx; 40% of clean vacancy listings in &lt; 1ms.</li>
+      <li><strong>Stage 2 (spaCy Statistical NER):</strong> Custom-trained statistical Named Entity Recognizer tokenizes job descriptions, extracts noun phrases, and identifies technical skills, machinery names, software packages, and certification requirements while filtering stop-words.</li>
+      <li><strong>Stage 3 (Sentence-Transformer Embeddings &amp; BM25 Synonyms):</strong> Unmapped skills are converted into 384-dimensional dense vectors using open-source <code>all-MiniLM-L6-v2</code> and queried against the canonical skill taxonomy vector index, cross-referenced with Elasticsearch 8 BM25 synonym dictionaries containing 15,000+ technical descriptors.</li>
+      <li><strong>Confidence Threshold &amp; Quarantine Queue:</strong> Matches with cosine similarity &ge; 0.72 are automatically assigned to the canonical NSQF competence unit. Tokens scoring &lt; 0.72 are safely routed to an administrative <em>Unmapped Skills Quarantine Queue</em>, where SSC analysts can map them via the UI with one click without needing model retraining.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 6: CHAPTER 6 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 6: Data Privacy &amp; Legal Compliance (DPDP Act 2023)</h2>
+  <span class="chapter-badge">Cybersecurity &amp; Law</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; How do we protect student privacy and employer secrets?</div>
+  <div class="concept-body">
+    India's <strong>Digital Personal Data Protection (DPDP) Act 2023</strong> mandates strict criminal and financial penalties (up to &#8377;250 Crore) for leaking citizen personal information. Vocational students in rural ITIs must not have their roll numbers, names, or Aadhaar cards exposed online.<br><br>
+    MahaSkills implements a <strong>zero-disk privacy enclave</strong>: the very instant an ITI principal uploads a placement report, student identification numbers are converted in computer memory into irreversible cryptographic codes. Even if a rogue hacker stole the entire database, they would see only random strings of letters and numbers with zero student identities.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 5: DPDP Act 2023 Cryptographic Pseudonymization Pipeline</span>
+    <span class="diagram-source">Source: docs/05-security/DATA_PRIVACY.md</span>
+  </div>
+  <svg width="100%" height="80" viewBox="0 0 740 80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="80" fill="#f8fafc" rx="5" />
+    <g transform="translate(20, 15)">
+      <rect width="140" height="50" rx="4" fill="#dc2626" />
+      <text x="70" y="18" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">Raw Placement CSV</text>
+      <text x="70" y="30" fill="#fecaca" font-size="7" text-anchor="middle">student_roll_no: MH-4029</text>
+      <text x="70" y="42" fill="#fecaca" font-size="6.5" text-anchor="middle">Contains Direct PII</text>
+    </g>
+    <path d="M 160 40 L 195 40" stroke="#0284c7" stroke-width="1.5" />
+    <g transform="translate(195, 15)">
+      <rect width="160" height="50" rx="4" fill="#0284c7" />
+      <text x="80" y="18" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">STREAMING PARSER</text>
+      <text x="80" y="30" fill="#e0f2fe" font-size="7.5" font-weight="600" text-anchor="middle">Celery Ingestion Worker</text>
+      <text x="80" y="42" fill="#bae6fd" font-size="6.5" text-anchor="middle">In-Memory (No Disk Write)</text>
+    </g>
+    <path d="M 355 40 L 390 40" stroke="#0284c7" stroke-width="1.5" />
+    <g transform="translate(390, 15)">
+      <rect width="160" height="50" rx="4" fill="#0369a1" />
+      <text x="80" y="18" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">CRYPTO ENCLAVE (HSM)</text>
+      <text x="80" y="30" fill="#e0f2fe" font-size="7.5" font-weight="600" text-anchor="middle">HMAC-SHA256 Engine</text>
+      <text x="80" y="42" fill="#bae6fd" font-size="6.5" text-anchor="middle">Salt: DPDP_TENANT_SALT</text>
+    </g>
+    <path d="M 550 40 L 585 40" stroke="#0284c7" stroke-width="1.5" />
+    <g transform="translate(585, 15)">
+      <rect width="135" height="50" rx="4" fill="#059669" />
+      <text x="67" y="18" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">SECURE RELATIONAL DB</text>
+      <text x="67" y="30" fill="#a7f3d0" font-size="7.5" font-weight="600" text-anchor="middle">candidate_hash</text>
+      <text x="67" y="42" fill="#ecfdf5" font-size="6.5" text-anchor="middle">e3b0c442... (Non-reversible)</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">Data privacy pipeline: Raw student roll numbers are converted to irreversible cryptographic hashes in volatile memory prior to database insertion. Raw PII touches zero disk blocks.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Streaming HMAC-SHA256 Cryptographic Architecture</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>Volatile Memory Ingestion:</strong> Celery ingestion workers read uploaded placement CSV streams line-by-line entirely within volatile RAM. Unencrypted student identifiers (roll numbers, registration codes) <em>never touch physical disk or database swap files</em>.</li>
+      <li><strong>Hardware Security Module (CloudHSM) Salt:</strong> Hashes are computed via <code>HMAC-SHA256(student_id, DPDP_TENANT_SALT)</code>. The cryptographic salt is stored exclusively in an isolated CloudHSM enclave inaccessible to database administrators.</li>
+      <li><strong>Non-Reversible Candidate Hashes:</strong> Database tables store only the resulting 64-character hex hash (<code>candidate_hash</code>), fully satisfying Section 8(6) of DPDP Act 2023.</li>
+      <li><strong>Zero Employer Leakage:</strong> Enterprise hiring volumes, candidate requisitions, and salary offers are aggregated to district/sector medians before appearing on public analytics dashboards. Competitors cannot reverse-engineer proprietary corporate staffing strategies.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="policy-box">
+  <div class="policy-title">🏛️ DPDP Statutory Alignment Summary</div>
+  <div class="policy-body">
+    By mathematically eliminating direct identifiers at the streaming network layer and isolating the cryptographic salt in CloudHSM, MahaSkills operates as a fully pseudonymized platform exempt from citizen de-anonymization vulnerabilities.
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 7: CHAPTER 7 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 7: Data Engineering, Ingestion &amp; 10M-Record Table Partitioning</h2>
+  <span class="chapter-badge">Data Engineering</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; How does the system handle millions of records over years without slowing down?</div>
+  <div class="concept-body">
+    Over 7 years across 36 districts and 417+ ITIs, the system accumulates more than 10 million individual student placement records and job listings. In an ordinary database, searching through 10 million rows takes minutes and eventually crashes the server.<br><br>
+    MahaSkills organizes its database like a library with separate filing cabinets for each year: when an official asks for 2025 placement data, the database opens only the 2025 filing cabinet and completely ignores the other years. This keeps queries running in milliseconds forever.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 6: Automated Ingestion & Pipeline Orchestration (Apache Airflow)</span>
+    <span class="diagram-source">Source: docs/06-data/DATA_INGESTION.md</span>
+  </div>
+  <svg width="100%" height="85" viewBox="0 0 740 85" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="85" fill="#f8fafc" rx="5" />
+    <g transform="translate(15, 12)">
+      <rect width="155" height="60" rx="4" fill="#1e293b" />
+      <text x="77" y="18" fill="#38bdf8" font-size="8" font-weight="bold" text-anchor="middle">EXTERNAL DATA FEEDS</text>
+      <text x="77" y="32" fill="#ffffff" font-size="7" text-anchor="middle">&bull; NCS Open API / Job Portals</text>
+      <text x="77" y="44" fill="#ffffff" font-size="7" text-anchor="middle">&bull; Monthly ITI Placement CSVs</text>
+      <text x="77" y="56" fill="#ffffff" font-size="7" text-anchor="middle">&bull; Employer Skill Demand Forms</text>
+    </g>
+    <path d="M 170 42 L 205 42" stroke="#0284c7" stroke-width="1.5" />
+    <g transform="translate(205, 12)">
+      <rect width="265" height="60" rx="4" fill="#0369a1" />
+      <text x="132" y="18" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">AIRFLOW 2.8 PIPELINE ORCHESTRATION</text>
+      <text x="132" y="32" fill="#e0f2fe" font-size="7" text-anchor="middle">DAG 1: lmi_nightly_job_scraping (02:00 IST &middot; SLA &le; 120m)</text>
+      <text x="132" y="44" fill="#e0f2fe" font-size="7" text-anchor="middle">DAG 2: placement_validation_worker (Streaming Celery)</text>
+      <text x="132" y="56" fill="#e0f2fe" font-size="7" text-anchor="middle">DAG 3: taxonomy_nlp_enrichment (04:00 IST &middot; SLA &le; 60m)</text>
+    </g>
+    <path d="M 470 42 L 505 42" stroke="#0284c7" stroke-width="1.5" />
+    <g transform="translate(505, 12)">
+      <rect width="220" height="60" rx="4" fill="#065f46" />
+      <text x="110" y="18" fill="#a7f3d0" font-size="8.5" font-weight="bold" text-anchor="middle">STORAGE &amp; ANALYTICS</text>
+      <text x="110" y="32" fill="#ffffff" font-size="7" text-anchor="middle">&bull; MinIO/S3 (Raw Dumps &amp; Dossiers)</text>
+      <text x="110" y="44" fill="#ffffff" font-size="7" text-anchor="middle">&bull; PostgreSQL 16 (Relational &amp; Vector)</text>
+      <text x="110" y="56" fill="#ffffff" font-size="7" text-anchor="middle">&bull; Elasticsearch 8 (BM25 Synonyms)</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">Data pipeline architecture: Scheduled Airflow DAGs isolate batch processing and scraping workloads, guaranteeing zero latency interference with the live user-facing FastAPI application.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Airflow DAG Orchestration &amp; Native Table Partitioning</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>Apache Airflow 2.8 Orchestration:</strong> Isolated scheduled DAGs manage batch ETL pipelines:
+        <ul>
+          <li><code>lmi_nightly_job_scraping</code>: Executes daily at 02:00 IST (SLA &le; 120m) across NCS and job portals with automated rate-limiting and proxy rotation.</li>
+          <li><code>placement_validation_worker</code>: Streaming worker validating monthly ITI placement CSV batches line-by-line against schema boundaries.</li>
+          <li><code>taxonomy_nlp_enrichment</code>: Executes daily at 04:00 IST (SLA &le; 60m) to generate vector embeddings for newly ingested vacancies.</li>
+        </ul>
+      </li>
+      <li><strong>Atomic CSV Streaming &amp; Zero Partial Commits:</strong> Placement uploads (up to 50,000 rows) are verified across candidate HMAC, course code validity, and wage ranges. If syntax or relational integrity errors occur, the entire batch status is marked <code>REJECTED</code>, corrupt rows are written to an error log, and zero corrupt data enters production tables.</li>
+      <li><strong>PostgreSQL 16 Declarative Range Partitioning:</strong> The <code>placement_records</code> table is partitioned by <code>RANGE (batch_year)</code> into discrete annual tables (<code>placement_records_2024</code>, <code>placement_records_2025</code>). The query optimizer performs partition pruning, scanning only relevant cohorts.</li>
+      <li><strong>Cold Data Parquet Archival:</strong> Job postings older than 24 months are automatically converted into compressed columnar Apache Parquet files and archived in cold S3 storage while active 12-month econometric data remains indexed.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 8: CHAPTER 8 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 8: Deterministic RAG AI Assistant &amp; Marathi-First Interface</h2>
+  <span class="chapter-badge">Conversational AI</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; Why a Marathi chatbot, and why can't it make things up?</div>
+  <div class="concept-body">
+    Most vocational school principals in rural Maharashtra (in places like Gadchiroli, Nandurbar, or Beed) do not have time to learn complex data dashboards or write database queries. They need to ask simple questions in their mother tongue, Marathi: <em>&ldquo;Which courses in our district need updating for solar technology?&rdquo;</em><br><br>
+    Generic AI tools like ChatGPT often make up fake statistics (called &ldquo;hallucination&rdquo;). MahaSkills uses a technology called <strong>Retrieval-Augmented Generation (RAG)</strong>. The AI is strictly forbidden from giving opinions; it is legally bound to act only as an audio-visual reader of our verified database, citing exact course codes and government batch numbers for every single sentence it speaks.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 7: Deterministic Grounded RAG Pipeline Architecture</span>
+    <span class="diagram-source">Source: docs/01-product/USER_STORIES.md & docs/02-architecture/SYSTEM_ARCHITECTURE.md</span>
+  </div>
+  <svg width="100%" height="95" viewBox="0 0 740 95" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="95" fill="#f8fafc" rx="5" />
+    <defs>
+      <marker id="arr7" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+      </marker>
+    </defs>
+    <!-- User Query -->
+    <g transform="translate(10, 20)">
+      <rect width="115" height="55" rx="4" fill="#0f172a" />
+      <text x="57" y="16" fill="#38bdf8" font-size="7.5" font-weight="bold" text-anchor="middle">USER QUERY</text>
+      <text x="57" y="28" fill="#ffffff" font-size="7" text-anchor="middle">Marathi / English</text>
+      <text x="57" y="40" fill="#94a3b8" font-size="6.5" text-anchor="middle">"नागपूर सोलर कोर्सेस"</text>
+    </g>
+    <line x1="125" y1="47" x2="148" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr7)" />
+
+    <!-- Step 1 Intent -->
+    <g transform="translate(150, 20)">
+      <rect width="125" height="55" rx="4" fill="#1e293b" />
+      <text x="62" y="16" fill="#38bdf8" font-size="7.5" font-weight="bold" text-anchor="middle">1. FILTER EXTRACTION</text>
+      <text x="62" y="28" fill="#ffffff" font-size="7" text-anchor="middle">Entity Parsing</text>
+      <text x="62" y="40" fill="#94a3b8" font-size="6.5" text-anchor="middle">district = "Nagpur"</text>
+      <text x="62" y="50" fill="#94a3b8" font-size="6.5" text-anchor="middle">sector = "Green Energy"</text>
+    </g>
+    <line x1="275" y1="47" x2="298" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr7)" />
+
+    <!-- Step 2 Hybrid Retrieval -->
+    <g transform="translate(300, 20)">
+      <rect width="135" height="55" rx="4" fill="#0369a1" />
+      <text x="67" y="16" fill="#e0f2fe" font-size="7.5" font-weight="bold" text-anchor="middle">2. HYBRID RETRIEVAL</text>
+      <text x="67" y="28" fill="#ffffff" font-size="7" text-anchor="middle">pgvector Dense (384d)</text>
+      <text x="67" y="40" fill="#bae6fd" font-size="6.5" text-anchor="middle">+ Relational SQL Filters</text>
+      <text x="67" y="50" fill="#bae6fd" font-size="6.5" text-anchor="middle">Verified Course/Batch DB</text>
+    </g>
+    <line x1="435" y1="47" x2="458" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr7)" />
+
+    <!-- Step 3 Injected Prompt -->
+    <g transform="translate(460, 20)">
+      <rect width="135" height="55" rx="4" fill="#0284c7" />
+      <text x="67" y="16" fill="#f0f9ff" font-size="7.5" font-weight="bold" text-anchor="middle">3. CONTEXT INJECTION</text>
+      <text x="67" y="28" fill="#ffffff" font-size="7" text-anchor="middle">Mandatory Grounding</text>
+      <text x="67" y="40" fill="#e0f2fe" font-size="6.5" text-anchor="middle">Local Llama-3 / Ollama</text>
+      <text x="67" y="50" fill="#e0f2fe" font-size="6.5" text-anchor="middle">"Answer ONLY from context"</text>
+    </g>
+    <line x1="595" y1="47" x2="618" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr7)" />
+
+    <!-- Step 4 Citation Check -->
+    <g transform="translate(620, 20)">
+      <rect width="110" height="55" rx="4" fill="#059669" />
+      <text x="55" y="16" fill="#a7f3d0" font-size="7.5" font-weight="bold" text-anchor="middle">4. CITATION VERIFY</text>
+      <text x="55" y="28" fill="#ffffff" font-size="7" text-anchor="middle">Regex Claim Validation</text>
+      <text x="55" y="40" fill="#ecfdf5" font-size="6.5" text-anchor="middle">Refuses if unverified</text>
+      <text x="55" y="50" fill="#ecfdf5" font-size="6.5" text-anchor="middle">Source Clickable Chips</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">Deterministic RAG pipeline: Eliminates hallucinations by extracting relational filters, executing hybrid SQL/vector lookups, and enforcing post-generation citation verification.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Deterministic 4-Stage RAG Pipeline Architecture</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>1. Intent &amp; Entity Extraction:</strong> Analyzes user queries (in Marathi or English) to extract discrete SQL relational filters: <code>district="Nagpur"</code>, <code>sector="Green Energy"</code>, <code>nsqf_level=4</code>.</li>
+      <li><strong>2. Hybrid SQL &amp; Vector Retrieval:</strong> Combines dense semantic vector retrieval via <code>pgvector</code> (384-dimensional embeddings of course outcomes) with sparse relational SQL queries fetching verified 12-month vacancy stats and placement numbers.</li>
+      <li><strong>3. Context-Constrained Injection:</strong> Retrieved facts are formatted into a strict system prompt for our local open-source LLM (Llama-3-8B executed via Ollama/vLLM): <em>&ldquo;You are an assistant for DSEEI Maharashtra. Answer exclusively from the provided database records. Every single statistic must cite the exact Course ID, District ID, and Batch Year.&rdquo;</em></li>
+      <li><strong>4. Post-Generation Citation Regex Verification:</strong> A deterministic regex parser inspects the generated output before returning it to the user. If any claim lacks an exact verifiable citation ID from step 2, or if retrieval confidence is &lt; 0.65, the system automatically falls back to: <em>&ldquo;Insufficient verified data available for this district-sector combination.&rdquo;</em></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 9: CHAPTER 9 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 9: Multi-Tenant Security, RBAC/ABAC &amp; STRIDE Cyber Defense</h2>
+  <span class="chapter-badge">Platform Security</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; Who is allowed to see and change what?</div>
+  <div class="concept-body">
+    In a government system, a District Officer in Nagpur must not be able to secretly alter training budgets in Pune, and an ITI principal cannot artificially edit placement numbers to win awards. MahaSkills enforces strict digital identity badges and territorial locks so that every user sees only what they are legally authorized to manage.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 8: STRIDE Threat Assessment & Security Defense Perimeter</span>
+    <span class="diagram-source">Source: docs/05-security/THREAT_MODEL.md</span>
+  </div>
+  <svg width="100%" height="80" viewBox="0 0 740 80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="80" fill="#f8fafc" rx="5" />
+    <g transform="translate(10, 15)">
+      <rect width="70" height="50" rx="4" fill="#dc2626" />
+      <text x="35" y="28" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">Adversary</text>
+    </g>
+    <path d="M 80 40 L 95 40" stroke="#64748b" stroke-width="1.5" />
+    <g transform="translate(95, 15)">
+      <rect width="120" height="50" rx="3" fill="#1e293b" />
+      <text x="60" y="18" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">1. Token Forgery</text>
+      <text x="60" y="30" fill="#94a3b8" font-size="6.5" text-anchor="middle">&rarr; Keycloak IAM</text>
+      <text x="60" y="42" fill="#38bdf8" font-size="6" text-anchor="middle">Defense: RS256 JWKS Gate</text>
+    </g>
+    <g transform="translate(225, 15)">
+      <rect width="120" height="50" rx="3" fill="#1e293b" />
+      <text x="60" y="18" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">2. Malicious CSV Upload</text>
+      <text x="60" y="30" fill="#94a3b8" font-size="6.5" text-anchor="middle">&rarr; Ingestion Worker</text>
+      <text x="60" y="42" fill="#38bdf8" font-size="6" text-anchor="middle">Defense: 100MB Stream &amp; Sandboxing</text>
+    </g>
+    <g transform="translate(355, 15)">
+      <rect width="120" height="50" rx="3" fill="#1e293b" />
+      <text x="60" y="18" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">3. Cross-District Spoof</text>
+      <text x="60" y="30" fill="#94a3b8" font-size="6.5" text-anchor="middle">&rarr; API Gateway</text>
+      <text x="60" y="42" fill="#38bdf8" font-size="6" text-anchor="middle">Defense: TenantScopeGuard</text>
+    </g>
+    <g transform="translate(485, 15)">
+      <rect width="120" height="50" rx="3" fill="#1e293b" />
+      <text x="60" y="18" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">4. Scraper Poisoning</text>
+      <text x="60" y="30" fill="#94a3b8" font-size="6.5" text-anchor="middle">&rarr; LMI Airflow Fleet</text>
+      <text x="60" y="42" fill="#38bdf8" font-size="6" text-anchor="middle">Defense: 300% Spike Breakers</text>
+    </g>
+    <g transform="translate(615, 15)">
+      <rect width="115" height="50" rx="3" fill="#1e293b" />
+      <text x="57" y="18" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">5. Data Exfiltration</text>
+      <text x="57" y="30" fill="#94a3b8" font-size="6.5" text-anchor="middle">&rarr; PostgreSQL Store</text>
+      <text x="57" y="42" fill="#38bdf8" font-size="6" text-anchor="middle">Defense: HMAC-SHA256 Crypto</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">STRIDE threat coverage: Explicit perimeter defenses address all 5 adversary attack vectors across authentication, data upload, scraping, and storage tiers.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ 7 Platform Roles &amp; The STRIDE Threat Assessment Model</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>7 Platform Roles:</strong> (1) State Policy Maker (DSEEI / MSInS), (2) District Skill Officer (DSEEGC), (3) ITI Principal, (4) ITI Vocational Instructor, (5) SSC Reviewer, (6) Industry Employer, (7) Candidate / Trainee.</li>
+      <li><strong>Attribute-Based Access Control (ABAC):</strong> Authenticated Keycloak JWTs contain custom realm claims (e.g., <code>district_id: 2718</code>). The FastAPI API Gateway and SQLAlchemy ORM automatically inject mandatory row-level security predicates (<code>WHERE district_id = current_user.district_id</code>) on every database transaction.</li>
+      <li><strong>STRIDE Threat Coverage:</strong>
+        <ul>
+          <li><strong>Spoofing (S):</strong> Forged identity tokens are blocked via RS256 signature verification against Keycloak JWKS public keys.</li>
+          <li><strong>Tampering (T):</strong> Fraudulent ITI placement alterations are caught by SHA-256 batch checksums and statistical anomaly algorithms.</li>
+          <li><strong>Repudiation (R):</strong> State approval decisions are permanently logged in an immutable, append-only <code>audit_logs</code> table with SHA-256 digital approval signatures.</li>
+          <li><strong>Information Disclosure (I):</strong> Trainee PII is eliminated through zero-plaintext storage and HMAC-SHA256 pseudonymization.</li>
+          <li><strong>Denial of Service (D):</strong> Upload zip-bombs are halted via 100MB streaming upload caps and Celery worker queue isolation.</li>
+          <li><strong>Elevation of Privilege (E):</strong> Cross-district parameter tampering is blocked by <code>TenantScopeGuard</code>.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 10: CHAPTER 10 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 10: Curriculum Governance State Machine &amp; Faculty Protection</h2>
+  <span class="chapter-badge">Administrative Workflow</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; How does a computer recommendation become official government policy?</div>
+  <div class="concept-body">
+    In the government, an algorithm cannot simply change classroom textbooks overnight without democratic accountability. Official curriculum changes require technical validation by national experts and administrative sanction by senior IAS officers.<br><br>
+    Furthermore, when an obsolete trade is phased out, what happens to the government teachers who have taught it for 20 years? In government ITIs, teachers cannot be laid off! MahaSkills models the real administrative reality: it provides a <strong>5-stage approval state machine</strong>, and automatically schedules affected faculty into government Advanced Training Institutes (ATIs) to learn new technologies before the updated courses launch.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 9: Curriculum Recommendation Governance State Machine</span>
+    <span class="diagram-source">Source: docs/02-architecture/BACKEND_ARCHITECTURE.md</span>
+  </div>
+  <svg width="100%" height="75" viewBox="0 0 740 75" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="75" fill="#f8fafc" rx="5" />
+    <g transform="translate(15, 12)">
+      <rect width="125" height="50" rx="4" fill="#0f172a" />
+      <text x="62" y="20" fill="#94a3b8" font-size="7" font-weight="bold" text-anchor="middle">STATUS 1</text>
+      <text x="62" y="33" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">DRAFT</text>
+      <text x="62" y="45" fill="#38bdf8" font-size="6.5" text-anchor="middle">Persistent Gap &gt; 60</text>
+    </g>
+    <path d="M 140 37 L 170 37" stroke="#0284c7" stroke-width="1.5" />
+    <g transform="translate(170, 12)">
+      <rect width="135" height="50" rx="4" fill="#0369a1" />
+      <text x="67" y="20" fill="#bae6fd" font-size="7" font-weight="bold" text-anchor="middle">STATUS 2</text>
+      <text x="67" y="33" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">UNDER_SSC_REVIEW</text>
+      <text x="67" y="45" fill="#e0f2fe" font-size="6.5" text-anchor="middle">Technical Dossier Review</text>
+    </g>
+    <path d="M 305 37 L 335 37" stroke="#0284c7" stroke-width="1.5" />
+    <g transform="translate(335, 12)">
+      <rect width="130" height="50" rx="4" fill="#0284c7" />
+      <text x="65" y="20" fill="#e0f2fe" font-size="7" font-weight="bold" text-anchor="middle">STATUS 3</text>
+      <text x="65" y="33" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">SSC_APPROVED</text>
+      <text x="65" y="45" fill="#f0f9ff" font-size="6.5" text-anchor="middle">Tech Committee Sign-off</text>
+    </g>
+    <path d="M 465 37 L 495 37" stroke="#0284c7" stroke-width="1.5" />
+    <g transform="translate(495, 12)">
+      <rect width="135" height="50" rx="4" fill="#047857" />
+      <text x="67" y="20" fill="#a7f3d0" font-size="7" font-weight="bold" text-anchor="middle">STATUS 4</text>
+      <text x="67" y="33" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">DSEEI_APPROVAL</text>
+      <text x="67" y="45" fill="#ecfdf5" font-size="6.5" text-anchor="middle">Joint Secretary Sanction</text>
+    </g>
+    <path d="M 630 37 L 650 37" stroke="#0284c7" stroke-width="1.5" />
+    <g transform="translate(650, 12)">
+      <rect width="75" height="50" rx="4" fill="#065f46" />
+      <text x="37" y="20" fill="#a7f3d0" font-size="7" font-weight="bold" text-anchor="middle">STATUS 5</text>
+      <text x="37" y="33" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">PUBLISHED</text>
+      <text x="37" y="45" fill="#ecfdf5" font-size="6.5" text-anchor="middle">Live to ITIs</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">Governance state machine: Guarantees no automated model can unilaterally alter official vocational curriculum without accredited Sector Skill Council validation and formal DSEEI administrative sanction.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Statutory Approval Workflow &amp; Operational Safeguards</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>5-Stage Statutory State Machine:</strong>
+        <ol>
+          <li><code>DRAFT</code>: Generated automatically when a trade maintains a persistent Gap Score &gt; 0.60 for &ge; 8 consecutive weeks.</li>
+          <li><code>UNDER_SSC_REVIEW</code>: Assigned to accredited Sector Skill Council technical evaluators for syllabus modification review.</li>
+          <li><code>SSC_APPROVED</code>: Formal technical sign-off by the SSC Technical Review Committee.</li>
+          <li><code>DSEEI_APPROVAL</code>: Administrative review and cryptographic digital sign-off by the DSEEI Joint Secretary.</li>
+          <li><code>PUBLISHED</code>: Released statewide to all 417+ ITIs, updating classroom timetables and equipment requisitions.</li>
+        </ol>
+      </li>
+      <li><strong>Two-Tiered Materiality Threshold:</strong>
+        <ul>
+          <li><strong>Tier 1 (Minor Revisions &mdash; &le;20% Syllabus Delta):</strong> Adding an elective module or modern CAD software version. Signed off directly by the SSC Reviewer with administrative notification.</li>
+          <li><strong>Tier 2 (Major Revisions / New Qualifications):</strong> Decommissioning an obsolete trade or introducing an entirely new NSQF qualification. Requires comprehensive evidence dossiers, interstate benchmarking, and DSEEI Joint Secretary sanction.</li>
+        </ul>
+      </li>
+      <li><strong>Mandated &ge;60% Annual Faculty Retraining:</strong> When a trade is modified, the platform identifies affected faculty, maps their existing technical competencies to adjacent modern skills (e.g., ICE engine mechanics &rarr; EV battery assembly), and reserves seats in DSEEI Advanced Training Institutes (ATI) to hit the statutory <strong>&ge; 60% annual retraining coverage</strong>.</li>
+      <li><strong>Automated ITI Equipment Gap Auditor:</strong> Cross-references NCVET Mandatory Workshop Equipment Standards against the ITI's uploaded asset registry. If critical equipment (e.g., High-Voltage Safety Mats, Digital Diagnostic Scanners) is absent, the system flags a <em>Capex Modernization Line Item</em> and inserts it into the District Annual Training Plan.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 11: CHAPTER 11 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 11: Database Architecture &amp; Core Entity-Relationship Model</h2>
+  <span class="chapter-badge">Data Modeling</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; How is all the information organized in the database?</div>
+  <div class="concept-body">
+    The database is the permanent memory of MahaSkills. It stores everything: the geographic boundaries of all 36 districts of Maharashtra, records for every one of the 417+ vocational institutes, descriptions of 2,200 qualification packs, millions of job postings, and every official approval signature.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 10: Core Relational &amp; Vector Entity-Relationship Model (ERD)</span>
+    <span class="diagram-source">Source: docs/02-architecture/DATABASE_SCHEMA.md</span>
+  </div>
+  <svg width="100%" height="80" viewBox="0 0 740 80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="80" fill="#f8fafc" rx="5" />
+    <!-- District -->
+    <g transform="translate(15, 10)">
+      <rect width="105" height="52" rx="4" fill="#0f172a" />
+      <text x="52" y="16" fill="#38bdf8" font-size="8.5" font-weight="bold" text-anchor="middle">DISTRICTS (36)</text>
+      <text x="52" y="28" fill="#ffffff" font-size="7" text-anchor="middle">id, name, division</text>
+      <text x="52" y="38" fill="#94a3b8" font-size="6.5" text-anchor="middle">geom (PostGIS polygon)</text>
+    </g>
+    <path d="M 120 36 L 150 36" stroke="#0284c7" stroke-width="1.5" />
+    <!-- Institutes -->
+    <g transform="translate(150, 10)">
+      <rect width="115" height="52" rx="4" fill="#1e293b" />
+      <text x="57" y="16" fill="#38bdf8" font-size="8.5" font-weight="bold" text-anchor="middle">INSTITUTES (417+)</text>
+      <text x="57" y="28" fill="#ffffff" font-size="7" text-anchor="middle">id, code, district_id</text>
+      <text x="57" y="38" fill="#94a3b8" font-size="6.5" text-anchor="middle">principal_id (FK)</text>
+    </g>
+    <path d="M 265 36 L 295 36" stroke="#0284c7" stroke-width="1.5" />
+    <!-- Courses -->
+    <g transform="translate(295, 10)">
+      <rect width="130" height="52" rx="4" fill="#0369a1" />
+      <text x="65" y="16" fill="#bae6fd" font-size="8.5" font-weight="bold" text-anchor="middle">COURSES &amp; TRADES</text>
+      <text x="65" y="28" fill="#ffffff" font-size="7" text-anchor="middle">id, trade_code, nsqf_level</text>
+      <text x="65" y="38" fill="#e0f2fe" font-size="6.5" text-anchor="middle">embedding (pgvector 384d)</text>
+    </g>
+    <path d="M 425 36 L 455 36" stroke="#0284c7" stroke-width="1.5" />
+    <!-- Gap Scores -->
+    <g transform="translate(455, 10)">
+      <rect width="130" height="52" rx="4" fill="#0284c7" />
+      <text x="65" y="16" fill="#e0f2fe" font-size="8.5" font-weight="bold" text-anchor="middle">GAP_SCORES</text>
+      <text x="65" y="28" fill="#ffffff" font-size="7" text-anchor="middle">course_id, district_id</text>
+      <text x="65" y="38" fill="#f0f9ff" font-size="6.5" text-anchor="middle">gap_score (0.00-1.00), oversupply</text>
+    </g>
+    <path d="M 585 36 L 615 36" stroke="#0284c7" stroke-width="1.5" />
+    <!-- Recommendations -->
+    <g transform="translate(615, 10)">
+      <rect width="115" height="52" rx="4" fill="#047857" />
+      <text x="57" y="16" fill="#a7f3d0" font-size="8.5" font-weight="bold" text-anchor="middle">RECOMMENDATIONS</text>
+      <text x="57" y="28" fill="#ffffff" font-size="7" text-anchor="middle">id, status (State Machine)</text>
+      <text x="57" y="38" fill="#ecfdf5" font-size="6.5" text-anchor="middle">evidence_dossier_url (S3)</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">Relational entity graph: PostGIS geospatial district boundaries join with pgvector semantic course embeddings and partitioned placement returns.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Relational &amp; Vector Database Entities Breakdown</div>
+  <div class="tech-body">
+    <table class="spec-table">
+      <tr>
+        <th style="width: 22%;">Table Entity</th>
+        <th style="width: 25%;">Primary Keys / Ext</th>
+        <th>Description &amp; Architectural Role</th>
+      </tr>
+      <tr>
+        <td><strong>districts</strong></td>
+        <td><code>id (UUID)</code><br>PostGIS <code>GEOMETRY</code></td>
+        <td>36 administrative districts of Maharashtra, storing administrative division metadata and spatial boundary polygons for map-based querying.</td>
+      </tr>
+      <tr>
+        <td><strong>institutes</strong></td>
+        <td><code>id (UUID)</code><br><code>district_id (FK)</code></td>
+        <td>417+ Government and Private ITIs across Maharashtra, storing principal user foreign keys, trade affiliations, and workshop capex records.</td>
+      </tr>
+      <tr>
+        <td><strong>courses_trades</strong></td>
+        <td><code>id (UUID)</code><br><code>pgvector (384d)</code></td>
+        <td>2,200 NSQF-aligned qualifications, storing syllabus learning outcomes, elective modules, and dense 384-dimensional vector embeddings for semantic search.</td>
+      </tr>
+      <tr>
+        <td><strong>gap_scores</strong></td>
+        <td><code>course_id (FK)</code><br><code>district_id (FK)</code></td>
+        <td>Weekly computed econometric scores (0.00–1.00), vacancy velocity metrics, wage premiums, and oversupply warning flags.</td>
+      </tr>
+      <tr>
+        <td><strong>recommendations</strong></td>
+        <td><code>id (UUID)</code><br>State Machine Enum</td>
+        <td>Curriculum modification proposals tracking status (<code>DRAFT</code> to <code>PUBLISHED</code>), SSC reviewer comments, and MinIO S3 evidence dossier URLs.</td>
+      </tr>
+      <tr>
+        <td><strong>placement_records</strong></td>
+        <td>Partitioned by<br><code>batch_year (INT)</code></td>
+        <td>Longitudinal student placement records stored via HMAC-SHA256 candidate hashes, monthly wages, and verified hiring employer GSTINs.</td>
+      </tr>
+      <tr>
+        <td><strong>audit_logs</strong></td>
+        <td><code>id (BIGSERIAL)</code><br>Immutable Append</td>
+        <td>Permanent cryptographic audit trail recording user ID, action type, IP address, timestamp, and SHA-256 digital approval signature.</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 12: CHAPTER 12 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 12: Quality Engineering, Testing Strategy &amp; Verification Pyramid</h2>
+  <span class="chapter-badge">Quality Assurance</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; How do we prove the software is bulletproof and production-ready?</div>
+  <div class="concept-body">
+    Before any piece of code is accepted into MahaSkills, it must pass through an automated testing obstacle course with six distinct levels. We test individual calculations, verify that the frontend and backend talk to each other without errors, run simulated tests where digital robots pretend to be students and officials using the website, test for cyber vulnerabilities, and verify that the system can handle 1,000 users at the exact same second without crashing.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 11: MahaSkills Multi-Layer Quality &amp; Verification Pyramid</span>
+    <span class="diagram-source">Source: docs/07-development/TESTING_STRATEGY.md</span>
+  </div>
+  <svg width="100%" height="95" viewBox="0 0 740 95" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="95" fill="#f8fafc" rx="5" />
+    <!-- Tier 6 -->
+    <g transform="translate(230, 4)">
+      <rect width="280" height="13" rx="2" fill="#0f172a" />
+      <text x="140" y="10" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">6. Performance &amp; Load Tests (Locust, k6 &mdash; 1000 concurrent VUs)</text>
+    </g>
+    <!-- Tier 5 -->
+    <g transform="translate(205, 19)">
+      <rect width="330" height="13" rx="2" fill="#1e293b" />
+      <text x="165" y="10" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">5. Accessibility &amp; GIGW Compliance (axe-core, WCAG 2.1 AA &mdash; 0 violations)</text>
+    </g>
+    <!-- Tier 4 -->
+    <g transform="translate(180, 34)">
+      <rect width="380" height="13" rx="2" fill="#0369a1" />
+      <text x="190" y="10" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">4. Security &amp; RBAC Scope Tests (pytest-security, OWASP ZAP, HMAC checks)</text>
+    </g>
+    <!-- Tier 3 -->
+    <g transform="translate(155, 49)">
+      <rect width="430" height="13" rx="2" fill="#0284c7" />
+      <text x="215" y="10" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">3. End-to-End User Journeys (Playwright &mdash; Candidate, ITI, DSEEI flows)</text>
+    </g>
+    <!-- Tier 2 -->
+    <g transform="translate(130, 64)">
+      <rect width="480" height="13" rx="2" fill="#059669" />
+      <text x="240" y="10" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">2. API Contract &amp; Schema Validation (@stoplight/spectral-cli, Prism mock, pytest-asyncio)</text>
+    </g>
+    <!-- Tier 1 -->
+    <g transform="translate(105, 79)">
+      <rect width="530" height="13" rx="2" fill="#047857" />
+      <text x="265" y="10" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">1. Unit &amp; Component Tests (Vitest, React Testing Library, pytest algorithms &mdash; &ge;85% coverage)</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">Quality pyramid: Contract-first API linting and strict automated test suites ensure non-breaking schema sync across all 11 architectural domains.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Contract-First Discipline &amp; The 6 Quality Tiers</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>Contract-First Architecture:</strong> <code>docs/03-api/openapi.yaml</code> is the single source of truth. Both backend FastAPI routes and frontend TypeScript types (<code>src/types/api.ts</code>) are validated using <code>@stoplight/spectral-cli</code>. Any pull request with schema divergence is rejected immediately.</li>
+      <li><strong>Tier 1 (Unit &amp; Component Tests):</strong> Vitest for React components and <code>pytest</code> for algorithmic math engines, achieving &ge; 85% code coverage.</li>
+      <li><strong>Tier 2 (API Contract Validation):</strong> Schema adherence tests via Prism mock servers and <code>pytest-asyncio</code> testing all 24 REST endpoints.</li>
+      <li><strong>Tier 3 (End-to-End User Journeys):</strong> Playwright browser test suites validating candidate quiz flows, ITI placement CSV uploads, and DSEEI approval journeys.</li>
+      <li><strong>Tier 4 (Security &amp; RBAC Scope Tests):</strong> Automated OWASP ZAP vulnerability scans and penetration checks enforcing cross-district jurisdictional isolation.</li>
+      <li><strong>Tier 5 (Accessibility &amp; GIGW Compliance):</strong> Automated <code>axe-core</code> testing achieving 100% compliance with WCAG 2.1 AA and Government of India Guidelines for Websites (GIGW).</li>
+      <li><strong>Tier 6 (Performance &amp; Load Tests):</strong> Locust and k6 simulations running 1,000 concurrent virtual users under peak dashboard and API load.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 13: CHAPTER 13 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 13: Production Deployment, Air-Gapped Cloud &amp; Disaster Recovery</h2>
+  <span class="chapter-badge">DevOps &amp; SRE</span>
+</div>
+
+<div class="concept-box">
+  <div class="concept-title">💡 Plain English Concept &mdash; Where does the software live, and what happens if a server dies?</div>
+  <div class="concept-body">
+    MahaSkills is designed to run completely inside the Maharashtra State Data Centre (MahaGovCloud). It does not rely on third-party commercial APIs (like OpenAI or cloud databases in foreign countries) that can be blocked or charge unpredictable fees. Even if internet connectivity between the state data centre and the outside world is temporarily severed, all local analytics, databases, and AI models continue running smoothly.
+  </div>
+</div>
+
+
+<div class="diagram-container">
+  <div class="diagram-title-row">
+    <span class="diagram-heading">Diagram 12: Production Infrastructure &amp; Cloud Deployment Topology</span>
+    <span class="diagram-source">Source: docs/08-deployment/DEPLOYMENT.md & docs/02-architecture/SYSTEM_ARCHITECTURE.md</span>
+  </div>
+  <svg width="100%" height="95" viewBox="0 0 740 95" xmlns="http://www.w3.org/2000/svg">
+    <rect width="740" height="95" fill="#f8fafc" rx="5" />
+    <defs>
+      <marker id="arr12" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+      </marker>
+    </defs>
+    <!-- Ingress -->
+    <g transform="translate(10, 20)">
+      <rect width="110" height="55" rx="4" fill="#0f172a" />
+      <text x="55" y="16" fill="#38bdf8" font-size="7.5" font-weight="bold" text-anchor="middle">EDGE / CDN</text>
+      <text x="55" y="28" fill="#ffffff" font-size="7" text-anchor="middle">CloudFront / Nginx</text>
+      <text x="55" y="40" fill="#94a3b8" font-size="6.5" text-anchor="middle">TLS 1.3 / WAF</text>
+      <text x="55" y="50" fill="#94a3b8" font-size="6.5" text-anchor="middle">React SPA Bundle</text>
+    </g>
+    <line x1="120" y1="47" x2="145" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr12)" />
+
+    <!-- Gateway -->
+    <g transform="translate(150, 20)">
+      <rect width="125" height="55" rx="4" fill="#1e293b" />
+      <text x="62" y="16" fill="#38bdf8" font-size="7.5" font-weight="bold" text-anchor="middle">API GATEWAY</text>
+      <text x="62" y="28" fill="#ffffff" font-size="7" text-anchor="middle">FastAPI Cluster</text>
+      <text x="62" y="40" fill="#94a3b8" font-size="6.5" text-anchor="middle">Kubernetes HPA</text>
+      <text x="62" y="50" fill="#94a3b8" font-size="6.5" text-anchor="middle">Stateless Docker Pods</text>
+    </g>
+    <line x1="275" y1="47" x2="300" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr12)" />
+
+    <!-- Workers & Cache -->
+    <g transform="translate(305, 20)">
+      <rect width="135" height="55" rx="4" fill="#0369a1" />
+      <text x="67" y="16" fill="#e0f2fe" font-size="7.5" font-weight="bold" text-anchor="middle">ASYNC FLEET &amp; CACHE</text>
+      <text x="67" y="28" fill="#ffffff" font-size="7" text-anchor="middle">Celery Spot Workers</text>
+      <text x="67" y="40" fill="#bae6fd" font-size="6.5" text-anchor="middle">Redis 7 Cluster (Broker)</text>
+      <text x="67" y="50" fill="#bae6fd" font-size="6.5" text-anchor="middle">Local Sentence-Transformers</text>
+    </g>
+    <line x1="440" y1="47" x2="465" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr12)" />
+
+    <!-- Data Tier -->
+    <g transform="translate(470, 20)">
+      <rect width="135" height="55" rx="4" fill="#0284c7" />
+      <text x="67" y="16" fill="#f0f9ff" font-size="7.5" font-weight="bold" text-anchor="middle">PRIMARY DATA TIER</text>
+      <text x="67" y="28" fill="#ffffff" font-size="7" text-anchor="middle">PostgreSQL 16 + pgvector</text>
+      <text x="67" y="40" fill="#e0f2fe" font-size="6.5" text-anchor="middle">PostGIS Spatial Bounds</text>
+      <text x="67" y="50" fill="#e0f2fe" font-size="6.5" text-anchor="middle">HAProxy Read Replicas</text>
+    </g>
+    <line x1="605" y1="47" x2="630" y2="47" stroke="#0284c7" stroke-width="2" marker-end="url(#arr12)" />
+
+    <!-- Search & Storage -->
+    <g transform="translate(635, 20)">
+      <rect width="95" height="55" rx="4" fill="#059669" />
+      <text x="47" y="16" fill="#a7f3d0" font-size="7.5" font-weight="bold" text-anchor="middle">SEARCH &amp; S3</text>
+      <text x="47" y="28" fill="#ffffff" font-size="6.5" text-anchor="middle">Elasticsearch 8</text>
+      <text x="47" y="40" fill="#ecfdf5" font-size="6.5" text-anchor="middle">MinIO / S3 Store</text>
+      <text x="47" y="50" fill="#ecfdf5" font-size="6.5" text-anchor="middle">CloudHSM Salt</text>
+    </g>
+  </svg>
+  <div class="diagram-caption">Production topology: Sovereign air-gapped architecture on MahaGovCloud with isolated worker spot instances, read replicas, and zero external closed API dependencies.</div>
+</div>
+
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Cloud Topology, Auto-Scaling &amp; Recovery RTO/RPO Metrics</div>
+  <div class="tech-body">
+    <ul>
+      <li><strong>Stateless Horizontal Auto-Scaling:</strong> FastAPI backend instances run inside stateless Docker containers orchestrated via Kubernetes / AWS ECS with Horizontal Pod Autoscaler (HPA) triggered at 70% CPU threshold.</li>
+      <li><strong>Database High Availability:</strong> PostgreSQL 16 operates in a primary-replica topology behind an HAProxy pool. 85% of read queries hit Redis 7 in-memory cache with 15-minute TTLs.</li>
+      <li><strong>Air-Gapped Sovereign AI Execution:</strong> Embeddings run locally via <code>sentence-transformers</code> inside Python workers; natural language queries run via local Llama-3-8B on Ollama/vLLM with <strong>zero external API bill</strong> and 100% data residency.</li>
+      <li><strong>Disaster Recovery Standards:</strong> Automated nightly database snapshots and WAL-G streaming replication to cold S3 object storage guarantee a <strong>Recovery Point Objective (RPO) &le; 15 minutes</strong> and a <strong>Recovery Time Objective (RTO) &le; 30 minutes</strong>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 14: CHAPTER 14 -->
+<div class="chapter-header">
+  <h2 class="chapter-title">Chapter 14: Architectural Decision Records (ADRs) &amp; Executive Summary</h2>
+  <span class="chapter-badge">Governance &amp; ROI</span>
+</div>
+
+<div class="tech-box">
+  <div class="tech-title">⚙️ Canonical Architecture Decision Records (ADR Summary)</div>
+  <div class="tech-body">
+    <table class="spec-table">
+      <tr>
+        <th style="width: 15%;">ADR Code</th>
+        <th style="width: 25%;">Decision</th>
+        <th>Rationale &amp; Trade-Off Analysis</th>
+      </tr>
+      <tr>
+        <td><strong>ADR-001</strong></td>
+        <td>React 18 + TypeScript Strict</td>
+        <td>Guarantees compile-time type safety across all 36 district dashboards, preventing runtime UI crashes and enforcing clean frontend architecture.</td>
+      </tr>
+      <tr>
+        <td><strong>ADR-002</strong></td>
+        <td>Keycloak 24 OIDC (RS256)</td>
+        <td>Provides self-hosted, sovereign IAM federating with state Mahaswayam SSO while enforcing multi-tenant RBAC across 7 platform roles.</td>
+      </tr>
+      <tr>
+        <td><strong>ADR-003</strong></td>
+        <td>TanStack Query v5</td>
+        <td>Eliminates duplicate network round-trips for high-volume district statistics via automatic cache invalidation and background optimistic updates.</td>
+      </tr>
+      <tr>
+        <td><strong>ADR-004</strong></td>
+        <td>PostgreSQL 16 + pgvector</td>
+        <td>Colocates relational transactional data with dense AI vector embeddings in a single ACID engine, avoiding costly third-party SaaS vector databases.</td>
+      </tr>
+      <tr>
+        <td><strong>ADR-005</strong></td>
+        <td>HMAC-SHA256 Pseudonymization</td>
+        <td>Enforces zero-plaintext candidate PII storage in compliance with Section 8(6) of the Digital Personal Data Protection (DPDP) Act 2023.</td>
+      </tr>
+      <tr>
+        <td><strong>ADR-006</strong></td>
+        <td>OpenAPI Contract-First</td>
+        <td>Makes <code>openapi.yaml</code> the immutable contract between backend and frontend, eliminating integration defects before code is merged.</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="policy-box">
+  <div class="policy-title">🏛️ Executive ROI &amp; Value Proposition for the Government of Maharashtra</div>
+  <div class="policy-body">
+    MahaSkills delivers a transformational socio-economic return on investment for the state:<br>
+    <strong>1. Placement Acceleration (+24%):</strong> Redirects over 15,000 trainees annually from low-wage, saturated jobs into high-paying modern manufacturing and tech trades.<br>
+    <strong>2. Fiscal Efficiency:</strong> Eliminates wasteful public capex on obsolete workshop equipment by coupling the Automated ITI Equipment Gap Auditor directly to DSEEI budget sanctions.<br>
+    <strong>3. Syllabus Agility (180 &rarr; 21 Days):</strong> Transforms vocational education in Maharashtra from a slow 5-year committee cycle into an agile, dynamic system synchronized with real industry hiring demand across all 36 districts.
+  </div>
+</div>
+
+</body>
+</html>

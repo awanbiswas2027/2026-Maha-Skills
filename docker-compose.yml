@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: mahaskills-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: mahaskills
+      POSTGRES_USER: mahaskills_user
+      POSTGRES_PASSWORD: mahaskills_secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mahaskills_user -d mahaskills"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: mahaskills-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mahaskills-backend
+    restart: unless-stopped
+    environment:
+      - ENVIRONMENT=development
+      - DATABASE_URL=postgresql+asyncpg://mahaskills_user:mahaskills_secret@postgres:5432/mahaskills
+      - REDIS_URL=redis://redis:6379/0
+      - KEYCLOAK_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=mahaskills
+      - KEYCLOAK_CLIENT_ID=mahaskills-api
+      - DPDP_TENANT_SALT=development_hmac_sha256_pepper_secret_key_32bytes!
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mahaskills-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  redisdata:

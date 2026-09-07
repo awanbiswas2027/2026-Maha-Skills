@@ -1,0 +1,54 @@
+{
+  "sourceChars": 140954,
+  "files": [
+    "docs_merged.md"
+  ],
+  "pages": [
+    {
+      "filename": "page-001.png",
+      "bytes": 100359,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-002.png",
+      "bytes": 88442,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-003.png",
+      "bytes": 90753,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-004.png",
+      "bytes": 97928,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-005.png",
+      "bytes": 99818,
+      "width": 1568,
+      "height": 720
+    },
+    {
+      "filename": "page-006.png",
+      "bytes": 8672,
+      "width": 1568,
+      "height": 72
+    }
+  ],
+  "cols": 312,
+  "model": "claude-sonnet-4-5",
+  "generatedAt": "2026-09-05T15:23:12.867Z",
+  "tokenReport": {
+    "textTokens": 38096,
+    "imageTokens": 7448,
+    "percentSaved": 80.4,
+    "factsheetItemCount": 96,
+    "factsheetDropped": 137
+  }
+}

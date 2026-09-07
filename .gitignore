@@ -1,0 +1,43 @@
+# Node & Dependencies
+node_modules/
+dist/
+build/
+.npm/
+.pnpm-store/
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Environment variables & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# IDE & OS
+.vscode/
+.idea/
+
+# Agent tooling — commit config, ignore local run state / artifacts
+.antigravity/local/
+.antigravity/artifacts/
+.antigravity/*.local.md
+.claude/
+.DS_Store
+Thumbs.db
+
+# Storage & Temporary artifacts
+uploads/
+temp/
+logs/
+*.log

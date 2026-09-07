@@ -1,0 +1,24 @@
+{
+  "sourceChars": 23710,
+  "files": [
+    "frontend_architecture_specification.md"
+  ],
+  "pages": [
+    {
+      "filename": "page-001.png",
+      "bytes": 79573,
+      "width": 1568,
+      "height": 616
+    }
+  ],
+  "cols": 312,
+  "model": "claude-sonnet-4-5",
+  "generatedAt": "2026-09-06T17:12:03.745Z",
+  "tokenReport": {
+    "textTokens": 6408,
+    "imageTokens": 1232,
+    "percentSaved": 80.8,
+    "factsheetItemCount": 39,
+    "factsheetDropped": 0
+  }
+}

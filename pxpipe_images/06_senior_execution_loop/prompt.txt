@@ -1,0 +1,14 @@
+These 1 image contain source code/text rendered as PNG pages by pxpipe.
+
+Source files (1):
+  senior_execution_loop_prompts.md
+
+Instructions for the reading agent:
+1. Read the images in order: page-001.png through page-001.png.
+2. For any path, file name, identifier, hash, version number, or other precision-critical
+   value: use the verbatim text from factsheet.txt, NOT what you read off the image.
+   factsheet.txt is the authoritative source of truth for all exact strings.
+3. Treat the content as if you had read the source files directly.
+
+Factsheet (verbatim identifiers — quote from here, not from image pixels):
+[Exact identifiers from the rendered context above (paths, ids, versions, numbers) — quote these verbatim instead of transcribing them from the image: DevOps]

@@ -1,0 +1,65 @@
+These 10 images contain source code/text rendered as PNG pages by pxpipe.
+
+Source files (51):
+  01-product/PRD.md
+  01-product/REQUIREMENTS_TRACEABILITY.md
+  01-product/USER_STORIES.md
+  02-architecture/ARCHITECTURE_DECISIONS.md
+  02-architecture/BACKEND_ARCHITECTURE.md
+  02-architecture/DATABASE_SCHEMA.md
+  02-architecture/FRONTEND_ARCHITECTURE.md
+  02-architecture/SYSTEM_ARCHITECTURE.md
+  03-api/API_CONTRACTS.md
+  03-api/API_SPECIFICATION.md
+  03-api/AUTHENTICATION.md
+  03-api/ERROR_CODES.md
+  03-api/openapi.yaml
+  04-design/ACCESSIBILITY.md
+  04-design/DESIGN_SYSTEM.md
+  04-design/INFORMATION_ARCHITECTURE.md
+  04-design/UI_UX_SPECIFICATION.md
+  05-security/DATA_PRIVACY.md
+  05-security/RBAC_MATRIX.md
+  05-security/SECURITY_ARCHITECTURE.md
+  05-security/THREAT_MODEL.md
+  06-data/DATA_DICTIONARY.md
+  06-data/DATA_GOVERNANCE.md
+  06-data/DATA_INGESTION.md
+  06-data/DATA_MODEL.md
+  07-development/CODING_STANDARDS.md
+  07-development/IMPLEMENTATION_PLAN.md
+  07-development/PROJECT_BREAKDOWN.md
+  07-development/TESTING_STRATEGY.md
+  08-deployment/CI_CD.md
+  08-deployment/DEPLOYMENT.md
+  08-deployment/DISASTER_RECOVERY.md
+  08-deployment/ENVIRONMENT_CONFIGURATION.md
+  09-operations/INCIDENT_RESPONSE.md
+  09-operations/MAINTENANCE.md
+  09-operations/MONITORING.md
+  09-operations/RUNBOOK.md
+  10-decisions/ADR/ADR-001-react-typescript-frontend.md
+  10-decisions/ADR/ADR-002-keycloak-oidc.md
+  10-decisions/ADR/ADR-003-tanstack-query-server-state.md
+  10-decisions/ADR/ADR-004-postgresql-relational-store.md
+  10-decisions/ADR/ADR-005-candidate-pii-anonymisation-dpdp.md
+  10-decisions/ADR/ADR-006-openapi-contract-first.md
+  10-decisions/ASSUMPTIONS.md
+  10-decisions/OPEN_QUESTIONS.md
+  11-agent-delivery/DEFINITION_OF_DONE.md
+  11-agent-delivery/GUARDRAILS.md
+  11-agent-delivery/handoffs/HANDOFF-slice-2-taxonomy.md
+  11-agent-delivery/HANDOFF_SPEC_TEMPLATE.md
+  11-agent-delivery/README.md
+  README.md
+
+Instructions for the reading agent:
+1. Read the images in order: page-001.png through page-010.png.
+2. For any path, file name, identifier, hash, version number, or other precision-critical
+   value: check factsheet.txt first — identifiers listed there are verbatim exact.
+   Note: 578 identifier(s) were extracted but not captured due to the 64-item
+   budget — OCR carefully for any exact values not listed in factsheet.txt.
+3. Treat the content as if you had read the source files directly.
+
+Factsheet (verbatim identifiers — quote from here, not from image pixels):
+[Exact identifiers from the rendered context above (paths, ids, versions, numbers) — quote these verbatim instead of transcribing them from the image; ×N marks a token that occurs N times within the imaged content: 8c3b01a2-9b98-4b71-9f20-8012bcfe1430 ×2 · d3b07384-91f2-482a-a92c-7b41e9b28312 · f3a18b72-2d10-4491-a189-9e1201ab78c1 ×2 · DatabaseConnectionSaturation · REC_INVALID_STATE_TRANSITION ×2 · RETIRE_OR_UPGRADE_TO_TIG_MIG · ERR_OUT_OF_RANGE_BATCH_YEAR · PATH=/root/.local/bin:$PATH · PLACEMENT_VALIDATION_ERRORS · PathwayRecommendationEngine · ERR_INVALID_MONTHS_TO_HIRE · exactOptionalPropertyTypes · DTP_EQUIPMENT_AUDIT_STALE · ENVIRONMENT_CONFIGURATION · ERR_MISSING_EMPLOYER_NAME · PLA_CSV_MAX_ROWS_EXCEEDED · PlacementAnalyticsService · PlacementIngestionService · REC_UNAUTHORIZED_REVIEWER · --db-instance-identifier · --destructive-foreground · CandidateGuidanceService · ERR_INVALID_BOOLEAN_FLAG · ERR_INVALID_CANDIDATE_ID · ERR_SALARY_OUT_OF_BOUNDS ×2 · INFORMATION_ARCHITECTURE · PLA_CSV_MALFORMED_HEADER · PLA_INVALID_CANDIDATE_ID · PLA_SALARY_OUT_OF_BOUNDS · accessibilityScanResults ×2 · getRecommendationDossier · --no-install-recommends ×2 · DTP_INVALID_FISCAL_YEAR · DataSanitizationService ×2 · DistrictPlanningService · ERR_UNSANCTIONED_COURSE · PLA_UNSANCTIONED_COURSE · RECOMMENDATION_APPROVED · RECOMMENDATION_EVIDENCE · SSC_REVISIONS_REQUESTED ×5 · TooManyConnectionsError · getPlacementBatchErrors · AuditLoggingMiddleware · KEYCLOAK_CLIENT_SECRET · TAX_INVALID_NSQF_LEVEL · AUTH_SCOPE_RESTRICTED ×2 · BudgetModelingService · EquipmentAuditService · FRONTEND_ARCHITECTURE · HANDOFF_SPEC_TEMPLATE ×4 · RECOMMENDATION_AUDITS · SECURITY_ARCHITECTURE · --primary-foreground · AUTH_UNAUTHENTICATED · BACKEND_ARCHITECTURE · DSEEI_FINAL_APPROVAL ×8 · ERR_MISSING_JOB_ROLE · GapScoreListResponse · INTERSTATE_BENCHMARK · KeycloakAuthProvider · ObservabilityService · REC_MISSING_EVIDENCE · TAX_SECTOR_NOT_FOUND · TOP_HIRING_EMPLOYERS · ValidationErrorTable ×2 · reviewRecommendation · --accent-foreground · CURRICULUM_APPROVED · CsvValidationWorker · DEMAND_TREND_SERIES · DISTRICT_PLAN_ITEMS ×2 · DistrictPlanService · ERROR_CODE_CONSTANT · FEATURE_FORECASTING · GapHeatmapCardProps · IMPLEMENTATION_PLAN · LmiAnalyticsService ×2 · SYSTEM_ARCHITECTURE · SecurityInterceptor · TAX_JOB_ROLE_EXISTS · getOversupplyAlerts · listRecommendations · --muted-foreground · AUTH_TOKEN_EXPIRED · BudgetPriorityCard · CandidateDashboard · CeleryQueueStalled · DATABASE_POOL_SIZE · DEFINITION_OF_DONE ×5 · InstituteDirectory · KEYCLOAK_CLIENT_ID · PENDING_VALIDATION ×2 · PathwayQuizRequest · PublicCourseFinder · RecommendationCard · requiredDistrictId ×2]
