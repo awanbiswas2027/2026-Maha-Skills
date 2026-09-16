@@ -1,0 +1,37 @@
+{
+  "band": {
+    "strong": "Strong match",
+    "good": "Good match",
+    "weak": "Weak match"
+  },
+  "score": "{{total}} of 100",
+  "factor": {
+    "SKILL_ALIGNMENT": "Skills alignment",
+    "DEMAND_ALIGNMENT": "Local demand",
+    "OUTCOME_STRENGTH": "Placement outcomes",
+    "EDUCATION_FIT": "Education fit",
+    "LOCATION_FIT": "Location fit"
+  },
+  "contribution": "{{value}} of {{weight}}",
+  "total": "Total",
+  "reason": {
+    "EDUCATION_MATCH": "Matches your education qualifications",
+    "SECTOR_INTEREST": "Directly aligns with your sector interests",
+    "LOCAL_DEMAND": "{{employers}} employers actively hiring in {{district}}",
+    "STRONG_OUTCOMES": "High verified placement rate of {{rate}}%",
+    "NEARBY_ITI": "Available at ITIs in {{district}}",
+    "RELOCATION_NEEDED": "Requires relocation outside {{district}}",
+    "LOW_SKILL_OVERLAP": "Limited overlap with your selected sector interests"
+  },
+  "weak_note": "Weak match: this course fits few of your answers. See why below.",
+  "excluded": {
+    "title": "Why is a course not shown?",
+    "EDUCATION_BELOW_MINIMUM": "Requires {{required}} pass; you selected {{selected}}."
+  },
+  "limited_data": "Limited data (n = {{n}})",
+  "helpful": {
+    "question": "Was this helpful?",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

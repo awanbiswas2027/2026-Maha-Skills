@@ -1,0 +1,37 @@
+{
+  "band": {
+    "strong": "उत्कृष्ट मेल",
+    "good": "अच्छा मेल",
+    "weak": "कमजोर मेल"
+  },
+  "score": "100 में से {{total}}",
+  "factor": {
+    "SKILL_ALIGNMENT": "कौशल मेल",
+    "DEMAND_ALIGNMENT": "स्थानीय मांग",
+    "OUTCOME_STRENGTH": "प्लेसमेंट परिणाम",
+    "EDUCATION_FIT": "शैक्षणिक योग्यता",
+    "LOCATION_FIT": "स्थान अनुकूलता"
+  },
+  "contribution": "{{weight}} में से {{value}}" ,
+  "total": "कुल",
+  "reason": {
+    "EDUCATION_MATCH": "आपकी शैक्षणिक योग्यता के अनुकूल",
+    "SECTOR_INTEREST": "आपकी चुनी हुई क्षेत्र रुचि से सीधे मेल खाता है",
+    "LOCAL_DEMAND": "{{district}} में {{employers}} नियोक्ता भर्ती कर रहे हैं",
+    "STRONG_OUTCOMES": "{{rate}}% की उच्च सत्यापित प्लेसमेंट दर",
+    "NEARBY_ITI": "{{district}} के औद्योगिक प्रशिक्षण संस्थानों में उपलब्ध",
+    "RELOCATION_NEEDED": "{{district}} से बाहर स्थानांतरण की आवश्यकता",
+    "LOW_SKILL_OVERLAP": "आपकी चुनी हुई क्षेत्र रुचियों से सीमित मेल"
+  },
+  "weak_note": "कमजोर मेल: यह कोर्स आपके कुछ ही उत्तरों से मेल खाता है। कारण नीचे देखें।",
+  "excluded": {
+    "title": "कुछ कोर्स क्यों नहीं दिख रहे हैं?",
+    "EDUCATION_BELOW_MINIMUM": "{{required}} उत्तीर्ण आवश्यक; आपने {{selected}} चुना है।"
+  },
+  "limited_data": "सीमित डेटा (n = {{n}})",
+  "helpful": {
+    "question": "क्या यह मददगार था?",
+    "yes": "हाँ",
+    "no": "नहीं"
+  }
+}
