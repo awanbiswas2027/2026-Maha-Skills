@@ -29,14 +29,14 @@ export function statusBadgeSpec(status: WorkflowStatus): StatusBadgeSpec {
         variant: 'info',
         glyph: 'Info',
         labelKey,
-        className: 'bg-info-subtle text-info-foreground border-info/30',
+        className: 'bg-info-subtle text-info-subtle-foreground border-info/30',
       };
     case 'CHANGES_REQUESTED':
       return {
         variant: 'warning',
         glyph: 'TriangleAlert',
         labelKey,
-        className: 'bg-warning-subtle text-warning-foreground border-warning/30',
+        className: 'bg-warning-subtle text-warning-subtle-foreground border-warning/30',
       };
     case 'APPROVED':
     case 'PUBLISHED':
@@ -46,7 +46,7 @@ export function statusBadgeSpec(status: WorkflowStatus): StatusBadgeSpec {
         variant: 'success',
         glyph: 'CircleCheck',
         labelKey,
-        className: 'bg-success-subtle text-success-foreground border-success/30',
+        className: 'bg-success-subtle text-success-subtle-foreground border-success/30',
       };
     case 'REJECTED':
     case 'FAILED':
@@ -54,7 +54,7 @@ export function statusBadgeSpec(status: WorkflowStatus): StatusBadgeSpec {
         variant: 'danger',
         glyph: 'OctagonAlert',
         labelKey,
-        className: 'bg-danger-subtle text-danger-foreground border-danger/30',
+        className: 'bg-danger-subtle text-danger-subtle-foreground border-danger/30',
       };
     default:
       return {
