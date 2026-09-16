@@ -65,8 +65,8 @@ export const MetricStrip: React.FC<MetricStripProps> = ({ metrics, className }) 
 
         const tone = metric.delta !== undefined ? deltaTone(metric.delta, metric.goodDirection) : 'neutral';
         const toneClasses = {
-          success: 'text-success font-medium',
-          destructive: 'text-destructive font-medium',
+          success: 'text-success-subtle-foreground font-medium',
+          destructive: 'text-danger-subtle-foreground font-medium',
           neutral: 'text-muted-foreground',
         };
 

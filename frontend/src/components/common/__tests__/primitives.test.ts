@@ -63,6 +63,21 @@ describe('StatusBadge logic (statusBadgeSpec)', () => {
       className: expect.stringContaining('bg-danger-subtle'),
     });
   });
+
+  it('pairs every subtle background with its subtle-foreground (C004 contrast fix)', () => {
+    const testStatus = {
+      info: 'UNDER_REVIEW',
+      success: 'APPROVED',
+      warning: 'CHANGES_REQUESTED',
+      danger: 'REJECTED'
+    } as const;
+    
+    for (const tone of ['info', 'success', 'warning', 'danger'] as const) {
+      const spec = statusBadgeSpec(testStatus[tone] as WorkflowStatus);
+      expect(spec.className).toContain(`bg-${tone}-subtle`);
+      expect(spec.className).toContain(`text-${tone}-subtle-foreground`);
+    }
+  });
 });
 
 describe('SeverityBadge logic (severitySpec & GAP-01)', () => {

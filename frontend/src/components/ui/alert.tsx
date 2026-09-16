@@ -9,10 +9,10 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        info: 'bg-info-subtle text-info-foreground border-info/20 [&>svg]:text-info-foreground',
-        success: 'bg-success-subtle text-success-foreground border-success/20 [&>svg]:text-success-foreground',
-        warning: 'bg-warning-subtle text-warning-foreground border-warning/20 [&>svg]:text-warning-foreground',
-        danger: 'bg-danger-subtle text-danger-foreground border-danger/20 [&>svg]:text-danger-foreground',
+        info: 'bg-info-subtle text-info-subtle-foreground border-info/20 [&>svg]:text-info-subtle-foreground',
+        success: 'bg-success-subtle text-success-subtle-foreground border-success/20 [&>svg]:text-success-subtle-foreground',
+        warning: 'bg-warning-subtle text-warning-subtle-foreground border-warning/20 [&>svg]:text-warning-subtle-foreground',
+        danger: 'bg-danger-subtle text-danger-subtle-foreground border-danger/20 [&>svg]:text-danger-subtle-foreground',
       },
     },
     defaultVariants: {
