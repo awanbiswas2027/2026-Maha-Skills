@@ -1,43 +1,44 @@
-{
+﻿{
   "pagination": {
     "range": "{{total}} पैकी {{from}}-{{to}}",
-    "prev": "मागील",
-    "next": "पुढील",
+    "prev": "मागे",
+    "next": "पुढे",
     "page": "पृष्ठ",
-    "size": "प्रति पृष्ठ पंक्ती"
+    "size": "प्रति पृष्ठ ओळी"
   },
   "table": {
     "sort_asc": "चढत्या क्रमाने लावा",
     "sort_desc": "उतरत्या क्रमाने लावा",
-    "sort_none": "क्रमवारी काढा",
+    "sort_none": "क्रमवारी साफ करा",
     "columns": "स्तंभ",
     "select_all": "सर्व निवडा",
     "selected": "{{count}} निवडले",
     "selected_one": "{{count}} निवडले",
     "selected_other": "{{count}} निवडले",
-    "clear_selection": "निवड रद्द करा"
+    "clear_selection": "निवड साफ करा"
   },
   "filters": {
-    "more": "अधिक फिल्टर्स",
-    "clear": "फिल्टर्स काढा",
-    "count": "फिल्टर्स ({{count}})",
+    "more": "अधिक फिल्टर",
+    "clear": "फिल्टर साफ करा",
+    "count": "फिल्टर ({{count}})",
     "count_one": "फिल्टर ({{count}})",
-    "count_other": "फिल्टर्स ({{count}})",
-    "updated": "फिल्टर्स अद्यतनित केले",
-    "locked_scope": "{{scope}} मर्यादित",
-    "results": "{{count}} निकाल",
-    "results_one": "{{count}} निकाल",
-    "results_other": "{{count}} निकाल"
+    "count_other": "फिल्टर ({{count}})",
+    "updated": "फिल्टर अपडेट केले",
+    "locked_scope": "{{scope}} पर्यंत मर्यादित",
+    "results": "{{count}} परिणाम",
+    "results_one": "{{count}} परिणाम",
+    "results_other": "{{count}} परिणाम"
   },
   "chart": {
-    "view_table": "तक्त्यामध्ये पहा",
-    "view_chart": "आलेखामध्ये पहा",
-    "export": "निर्यात करा",
+    "view_table": "टेबल म्हणून पहा",
+    "view_chart": "चार्ट म्हणून पहा",
+    "export": "निर्यात",
     "forecast": "अंदाज",
     "today": "आज",
-    "partial_note": "अपूर्ण कालावधी (अपूर्ण माहिती)"
+    "partial_note": "अपूर्ण कालावधी (अपूर्ण डेटा)"
   },
   "progress": {
     "target": "लक्ष्य {{value}}"
   }
 }
+

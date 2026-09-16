@@ -1,25 +1,25 @@
-{
+﻿{
   "pagination": {
     "range": "{{total}} में से {{from}}-{{to}}",
     "prev": "पिछला",
     "next": "अगला",
     "page": "पृष्ठ",
-    "size": "प्रति पृष्ठ पंक्तियाँ"
+    "size": "पंक्तियाँ प्रति पृष्ठ"
   },
   "table": {
-    "sort_asc": "आरोही क्रम में क्रमबद्ध करें",
-    "sort_desc": "अवरोही क्रम में क्रमबद्ध करें",
-    "sort_none": "क्रमबद्धता हटाएं",
-    "columns": "कॉलम",
-    "select_all": "सभी चुनें",
+    "sort_asc": "आरोही क्रम में छाँटें",
+    "sort_desc": "अवरोही क्रम में छाँटें",
+    "sort_none": "क्रमबद्ध साफ़ करें",
+    "columns": "स्तंभ",
+    "select_all": "सभी का चयन करें",
     "selected": "{{count}} चयनित",
     "selected_one": "{{count}} चयनित",
     "selected_other": "{{count}} चयनित",
-    "clear_selection": "चयन हटाएं"
+    "clear_selection": "चयन साफ़ करें"
   },
   "filters": {
     "more": "अधिक फ़िल्टर",
-    "clear": "फ़िल्टर हटाएं",
+    "clear": "फ़िल्टर साफ़ करें",
     "count": "फ़िल्टर ({{count}})",
     "count_one": "फ़िल्टर ({{count}})",
     "count_other": "फ़िल्टर ({{count}})",
@@ -32,7 +32,7 @@
   "chart": {
     "view_table": "तालिका के रूप में देखें",
     "view_chart": "चार्ट के रूप में देखें",
-    "export": "निर्यात करें",
+    "export": "निर्यात",
     "forecast": "पूर्वानुमान",
     "today": "आज",
     "partial_note": "आंशिक अवधि (अपूर्ण डेटा)"
@@ -41,3 +41,4 @@
     "target": "लक्ष्य {{value}}"
   }
 }
+

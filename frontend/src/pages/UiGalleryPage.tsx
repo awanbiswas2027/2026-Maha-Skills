@@ -64,6 +64,16 @@ import {
   Combobox,
   ThemeToggle,
 } from '../components/common';
+import {
+  DataTable,
+  Pagination,
+  FilterBar,
+  LineChartCard,
+  BarChartCard,
+  ProgressToTarget,
+  FactorBreakdown,
+  MapLegend,
+} from '../components/data';
 
 import { useToast } from '../components/ui/use-toast';
 import { ChevronDown, Download, Filter, Plus, RefreshCw, Settings } from 'lucide-react';
@@ -518,6 +528,114 @@ export const UiGalleryPage: React.FC = () => {
           <Skeleton shape="line" />
           <Skeleton shape="row" />
           <DelayedSkeleton shape="line" delayMs={100} />
+        </div>
+      </section>
+      {/* 12. Data Components */}
+      <section className="space-y-8 pb-12">
+        <h2 className="text-xl font-semibold border-b border-border pb-2">12. Data Components</h2>
+        
+        {/* Pagination & Filters */}
+        <div className="space-y-4">
+          <h3 className="font-medium">FilterBar & Pagination</h3>
+          <div className="p-4 border rounded-md space-y-4">
+            <FilterBar 
+              filters={{'Status': 'Active', 'Tier': ['L3', 'L4']}} 
+              onRemove={() => {}} 
+              onClear={() => {}}
+              resultCount={42}
+            >
+              <Input placeholder="Search..." className="h-8 w-64" />
+            </FilterBar>
+            <Pagination page={2} size={25} total={214} onPageChange={() => {}} onSizeChange={() => {}} />
+          </div>
+        </div>
+
+        {/* DataTable - 6 States */}
+        <div className="space-y-4">
+          <h3 className="font-medium">DataTable - States</h3>
+          {['ready', 'loading', 'refetching', 'empty', 'no-results', 'error'].map(state => (
+            <div key={state}>
+              <h4 className="text-sm font-semibold capitalize mb-2">{state}</h4>
+              <DataTable
+                caption={`Table in ${state} state`}
+                state={state as 'loading' | 'refetching' | 'empty' | 'no-results' | 'error' | 'ready'}
+                columns={[
+                  { accessorKey: 'id', header: 'ID' },
+                  { accessorKey: 'name', header: 'Name' },
+                  { accessorKey: 'val', header: 'Value' }
+                ]}
+                data={state === 'ready' || state === 'refetching' ? [{ id: '1', name: 'A', val: 100 }] : []}
+                error={{ code: 'TEST_ERROR' }}
+                onRetry={() => {}}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* 12-column DataTable with sticky identity & mobile cards */}
+        <div className="space-y-4">
+          <h3 className="font-medium">12-column DataTable (Sticky & Mobile Cards)</h3>
+          <DataTable
+            caption="12-column wide table"
+            renderMobileCard={(row: { id: string, c1: string }) => (
+              <div className="p-4 border rounded-md shadow-sm">
+                <div className="font-semibold">{row.id}</div>
+                <div>{row.c1}</div>
+              </div>
+            )}
+            columns={[
+              { accessorKey: 'id', header: 'Identity', meta: { sticky: true } },
+              { accessorKey: 'c1', header: 'Col 1' },
+              { accessorKey: 'c2', header: 'Col 2' },
+              { accessorKey: 'c3', header: 'Col 3' },
+              { accessorKey: 'c4', header: 'Col 4' },
+              { accessorKey: 'c5', header: 'Col 5' },
+              { accessorKey: 'c6', header: 'Col 6' },
+              { accessorKey: 'c7', header: 'Col 7' },
+              { accessorKey: 'c8', header: 'Col 8' },
+              { accessorKey: 'c9', header: 'Col 9' },
+              { accessorKey: 'c10', header: 'Col 10' },
+              { accessorKey: 'c11', header: 'Col 11' },
+            ]}
+            data={[
+              { id: 'Row 1', c1: 'A', c2: 'B', c3: 'C', c4: 'D', c5: 'E', c6: 'F', c7: 'G', c8: 'H', c9: 'I', c10: 'J', c11: 'K' },
+              { id: 'Row 2', c1: 'A', c2: 'B', c3: 'C', c4: 'D', c5: 'E', c6: 'F', c7: 'G', c8: 'H', c9: 'I', c10: 'J', c11: 'K' },
+            ]}
+          />
+        </div>
+
+        {/* Charts */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <LineChartCard 
+            title="Line Chart Demo" 
+            xAxisKey="month"
+            series={[{ key: 'a', name: 'Current' }, { key: 'b', name: 'Benchmark', isBenchmark: true }]}
+            data={[{ month: 'Jan', a: 10, b: 12 }, { month: 'Feb', a: 15, b: 14 }]}
+            tableView={<div>Table view data</div>}
+          />
+          <BarChartCard 
+            title="Bar Chart Demo" 
+            yAxisKey="name"
+            series={[{ key: 'val', name: 'Value' }]}
+            data={[{ name: 'A', val: 50 }, { name: 'B', val: 80 }]}
+            targets={[{ value: 60, label: 'Target' }]}
+          />
+        </div>
+
+        {/* Explainability */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-4 p-4 border rounded-md">
+            <ProgressToTarget value={20} target={80} label="Alignment (Danger Tone)" />
+            <ProgressToTarget value={60} target={80} label="Alignment (Neutral Tone)" />
+            <ProgressToTarget value={95} target={80} label="Alignment (Success Tone)" />
+            <MapLegend title="Gap Severity" />
+          </div>
+          <div>
+            <FactorBreakdown factors={[
+              { factor: 'f1', label: 'Demand Deficit', contribution: 20, weight: 40 },
+              { factor: 'f2', label: 'Placement Velocity', contribution: 15, weight: 25 },
+            ]} defaultOpen />
+          </div>
         </div>
       </section>
     </div>
