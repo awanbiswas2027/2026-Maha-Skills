@@ -1,17 +1,18 @@
-import React from 'react';
+
 import { Outlet } from 'react-router-dom';
 import { Header } from './Header';
+import { PublicFooter } from './PublicFooter';
+import { SkipLink } from './SkipLink';
 
-export const PublicShell: React.FC = () => {
+export const PublicShell = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background">
+      <SkipLink />
       <Header />
-      <main id="main-content" className="flex-1">
-        <Outlet />
+      <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+        {children || <Outlet />}
       </main>
-      <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        <p>© 2026 Government of Maharashtra. All rights reserved. Problem Statement ID: 26134.</p>
-      </footer>
+      <PublicFooter />
     </div>
   );
 };

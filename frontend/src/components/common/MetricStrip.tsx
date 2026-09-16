@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 import { cn } from '../../lib/utils';

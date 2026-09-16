@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useTranslation } from 'react-i18next';
 import { Info, TriangleAlert, CircleCheck, OctagonAlert } from 'lucide-react';
 import { cn } from '../../lib/utils';

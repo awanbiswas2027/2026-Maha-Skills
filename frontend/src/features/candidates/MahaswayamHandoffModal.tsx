@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useTranslation } from 'react-i18next';
 import { CourseItem } from '../../types/api';
 import { ExternalLink, CheckCircle2, ShieldCheck, X } from 'lucide-react';

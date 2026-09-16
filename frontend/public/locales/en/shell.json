@@ -1,1 +1,14 @@
-{}
+{
+  "language": "Language",
+  "theme": { "light": "Light", "dark": "Dark", "system": "System" },
+  "nav": { "main": "Main Navigation" },
+  "persona": {
+    "POLICY_MAKER": "Policy Maker",
+    "DISTRICT_OFFICER": "District Officer",
+    "ITI_PRINCIPAL": "ITI Principal",
+    "EMPLOYER": "Employer HR",
+    "SSC_REVIEWER": "SSC Reviewer",
+    "ADMIN": "Admin",
+    "CANDIDATE": "Candidate"
+  }
+}
