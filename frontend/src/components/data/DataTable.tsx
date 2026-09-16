@@ -1,5 +1,6 @@
 import React from 'react';
-import { flexRender, getCoreRowModel, useReactTable, getSortedRowModel, SortingState, ColumnDef } from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, getSortedRowModel, SortingState, ColumnDef } from '@tanstack/react-table';
+import { createTable } from './logic/table';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import { Skeleton } from '../ui/skeleton';
 import { ErrorState, EmptyState } from '../common';
@@ -31,7 +32,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   
-  const table = useReactTable({
+  const table = createTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
