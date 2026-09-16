@@ -1,0 +1,43 @@
+{
+  "pagination": {
+    "range": "{{from}}-{{to}} of {{total}}",
+    "prev": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "size": "Rows per page"
+  },
+  "table": {
+    "sort_asc": "Sort ascending",
+    "sort_desc": "Sort descending",
+    "sort_none": "Clear sort",
+    "columns": "Columns",
+    "select_all": "Select all",
+    "selected": "{{count}} selected",
+    "selected_one": "{{count}} selected",
+    "selected_other": "{{count}} selected",
+    "clear_selection": "Clear selection"
+  },
+  "filters": {
+    "more": "More filters",
+    "clear": "Clear filters",
+    "count": "Filters ({{count}})",
+    "count_one": "Filter ({{count}})",
+    "count_other": "Filters ({{count}})",
+    "updated": "Filters updated",
+    "locked_scope": "Limited to {{scope}}",
+    "results": "{{count}} results",
+    "results_one": "{{count}} result",
+    "results_other": "{{count}} results"
+  },
+  "chart": {
+    "view_table": "View as table",
+    "view_chart": "View as chart",
+    "export": "Export",
+    "forecast": "Forecast",
+    "today": "Today",
+    "partial_note": "Partial period (incomplete data)"
+  },
+  "progress": {
+    "target": "Target {{value}}"
+  }
+}
