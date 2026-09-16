@@ -6,11 +6,11 @@ beforeEach(() => {
     createElement: vi.fn(() => {
       return { textContent: '', innerHTML: '' };
     })
-  } as any;
+  } as unknown as Document;
 });
 
 afterEach(() => {
-  delete (global as any).document;
+  delete (global as unknown as { document?: Document }).document;
   vi.restoreAllMocks();
 });
 

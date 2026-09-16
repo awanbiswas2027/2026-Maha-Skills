@@ -20,7 +20,7 @@ describe('checkCanRender3D', () => {
           return null;
         })
       };
-      return canvas as any;
+      return canvas as unknown as HTMLCanvasElement;
     };
   };
 

@@ -1,4 +1,4 @@
-﻿{
+{
   "pagination": {
     "range": "{{total}} पैकी {{from}}-{{to}}",
     "prev": "मागे",

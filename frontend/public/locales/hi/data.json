@@ -1,4 +1,4 @@
-﻿{
+{
   "pagination": {
     "range": "{{total}} में से {{from}}-{{to}}",
     "prev": "पिछला",

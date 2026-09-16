@@ -1,6 +1,16 @@
+export interface Render3DWindow {
+  matchMedia: (query: string) => { matches: boolean };
+  innerWidth: number;
+}
+
+export interface Render3DNavigator {
+  connection?: { saveData?: boolean };
+  deviceMemory?: number;
+}
+
 export function checkCanRender3D(
-  windowObj: any,
-  navigatorObj: any,
+  windowObj: Render3DWindow,
+  navigatorObj: Render3DNavigator,
   canvasFactory: () => HTMLCanvasElement = () => document.createElement('canvas')
 ): boolean {
   // 1. Reduced motion
