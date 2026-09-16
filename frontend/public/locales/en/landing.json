@@ -1,1 +1,55 @@
-{}
+{
+  "hero": {
+    "eyebrow": "Government of Maharashtra",
+    "title1": "Closing the Loop Between Live Industry Demand and ",
+    "title2": "Vocational Curriculum Design",
+    "subtext": "Empirically connecting real-time industrial hiring signals with NCVET vocational curriculum design, dynamic district training plans, and transparent student career guidance.",
+    "ctaPrimary": "Take the pathway quiz",
+    "ctaSecondary": "Officer sign in"
+  },
+  "facts": {
+    "d": "36 districts",
+    "i": "417+ government ITIs",
+    "j": "about 2,200 NSQF job roles",
+    "p": "62% Target placement rate, Year 2"
+  },
+  "audiences": {
+    "traineeTitle": "For Trainees & Youth",
+    "traineeSub": "Discover high-demand vocational trades backed by real government-verified placement statistics.",
+    "t1": "5-step adaptive career guidance quiz",
+    "t2": "Verified median starting salaries (₹) & time-to-hire",
+    "t3": "Direct course enrollment handoff via Mahaswayam SSO",
+    "ctaTrainee": "Browse Courses",
+    "ctaTrainee2": "Start Quiz",
+    "officerTitle": "For Officials, ITIs & Employers",
+    "officerSub": "Evidence-based tools for DSEEI policy makers, district skill officers, and industry liaisons.",
+    "o1": "Live 36-district skill shortage heatmaps",
+    "o2": "Automated curriculum evidence dossiers & review workflows",
+    "o3": "Annual District Training Plans & equipment deficit audits",
+    "ctaOfficer": "Enter Stakeholder Workbench"
+  },
+  "steps": {
+    "title": "How it works",
+    "s1": "Collect demand",
+    "s2": "Score gaps",
+    "s3": "Recommend changes",
+    "s4": "Track outcomes"
+  },
+  "clusters": {
+    "title": "Priority Industrial Clusters",
+    "sub": "Core economic zones tracked in Phase 1",
+    "cta": "View Full Heatmap",
+    "c1n": "Pune & Pimpri-Chinchwad",
+    "c1s": "Automotive, EV & IT/ITeS",
+    "c2n": "Nashik",
+    "c2s": "Auto Ancillaries & Agro-Tech",
+    "c3n": "Chh. Sambhajinagar",
+    "c3s": "Precision Engineering & MSME",
+    "c4n": "Nagpur (MIHAN)",
+    "c4s": "Logistics & Aviation Maintenance",
+    "c5n": "Kolhapur",
+    "c5s": "Foundry, Textiles & Machinery",
+    "c6n": "Konkan / Ratnagiri",
+    "c6s": "Marine Processing & Agri-Tech"
+  }
+}
