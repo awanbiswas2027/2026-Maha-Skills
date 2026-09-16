@@ -110,5 +110,17 @@
     "severity": "गंभीरता",
     "action": "कार्रवाई",
     "recommended_reduction": "अनुशंसित सीट पुनर्वितरण"
+  },
+  "theme": {
+    "label": "रंग थीम",
+    "system": "सिस्टम",
+    "light": "लाइट",
+    "dark": "डार्क"
+  },
+  "format": {
+    "per_month": "/ माह",
+    "lakh": "लाख",
+    "crore": "करोड़",
+    "no_data": "डेटा उपलब्ध नहीं"
   }
 }

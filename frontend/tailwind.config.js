@@ -53,6 +53,44 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+          subtle: "hsl(var(--success-subtle))",
+          "subtle-foreground": "hsl(var(--success-subtle-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+          subtle: "hsl(var(--warning-subtle))",
+          "subtle-foreground": "hsl(var(--warning-subtle-foreground))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          foreground: "hsl(var(--info-foreground))",
+          subtle: "hsl(var(--info-subtle))",
+          "subtle-foreground": "hsl(var(--info-subtle-foreground))",
+        },
+        danger: {
+          subtle: "hsl(var(--danger-subtle))",
+          "subtle-foreground": "hsl(var(--danger-subtle-foreground))",
+        },
+        gap: {
+          low: "hsl(var(--gap-low))",
+          "low-foreground": "hsl(var(--gap-low-foreground))",
+          medium: "hsl(var(--gap-medium))",
+          "medium-foreground": "hsl(var(--gap-medium-foreground))",
+          high: "hsl(var(--gap-high))",
+          "high-foreground": "hsl(var(--gap-high-foreground))",
+        },
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+          6: "hsl(var(--chart-6))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -62,6 +100,16 @@ export default {
       fontFamily: {
         sans: ["Inter", "Noto Sans Devanagari", "sans-serif"],
         devanagari: ["Noto Sans Devanagari", "sans-serif"],
+      },
+      maxWidth: {
+        content: '1600px',
+      },
+      zIndex: {
+        toast: '60',
+      },
+      transitionTimingFunction: {
+        'out-standard': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'in-standard': 'cubic-bezier(0.4, 0, 1, 1)',
       },
     },
   },

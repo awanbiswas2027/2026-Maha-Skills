@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Globe, UserCircle } from 'lucide-react';
 import { DevRoleSwitcher } from '../common/DevRoleSwitcher';
+import { ThemeToggle } from '../common/ThemeToggle';
 import { useAuthStore } from '../../features/auth/useAuthStore';
 
 export const Header: React.FC = () => {
@@ -34,6 +35,9 @@ export const Header: React.FC = () => {
         <div className="flex items-center gap-3">
           {/* Dev Role Switcher */}
           <DevRoleSwitcher />
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
           {/* Language Switcher */}
           <div className="flex items-center rounded-md border border-border bg-card p-1 text-xs">

@@ -110,5 +110,17 @@
     "severity": "तीव्रता",
     "action": "कृती",
     "recommended_reduction": "शिफारस केलेले जागा पुनर्वाटप"
+  },
+  "theme": {
+    "label": "रंग थीम",
+    "system": "सिस्टम",
+    "light": "लाईट",
+    "dark": "डार्क"
+  },
+  "format": {
+    "per_month": "/ महिना",
+    "lakh": "लाख",
+    "crore": "कोटी",
+    "no_data": "माहिती उपलब्ध नाही"
   }
 }
