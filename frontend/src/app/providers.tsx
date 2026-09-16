@@ -4,6 +4,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import HttpBackend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { TooltipProvider } from '../components/ui/tooltip';
+import { Toaster } from '../components/ui/toaster';
 
 // Initialize i18next
 i18n
@@ -34,7 +36,10 @@ const queryClient = new QueryClient({
 export const AppProviders: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <TooltipProvider delayDuration={300}>
+        {children}
+        <Toaster />
+      </TooltipProvider>
     </QueryClientProvider>
   );
 };

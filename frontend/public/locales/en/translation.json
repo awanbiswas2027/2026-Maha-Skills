@@ -31,7 +31,14 @@
     "nsqf_level": "NSQF Level",
     "placement_rate": "Placement Rate",
     "median_salary": "Median Salary",
-    "gap_score": "Gap Score"
+    "gap_score": "Gap Score",
+    "retry": "Try again",
+    "asOf": "As of",
+    "sources": "Sources",
+    "staleWarning": "Data stale (> 8 days)",
+    "breadcrumb": "Breadcrumb",
+    "close": "Close",
+    "more_actions": "More actions"
   },
   "candidates": {
     "course_finder_title": "Verified Course Directory",
@@ -107,7 +114,11 @@
     "demand": "Demand",
     "capacity": "Capacity",
     "score": "Gap Score",
-    "severity": "Severity",
+    "severity": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
     "action": "Action",
     "recommended_reduction": "Recommended Seat Reallocation"
   },
@@ -125,5 +136,112 @@
   },
   "brand": {
     "name": "MahaSkills"
+  },
+  "status": {
+    "draft": "Draft",
+    "ssc_review": "SSC Review",
+    "dseei_approval": "DSEEI Approval",
+    "under_review": "Under Review",
+    "validating": "Validating",
+    "changes_requested": "Changes Requested",
+    "approved": "Approved",
+    "published": "Published",
+    "completed": "Completed",
+    "active": "Active",
+    "rejected": "Rejected",
+    "failed": "Failed"
+  },
+  "empty": {
+    "first-use": {
+      "title": "Get Started",
+      "desc": "No data recorded yet. Create your first record to begin."
+    },
+    "no-results": {
+      "title": "No Results Found",
+      "desc": "No items matched your current filter criteria."
+    },
+    "not-ready": {
+      "title": "Data Processing",
+      "desc": "The quarterly calculation pipeline has not completed for this trade yet."
+    },
+    "not-applicable": {
+      "title": "Not Applicable",
+      "desc": "This indicator is not relevant for the selected district or trade type."
+    },
+    "cleared": {
+      "title": "Filters Cleared",
+      "desc": "All active filters have been cleared. Select a district or trade to explore."
+    }
+  },
+  "freshness": {
+    "sources_label": "Source:",
+    "as_of_label": "As of:",
+    "stale_warning": "Gap scores are {{days}} days old. The weekly update did not run."
+  },
+  "errors": {
+    "reference_label": "Error reference:",
+    "UNKNOWN": {
+      "title": "Unexpected Error",
+      "description": "An unexpected error occurred. Please try again or contact support."
+    },
+    "AUTHENTICATION_ERROR": {
+      "title": "Authentication Required",
+      "description": "Please sign in to access this resource."
+    },
+    "AUTH_TOKEN_EXPIRED": {
+      "title": "Session Expired",
+      "description": "Your session has expired. Please sign in again."
+    },
+    "AUTHORIZATION_ERROR": {
+      "title": "Permission Denied",
+      "description": "You do not have permission to perform this action."
+    },
+    "AUTH_FORBIDDEN": {
+      "title": "Access Forbidden",
+      "description": "Your account role does not have access to this screen."
+    },
+    "AUTH_SCOPE_RESTRICTED": {
+      "title": "Scope Restricted",
+      "description": "Access is restricted outside your assigned geographic scope."
+    },
+    "RESOURCE_NOT_FOUND": {
+      "title": "Record Not Found",
+      "description": "The requested record could not be found or has been moved."
+    },
+    "VALIDATION_ERROR": {
+      "title": "Validation Error",
+      "description": "Please check the form inputs and try again."
+    },
+    "BUSINESS_RULE_VIOLATION": {
+      "title": "Rule Violation",
+      "description": "The requested action violates curriculum alignment rules."
+    },
+    "CONFLICT": {
+      "title": "Conflicting Edit",
+      "description": "Another user or batch run modified this item concurrently."
+    },
+    "RATE_LIMITED": {
+      "title": "Request Limit Reached",
+      "description": "Too many requests. Please wait a moment and try again."
+    },
+    "EXTERNAL_SERVICE_ERROR": {
+      "title": "Upstream Service Error",
+      "description": "An external government or market data provider returned an error."
+    },
+    "SERVICE_UNAVAILABLE": {
+      "title": "Service Unavailable",
+      "description": "The MahaSkills service is undergoing maintenance. Please retry soon."
+    }
+  },
+  "a11y": {
+    "close": "Close",
+    "more_actions": "More actions",
+    "data_table": "Data table",
+    "breadcrumb": "Breadcrumb",
+    "pagination": "Pagination",
+    "skipLink": "Skip to main content",
+    "externalLink": "Opens in a new tab",
+    "required": "Required field",
+    "loading": "Loading content..."
   }
 }

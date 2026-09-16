@@ -49,6 +49,17 @@ export const router = createBrowserRouter([
       { path: 'admin', element: <AdminView /> },
     ],
   },
+  ...(import.meta.env.DEV
+    ? [
+        {
+          path: '/__ui',
+          lazy: async () => {
+            const { UiGalleryPage } = await import('../pages/UiGalleryPage');
+            return { Component: UiGalleryPage };
+          },
+        },
+      ]
+    : []),
   {
     path: '*',
     element: <Navigate to="/" replace />,
