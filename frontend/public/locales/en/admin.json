@@ -1,1 +1,58 @@
-{}
+{
+  "title": "System Administration Console",
+  "subtitle": "Statewide data pipeline ingestion monitoring, DPDP audit trails, and skill taxonomy management",
+  "pipeline": {
+    "title": "Airflow Ingestion Pipeline Runs",
+    "state_queued": "Queued",
+    "state_running": "Running",
+    "state_success": "Success",
+    "state_failed": "Failed",
+    "state_skipped": "Skipped",
+    "trigger_button": "Trigger Pipeline Execution",
+    "empty": "No pipeline execution runs recorded",
+    "runs_one": "{{count}} pipeline run",
+    "runs_other": "{{count}} pipeline runs"
+  },
+  "health": {
+    "title": "Pipeline SLA Health",
+    "status_healthy": "Operating within SLA schedule",
+    "status_failed": "Latest execution run failed",
+    "status_stale": "Pipeline overdue past SLA threshold",
+    "status_running": "Pipeline execution currently active",
+    "overall_healthy": "All ingestion pipelines operating normally",
+    "overall_warning": "One or more pipelines approaching or past SLA window",
+    "overall_critical": "Pipeline execution failures detected",
+    "sla_nightly_note": "Nightly scrape SLA: 26 hours",
+    "sla_weekly_note": "Weekly gap computation SLA: 8 days"
+  },
+  "audit": {
+    "title": "System Audit Trail",
+    "dpdp_notice": "DPDP Act 2023 Compliant: strictly pseudonymous actor records with zero personal identity data",
+    "outcome_success": "Success",
+    "outcome_failure": "System Failure",
+    "outcome_denied": "Permission Denied",
+    "filter_placeholder": "Search resource or trace identifier",
+    "empty": "No audit records match the specified criteria",
+    "events_one": "{{count}} audit event",
+    "events_other": "{{count}} audit events"
+  },
+  "taxonomy": {
+    "title": "Unified Skill Taxonomy Tree",
+    "search_placeholder": "Search skills in English or Marathi",
+    "emerging_badge": "Emerging Skill",
+    "empty": "No taxonomy nodes match the search query",
+    "nodes_one": "{{count}} taxonomy node",
+    "nodes_other": "{{count}} taxonomy nodes"
+  },
+  "validation": {
+    "dag_id_required": "DAG identifier is required",
+    "run_id_required": "Pipeline run identifier is required",
+    "actor_id_required": "Pseudonymous actor identifier is required",
+    "action_required": "Audit action descriptor is required",
+    "resource_required": "Target resource descriptor is required",
+    "scope_required": "Execution scope is required",
+    "trace_id_required": "Trace identifier is required",
+    "name_en_required": "English taxonomy title is required",
+    "name_mr_required": "Marathi taxonomy title is required"
+  }
+}

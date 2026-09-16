@@ -1,1 +1,62 @@
-{}
+{
+  "title": "Employer Portal",
+  "subtitle": "Direct industry demand signaling and vocational curriculum collaboration for Maharashtra",
+  "gstin": {
+    "label": "GSTIN Identification Number",
+    "helper": "Enter 15-character Goods and Services Tax Identification Number",
+    "verified": "GSTIN verified successfully",
+    "error_empty": "GSTIN cannot be empty",
+    "error_length": "GSTIN must contain exactly 15 alphanumeric characters",
+    "error_state_code": "Invalid state code. Expected 01 to 38 (Maharashtra: 27)",
+    "error_pan_format": "Invalid PAN segment in GSTIN (format: 5 letters, 4 digits, 1 letter)",
+    "error_thirteenth_char": "13th character must be alphanumeric (1 to 9 or A to Z)",
+    "error_fourteenth_z": "14th character of GSTIN must be Z",
+    "error_checksum_mismatch": "GSTIN Luhn checksum validation failed"
+  },
+  "urgency": {
+    "immediate": "Immediate (within 30 days)",
+    "quarterly": "Quarterly (1 to 3 months)",
+    "future": "Future (3 to 6 months)"
+  },
+  "verdict": {
+    "endorsed": "Endorsed without changes",
+    "changes_suggested": "Revisions suggested",
+    "not_relevant": "Not relevant to industry needs"
+  },
+  "validation": {
+    "quarter_required": "Fiscal quarter selection is required",
+    "job_role_required": "Job role title must be at least 2 characters",
+    "skills_required": "Specify at least one skill requirement",
+    "headcount_positive": "Required headcount must be at least 1",
+    "district_required": "District specification is required",
+    "nsqf_range": "NSQF level must be an integer between 1 and 10",
+    "urgency_required": "Hiring urgency classification is required",
+    "syllabus_required": "Draft syllabus reference is required",
+    "verdict_required": "Review verdict selection is required",
+    "comment_required_for_changes": "Detailed feedback of at least 10 characters is required for suggested changes"
+  },
+  "skill_needs": {
+    "title": "Skill Need Declarations",
+    "declare_button": "Declare New Skill Need",
+    "empty": "No skill needs declared yet for this enterprise",
+    "count_one": "{{count}} skill need declared",
+    "count_other": "{{count}} skill needs declared"
+  },
+  "surveys": {
+    "title": "Rapid Industry Pulse Surveys",
+    "pulse_badge": "2-Minute Pulse",
+    "estimated_time": "Estimated completion time: 2 minutes",
+    "progress": "Survey completion progress: {{percentage}}%",
+    "submit_button": "Submit Survey Responses",
+    "empty": "No active pulse surveys currently scheduled",
+    "count_one": "{{count}} pulse survey available",
+    "count_other": "{{count}} pulse surveys available"
+  },
+  "curriculum_reviews": {
+    "title": "Vocational Curriculum Validation",
+    "review_button": "Submit Curriculum Review",
+    "empty": "No draft syllabi awaiting employer review",
+    "count_one": "{{count}} syllabus review pending",
+    "count_other": "{{count}} syllabus reviews pending"
+  }
+}
