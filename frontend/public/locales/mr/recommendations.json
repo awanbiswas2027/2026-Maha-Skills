@@ -1,0 +1,77 @@
+{
+  "title": "अभ्यासक्रम शिफारसी",
+  "type": {
+    "add_module": "ऐच्छिक विभाग जोडा",
+    "update_unit": "अभ्यासक्रम घटक अद्ययावत करा",
+    "develop_qualification": "नवीन पात्रता विकसित करा",
+    "retire_course": "कालबाह्य अभ्यासक्रम बंद करा"
+  },
+  "status": {
+    "draft": "मसुदा",
+    "ssc_review": "एसएससी पुनरावलोकन",
+    "changes_requested": "बदल विनंती केली",
+    "dseei_approval": "डीएसईईआय मान्यता",
+    "published": "प्रकाशित",
+    "rejected": "नाकारले"
+  },
+  "decision": {
+    "approve": "मंजूर करा",
+    "request_changes": "बदल सुचवा",
+    "reject": "नाकारा",
+    "submit_approve": "शिफारस मंजूर करा",
+    "submit_request_changes": "बदल सादर करा",
+    "submit_reject": "शिफारस नाकारा"
+  },
+  "stepper": {
+    "draft": "मसुदा",
+    "ssc_review": "एसएससी पुनरावलोकन",
+    "dseei_approval": "डीएसईईआय मान्यता",
+    "published": "प्रकाशित"
+  },
+  "sla": {
+    "due_in_working_days_one": "{{count}} कामकाजाच्या दिवसात प्रलंबित",
+    "due_in_working_days_other": "{{count}} कामकाजाच्या दिवसांत प्रलंबित",
+    "overdue_by_working_days_one": "{{count}} कामकाजाचा दिवस थकीत",
+    "overdue_by_working_days_other": "{{count}} कामकाजाचे दिवस थकीत",
+    "due_today": "आज देय आहे"
+  },
+  "headings": {
+    "trigger_rule": "ट्रिगर नियम",
+    "estimated_uplift": "अंदाजित नोकरी वाढ",
+    "uplift_basis": "प्रक्षेपण आधार",
+    "reasons": "मुख्य पुरावे आणि कारणे",
+    "sources": "माहिती स्रोत आणि योगदान",
+    "demand_trend": "१२ महिन्यांचा उद्योग मागणी कल",
+    "top_employers": "प्रमुख रोजगार देणारे उद्योग",
+    "comparable_courses": "तुलनात्मक अभ्यासक्रम आणि नोकरी परिणाम",
+    "affected_districts": "प्रभावित जिल्हे",
+    "dossier": "वस्तुनिष्ठ पुरावा डॉसियर",
+    "review_decision": "पुनरावलोकन निर्णय",
+    "audit_history": "कार्यप्रवाह इतिहास"
+  },
+  "errors": {
+    "comment_required": "शिफारस नाकारताना किंवा बदल सुचवताना सविस्तर टिप्पणी आवश्यक आहे.",
+    "not_your_step": "तुम्हाला या कार्यप्रवाह टप्प्यावर निर्णय घेण्याची परवानगी नाही.",
+    "already_decided": "या शिफारसीवर अंतिम निर्णय झाला असून त्यात बदल करता येणार नाही.",
+    "conflict": "ही शिफारस दुसऱ्या पुनरावलोकनकर्त्याने बदलली आहे. कृपया ताजी आवृत्ती पहा.",
+    "evidence_incomplete": "संपूर्ण पुरावा संच असल्याशिवाय पुढे जाता येणार नाही."
+  },
+  "form": {
+    "decision_label": "तुमचा निर्णय",
+    "comment_label": "पुनरावलोकन टिप्पणी",
+    "comment_placeholder": "तांत्रिक कारण किंवा आवश्यक अभ्यासक्रम बदल नमूद करा...",
+    "comment_required_hint": "बदल सुचवताना किंवा नाकारताना अनिवार्य.",
+    "comment_optional_hint": "मंजूर करताना पर्यायी टीप.",
+    "acting_as": "भूमिका: {{role}}",
+    "next_step_notice": "पुढील अधिकारी: {{role}}"
+  },
+  "empty": {
+    "no_waiting_review": "तुमच्या पुनरावलोकनासाठी कोणतीही शिफारस प्रलंबित नाही",
+    "no_recommendations_found": "निवडलेल्या निकषांनुसार कोणतीही अभ्यासक्रम शिफारस आढळली नाही",
+    "clear_filters": "फिल्टर साफ करा"
+  },
+  "staleness": {
+    "stale_warning": "{{date}} पासूनचे पुरावे. पुनर्परीक्षण प्रलंबित.",
+    "withdrawn_notice": "शिफारस मागे घेतली: {{reason}}"
+  }
+}

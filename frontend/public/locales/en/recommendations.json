@@ -1,0 +1,77 @@
+{
+  "title": "Curriculum Recommendations",
+  "type": {
+    "add_module": "Add Elective Module",
+    "update_unit": "Update Curriculum Unit",
+    "develop_qualification": "Develop New Qualification",
+    "retire_course": "Retire Obsolete Course"
+  },
+  "status": {
+    "draft": "Draft",
+    "ssc_review": "SSC Review",
+    "changes_requested": "Changes Requested",
+    "dseei_approval": "DSEEI Approval",
+    "published": "Published",
+    "rejected": "Rejected"
+  },
+  "decision": {
+    "approve": "Approve",
+    "request_changes": "Request Changes",
+    "reject": "Reject",
+    "submit_approve": "Approve recommendation",
+    "submit_request_changes": "Request changes",
+    "submit_reject": "Reject recommendation"
+  },
+  "stepper": {
+    "draft": "Draft",
+    "ssc_review": "SSC Review",
+    "dseei_approval": "DSEEI Approval",
+    "published": "Published"
+  },
+  "sla": {
+    "due_in_working_days_one": "Due in {{count}} working day",
+    "due_in_working_days_other": "Due in {{count}} working days",
+    "overdue_by_working_days_one": "Overdue by {{count}} working day",
+    "overdue_by_working_days_other": "Overdue by {{count}} working days",
+    "due_today": "Due today"
+  },
+  "headings": {
+    "trigger_rule": "Trigger Rule",
+    "estimated_uplift": "Estimated Placement Uplift",
+    "uplift_basis": "Projection Basis",
+    "reasons": "Key Evidence Reasons",
+    "sources": "Data Sources and Contribution",
+    "demand_trend": "12-Month Industry Demand Trend",
+    "top_employers": "Top Hiring Employers",
+    "comparable_courses": "Comparable Courses and Placement Outcomes",
+    "affected_districts": "Affected Districts",
+    "dossier": "Empirical Evidence Dossier",
+    "review_decision": "Review Decision",
+    "audit_history": "Workflow Audit History"
+  },
+  "errors": {
+    "comment_required": "A substantive comment is required when rejecting or requesting revisions.",
+    "not_your_step": "You are not authorized to make a decision at this workflow stage.",
+    "already_decided": "This recommendation has reached a terminal state and cannot be modified.",
+    "conflict": "This recommendation was updated by another reviewer. Please refresh the latest version.",
+    "evidence_incomplete": "Cannot proceed without a complete evidence dossier."
+  },
+  "form": {
+    "decision_label": "Your Decision",
+    "comment_label": "Review Comments",
+    "comment_placeholder": "Provide technical rationale or required syllabus modifications...",
+    "comment_required_hint": "Mandatory when requesting changes or rejecting.",
+    "comment_optional_hint": "Optional supporting notes for approval.",
+    "acting_as": "Acting as: {{role}}",
+    "next_step_notice": "Next actor: {{role}}"
+  },
+  "empty": {
+    "no_waiting_review": "No recommendations waiting for your review",
+    "no_recommendations_found": "No curriculum recommendations match the selected filters",
+    "clear_filters": "Clear filters"
+  },
+  "staleness": {
+    "stale_warning": "Evidence from {{date}}. Re-evaluation pending.",
+    "withdrawn_notice": "Recommendation withdrawn: {{reason}}"
+  }
+}
