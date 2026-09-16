@@ -1,47 +1,8 @@
 import { useState, useEffect } from 'react';
+import { checkCanRender3D } from './checkCanRender3D';
 
 export function useCanRender3D(): boolean {
-  const [canRender] = useState(() => {
-    // 1. Reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      return false;
-    }
-
-    // 2. Viewport < 768px
-    if (window.innerWidth < 768) {
-      return false;
-    }
-
-    // 3. WebGL available
-    let hasWebGL = false;
-    try {
-      const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-      if (gl && gl instanceof WebGLRenderingContext) {
-        hasWebGL = true;
-      }
-    } catch {
-      hasWebGL = false;
-    }
-    if (!hasWebGL) {
-      return false;
-    }
-
-    // 4. Save data
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const nav = navigator as any;
-    if (nav.connection && nav.connection.saveData === true) {
-      return false;
-    }
-
-    // 5. Device memory
-    if (nav.deviceMemory !== undefined && nav.deviceMemory < 4) {
-      return false;
-    }
-
-    return true;
-  });
+  const [canRender] = useState(() => checkCanRender3D(window, navigator));
 
   // Keep it quiet to the hook
   useEffect(() => {

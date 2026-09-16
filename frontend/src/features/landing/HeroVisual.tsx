@@ -3,9 +3,28 @@ import { useCanRender3D } from './useCanRender3D';
 
 const HeroScene = React.lazy(() => import('./HeroScene'));
 
+export class HeroErrorBoundary extends React.Component<{ children: React.ReactNode; onError: () => void }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode; onError: () => void }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error: Error) {
+    console.warn('Hero 3D error:', error);
+    this.props.onError();
+  }
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
+
 export function HeroVisual() {
   const canRender3D = useCanRender3D();
   const [sceneLoaded, setSceneLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
   });
@@ -23,8 +42,9 @@ export function HeroVisual() {
   const fallbackSrc = theme === 'dark' ? '/brand/hero-fallback-dark.png' : '/brand/hero-fallback.png';
 
   // Cross-fade opacity
-  const fallbackOpacity = canRender3D && sceneLoaded ? 0 : 1;
-  const canvasOpacity = canRender3D && sceneLoaded ? 1 : 0;
+  const show3D = canRender3D && !hasError;
+  const fallbackOpacity = show3D && sceneLoaded ? 0 : 1;
+  const canvasOpacity = show3D && sceneLoaded ? 1 : 0;
 
   return (
     <div className="relative w-full aspect-square max-w-[500px] mx-auto">
@@ -41,14 +61,19 @@ export function HeroVisual() {
       />
       
       {/* 3D Canvas */}
-      {canRender3D && (
+      {show3D && (
         <div 
           className="absolute inset-0 w-full h-full transition-opacity duration-200 motion-reduce:transition-none"
           style={{ opacity: canvasOpacity, zIndex: 20 }}
         >
-          <Suspense fallback={null}>
-            <HeroScene onLoaded={() => setSceneLoaded(true)} />
-          </Suspense>
+          <HeroErrorBoundary onError={() => setHasError(true)}>
+            <Suspense fallback={null}>
+              <HeroScene 
+                onLoaded={() => setSceneLoaded(true)} 
+                onUnavailable={() => setHasError(true)}
+              />
+            </Suspense>
+          </HeroErrorBoundary>
         </div>
       )}
     </div>

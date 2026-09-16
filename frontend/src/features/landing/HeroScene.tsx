@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { createLogoMarkModel } from './createLogoMarkModel';
 
-export default function HeroScene({ onLoaded }: { onLoaded?: () => void }) {
+export default function HeroScene({ onLoaded, onUnavailable }: { onLoaded?: () => void; onUnavailable?: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { t } = useTranslation('hero3d');
+  const { t } = useTranslation('landing');
   
   const [showReset, setShowReset] = useState(false);
   const isDragging = useRef(false);
@@ -95,12 +95,19 @@ export default function HeroScene({ onLoaded }: { onLoaded?: () => void }) {
     camera.position.z = 60;
     cameraRef.current = camera;
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvasRef.current,
-      antialias: true,
-      alpha: true,
-      powerPreference: 'low-power'
-    });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvasRef.current,
+        antialias: true,
+        alpha: true,
+        powerPreference: 'low-power'
+      });
+    } catch (err) {
+      console.warn('WebGL unavailable', err);
+      if (onUnavailable) onUnavailable();
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     rendererRef.current = renderer;
@@ -246,12 +253,12 @@ export default function HeroScene({ onLoaded }: { onLoaded?: () => void }) {
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerLeave}
     >
-      <span className="sr-only">{t('description')}</span>
+      <span className="sr-only">{t('hero3d.description')}</span>
       <canvas 
         ref={canvasRef} 
         className="w-full h-full cursor-grab active:cursor-grabbing outline-none" 
         role="img" 
-        aria-label={t('label')} 
+        aria-label={t('hero3d.label')} 
       />
       
       {showReset && (
