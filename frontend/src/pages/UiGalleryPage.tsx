@@ -64,6 +64,16 @@ import {
   Combobox,
   ThemeToggle,
 } from '../components/common';
+import {
+  DataTable,
+  Pagination,
+  FilterBar,
+  LineChartCard,
+  BarChartCard,
+  ProgressToTarget,
+  FactorBreakdown,
+  MapLegend,
+} from '../components/data';
 
 import { useToast } from '../components/ui/use-toast';
 import { ChevronDown, Download, Filter, Plus, RefreshCw, Settings } from 'lucide-react';
@@ -518,6 +528,74 @@ export const UiGalleryPage: React.FC = () => {
           <Skeleton shape="line" />
           <Skeleton shape="row" />
           <DelayedSkeleton shape="line" delayMs={100} />
+        </div>
+      </section>
+      {/* 12. Data Components */}
+      <section className="space-y-8 pb-12">
+        <h2 className="text-xl font-semibold border-b border-border pb-2">12. Data Components</h2>
+        
+        {/* Pagination & Filters */}
+        <div className="space-y-4">
+          <h3 className="font-medium">FilterBar & Pagination</h3>
+          <div className="p-4 border rounded-md space-y-4">
+            <FilterBar 
+              filters={{'Status': 'Active', 'Tier': ['L3', 'L4']}} 
+              onRemove={() => {}} 
+              onClear={() => {}}
+              resultCount={42}
+            >
+              <Input placeholder="Search..." className="h-8 w-64" />
+            </FilterBar>
+            <Pagination page={2} size={25} total={214} onPageChange={() => {}} onSizeChange={() => {}} />
+          </div>
+        </div>
+
+        {/* DataTable */}
+        <div className="space-y-4">
+          <h3 className="font-medium">DataTable</h3>
+          <DataTable
+            caption="Demo Data Table"
+            columns={[
+              { accessorKey: 'id', header: 'ID', meta: { sticky: true } },
+              { accessorKey: 'name', header: 'Name' },
+              { accessorKey: 'value', header: 'Value', meta: { align: 'right', numeric: true } },
+            ]}
+            data={[
+              { id: '1', name: 'Alpha', value: 100 },
+              { id: '2', name: 'Beta', value: 200 }
+            ]}
+          />
+        </div>
+
+        {/* Charts */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <LineChartCard 
+            title="Line Chart Demo" 
+            xAxisKey="month"
+            series={[{ key: 'a', name: 'Current' }, { key: 'b', name: 'Benchmark', isBenchmark: true }]}
+            data={[{ month: 'Jan', a: 10, b: 12 }, { month: 'Feb', a: 15, b: 14 }]}
+          />
+          <BarChartCard 
+            title="Bar Chart Demo" 
+            yAxisKey="name"
+            series={[{ key: 'val', name: 'Value' }]}
+            data={[{ name: 'A', val: 50 }, { name: 'B', val: 80 }]}
+            targets={[{ value: 60, label: 'Target' }]}
+          />
+        </div>
+
+        {/* Explainability */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-4 p-4 border rounded-md">
+            <ProgressToTarget value={65} target={80} label="Alignment" />
+            <MapLegend title="Gap Severity" />
+          </div>
+          <div>
+            <FactorBreakdown factors={[
+              { factor: 'f1', label: 'Demand Deficit', contribution: 20, weight: 40 },
+              { factor: 'f2', label: 'Placement Velocity', contribution: 15, weight: 25 },
+            ]} defaultOpen />
+          </div>
         </div>
       </section>
     </div>
