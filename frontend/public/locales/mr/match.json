@@ -1,0 +1,37 @@
+{
+  "band": {
+    "strong": "उत्कृष्ट जुळणी",
+    "good": "चांगली जुळणी",
+    "weak": "कमी जुळणी"
+  },
+  "score": "100 पैकी {{total}}",
+  "factor": {
+    "SKILL_ALIGNMENT": "कौशल्य जुळणी",
+    "DEMAND_ALIGNMENT": "स्थानिक मागणी",
+    "OUTCOME_STRENGTH": "प्लेसमेंट निकाल",
+    "EDUCATION_FIT": "शैक्षणिक पात्रता",
+    "LOCATION_FIT": "स्थान सुसंगतता"
+  },
+  "contribution": "{{weight}} पैकी {{value}}",
+  "total": "एकूण",
+  "reason": {
+    "EDUCATION_MATCH": "आपल्या शैक्षणिक पात्रतेशी जुळणारा अभ्यासक्रम",
+    "SECTOR_INTEREST": "आपल्या निवडलेल्या क्षेत्रातील आवडीशी थेट सुसंगत",
+    "LOCAL_DEMAND": "{{district}} मध्ये {{employers}} उद्योग भरती करत आहेत",
+    "STRONG_OUTCOMES": "{{rate}}% चा उच्च शासकीय सत्यापित प्लेसमेंट दर",
+    "NEARBY_ITI": "{{district}} मधील औद्योगिक प्रशिक्षण संस्थांमध्ये उपलब्ध",
+    "RELOCATION_NEEDED": "{{district}} जिल्ह्याबाहेर स्थलांतर आवश्यक",
+    "LOW_SKILL_OVERLAP": "आपल्या निवडलेल्या क्षेत्रांशी मर्यादित जुळणी"
+  },
+  "weak_note": "कमी जुळणी: हा अभ्यासक्रम आपल्या मोजक्या उत्तरांशी जुळतो. कारणे खाली पहा.",
+  "excluded": {
+    "title": "काही अभ्यासक्रम का दिसत नाहीत?",
+    "EDUCATION_BELOW_MINIMUM": "{{required}} उत्तीर्ण आवश्यक; आपण {{selected}} निवडले आहे."
+  },
+  "limited_data": "मर्यादित माहिती (n = {{n}})",
+  "helpful": {
+    "question": "हे उपयुक्त ठरले का?",
+    "yes": "होय",
+    "no": "नाही"
+  }
+}
