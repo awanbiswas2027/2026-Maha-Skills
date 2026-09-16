@@ -1,0 +1,81 @@
+{
+  "title": "ITI Placement Returns Upload",
+  "subtitle": "Upload monthly placement returns for verification and DPDP 2023 compliant ingestion.",
+  "dropzone": {
+    "choose_file": "Choose CSV file",
+    "drag_and_drop": "or drag and drop your file here",
+    "accepted_formats": "Only CSV format (.csv) up to 10 MB",
+    "template_label": "Download CSV template",
+    "selected_file": "Selected file: {{fileName}} ({{fileSize}})"
+  },
+  "stages": {
+    "checking_file": "Checking file",
+    "validating_rows": "Validating rows",
+    "ready_to_upload": "Ready to upload"
+  },
+  "summary": {
+    "title": "Validation Summary",
+    "rows_valid_one": "{{count}} row valid",
+    "rows_valid_other": "{{count}} rows valid",
+    "rows_error_one": "{{count}} row with errors",
+    "rows_error_other": "{{count}} rows with errors",
+    "total_errors_one": "{{count}} error found",
+    "total_errors_other": "{{count}} errors found",
+    "all_valid": "All rows are valid and ready for submission.",
+    "fix_errors_prompt": "Please correct the issues indicated below before uploading."
+  },
+  "actions": {
+    "submit": "Upload placement return",
+    "fix_and_reupload": "Fix errors and upload again",
+    "download_errors_csv": "Download errors (CSV)",
+    "cancel": "Cancel"
+  },
+  "privacy": {
+    "dpdp_notice": "Candidate IDs are hashed before upload and never shown. Complying with the DPDP Act 2023."
+  },
+  "errors": {
+    "FILE_TOO_LARGE": "File size exceeds 10 MB limit",
+    "INVALID_FILE_TYPE": "Invalid file type. Only .csv files are supported",
+    "PLA_CSV_EMPTY": "The uploaded placement file is empty",
+    "PLA_CSV_MALFORMED_HEADER": "CSV header columns do not match canonical template",
+    "PLA_CSV_MAX_ROWS_EXCEEDED": "Batch exceeds maximum limit of 50,000 records",
+    "PLA_INVALID_CANDIDATE_ID": "Candidate ID format is invalid",
+    "PLA_UNSANCTIONED_COURSE": "Course code is not sanctioned for this institute",
+    "PLA_OUT_OF_RANGE_BATCH_YEAR": "Batch year is outside allowable academic year range",
+    "PLA_INVALID_BOOLEAN_FLAG": "Placement flag must be Y or N",
+    "PLA_MISSING_EMPLOYER_NAME": "Employer name is mandatory for placed candidates",
+    "PLA_MISSING_JOB_ROLE": "Job role is mandatory for placed candidates",
+    "PLA_SALARY_OUT_OF_BOUNDS": "Monthly salary must be between 8,000 and 200,000 INR",
+    "PLA_INVALID_MONTHS_TO_HIRE": "Months to placement must be an integer between 0 and 36"
+  },
+  "fixes": {
+    "FILE_TOO_LARGE": "Split placement records into smaller batches under 10 MB.",
+    "INVALID_FILE_TYPE": "Save your data in standard CSV format and try again.",
+    "PLA_CSV_EMPTY": "Ensure file includes the header and at least one candidate row.",
+    "PLA_CSV_MALFORMED_HEADER": "Download the standard template and check column order.",
+    "PLA_CSV_MAX_ROWS_EXCEEDED": "Partition the file into monthly batches under 50,000 rows.",
+    "PLA_INVALID_CANDIDATE_ID": "Enter a 6-32 character alphanumeric ID or SHA-256 hash.",
+    "PLA_UNSANCTIONED_COURSE": "Use an active trade course code sanctioned for your ITI.",
+    "PLA_OUT_OF_RANGE_BATCH_YEAR": "Set batch year to current year or previous 2 years.",
+    "PLA_INVALID_BOOLEAN_FLAG": "Enter Y for placed student or N for unplaced student.",
+    "PLA_MISSING_EMPLOYER_NAME": "Enter the registered hiring enterprise name.",
+    "PLA_MISSING_JOB_ROLE": "Specify the designated vocational job title.",
+    "PLA_SALARY_OUT_OF_BOUNDS": "Enter gross monthly salary between 8,000 and 200,000.",
+    "PLA_INVALID_MONTHS_TO_HIRE": "Enter number of months from completion to job offer (0-36)."
+  },
+  "columns": {
+    "row": "Row",
+    "column": "Column",
+    "value": "Value",
+    "problem": "Problem",
+    "how_to_fix": "How to Fix"
+  },
+  "status": {
+    "RECEIVED": "Received",
+    "VALIDATING": "Validating",
+    "VALIDATED": "Validated",
+    "LOADED": "Loaded",
+    "PARTIALLY_FAILED": "Partially Failed",
+    "FAILED": "Failed"
+  }
+}
