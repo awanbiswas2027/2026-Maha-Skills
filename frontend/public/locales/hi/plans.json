@@ -1,0 +1,115 @@
+{
+  "stages": {
+    "demand_extraction": "मांग संकलन",
+    "demand_extraction_desc": "सक्रिय औद्योगिक रिक्तियों और जिला श्रम बाजार संकेतों का संकलन",
+    "iti_capacity": "आईटीआई प्रवेश क्षमता आवंटन",
+    "iti_capacity_desc": "जिले के आईटीआई संस्थानों में पाठ्यक्रम प्रवेश लक्ष्य और सीट निर्धारण",
+    "equipment_review": "उपकरण कमी समीक्षा",
+    "equipment_review_desc": "कार्यशाला मशीनरी, उपकरणों की कमी और प्रशिक्षक कौशल उन्नयन की समीक्षा",
+    "submission": "प्रस्तुति एवं संस्वीकृति",
+    "submission_desc": "अंतिम जिला योजना समीक्षा, अधिकारी अभिपुष्टि और राज्य संस्वीकृति",
+    "step_announcement": "चरण {{step}} / {{total}}, {{name}}",
+    "reasons": {
+      "demand_extraction_incomplete": "मांग संकलन चरण पहले पूरा होना चाहिए",
+      "capacity_incomplete": "पाठ्यक्रम प्रवेश लक्ष्य पूर्ण और मान्य होने चाहिए",
+      "equipment_incomplete": "प्रस्तुत करने से पहले उपकरण कमी समीक्षा पूरी होनी चाहिए"
+    }
+  },
+  "status": {
+    "draft": "प्रारूप",
+    "submitted": "प्रस्तुत",
+    "published": "प्रकाशित एवं संस्वीकृत"
+  },
+  "fields": {
+    "status": "योजना स्थिति",
+    "fiscal_year": "वित्तीय वर्ष",
+    "district_name": "जिला",
+    "intake_target": "पाठ्यक्रम प्रवेश लक्ष्य",
+    "equipment_deficit": "उपकरण कमी",
+    "trainer_upskilling": "प्रशिक्षक कौशल उन्नयन",
+    "course_code": "पाठ्यक्रम कोड",
+    "course_title": "पाठ्यक्रम का नाम",
+    "current_seats": "वर्तमान स्वीकृत सीटें",
+    "proposed_seats": "प्रस्तावित सीटें",
+    "demand_basis": "मांग का आधार",
+    "justification": "परिवर्तन का औचित्य",
+    "iti": "आईटीआई संस्थान",
+    "equipment_item": "आवश्यक उपकरण",
+    "qty": "मात्रा",
+    "unit_cost": "इकाई लागत (रुपये)",
+    "total_cost": "कुल लागत (रुपये)",
+    "trade": "व्यवसाय",
+    "trainer_count": "कौशल उन्नयन हेतु प्रशिक्षक संख्या"
+  },
+  "helpers": {
+    "justification_hint": "प्रस्तावित सीटों में 50% से अधिक बदलाव होने पर औचित्य विवरण अनिवार्य है (न्यूनतम 20 अक्षर)।",
+    "total_cost_computed": "कुल लागत की गणना इकाई मूल्य और मात्रा से स्वचालित रूप से की जाती है।",
+    "autosave_saved": "सभी परिवर्तन प्रारूप में सहेजे गए हैं।",
+    "autosave_saving": "प्रारूप में परिवर्तन सहेजे जा रहे हैं..."
+  },
+  "actions": {
+    "save_draft": "प्रारूप सहेजें",
+    "continue": "आगे बढ़ें",
+    "back": "पीछे जाएं",
+    "submit_plan": "जिला योजना प्रस्तुत करें",
+    "sanction_plan": "योजना संस्वीकृत करें",
+    "request_revisions": "संशोधन का अनुरोध करें",
+    "review_latest": "नवीनतम संस्करण देखें",
+    "discard_changes": "मेरे परिवर्तन रद्द करें",
+    "reasons": {
+      "stages_incomplete": "योजना प्रस्तुत करने से पहले सभी चरण पूरे होने चाहिए।",
+      "no_targets": "कम से कम एक पाठ्यक्रम प्रवेश लक्ष्य शामिल होना आवश्यक है।"
+    }
+  },
+  "conflict": {
+    "warning": "यह योजना किसी अन्य उपयोगकर्ता द्वारा {{time}} पर बदली गई है। आपके संपादन नीचे सुरक्षित हैं।",
+    "side_by_side_title": "संस्करण टकराव तुलना",
+    "your_changes": "आपके संपादन",
+    "server_version": "सर्वर पर नवीनतम संस्करण"
+  },
+  "validation": {
+    "course_code_required": "पाठ्यक्रम कोड आवश्यक है।",
+    "seat_count_required": "सीट संख्या आवश्यक है।",
+    "seat_count_integer": "सीट संख्या पूर्णांक होनी चाहिए।",
+    "seat_count_min": "सीट संख्या शून्य से कम नहीं हो सकती।",
+    "demand_basis_required": "मांग का आधार विवरण आवश्यक है।",
+    "justification_min_length": "50% से अधिक सीट परिवर्तन के लिए न्यूनतम 20 अक्षरों का औचित्य आवश्यक है।",
+    "equipment_item_required": "उपकरण का विवरण आवश्यक है।",
+    "qty_required": "उपकरण मात्रा आवश्यक है।",
+    "qty_integer": "मात्रा पूर्णांक होनी चाहिए।",
+    "qty_min": "मात्रा शून्य से कम नहीं हो सकती।",
+    "unit_cost_required": "इकाई लागत आवश्यक है।",
+    "unit_cost_min": "इकाई लागत शून्य से कम नहीं हो सकती।",
+    "trade_required": "व्यवसाय का नाम आवश्यक है।",
+    "trainer_count_required": "प्रशिक्षक संख्या आवश्यक है।",
+    "trainer_count_integer": "प्रशिक्षक संख्या पूर्णांक होनी चाहिए।",
+    "trainer_count_min": "प्रशिक्षक संख्या शून्य से कम नहीं हो सकती।",
+    "district_required": "जिला पहचानकर्ता आवश्यक है।",
+    "fy_format": "वित्तीय वर्ष YYYY-YY प्रारूप में होना चाहिए (उदा. 2026-27)।",
+    "at_least_one_target_required": "योजना में कम से कम एक पाठ्यक्रम प्रवेश लक्ष्य होना चाहिए।",
+    "officer_confirmation_required": "प्रस्तुत करने से पहले जिला अधिकारी की अभिपुष्टि आवश्यक है।",
+    "plan_id_required": "योजना पहचानकर्ता आवश्यक है।"
+  },
+  "budget": {
+    "total_score": "समग्र बजट आवंटन प्राप्तांक",
+    "factors": {
+      "demand": "औद्योगिक मांग घटक",
+      "capacity": "मौजूदा आईटीआई क्षमता घटक",
+      "placement": "ऐतिहासिक नियोजन दर घटक"
+    }
+  },
+  "counts": {
+    "intake_seats_one": "{{count}} सीट",
+    "intake_seats_other": "{{count}} सीटें",
+    "equipment_items_one": "{{count}} उपकरण सामग्री",
+    "equipment_items_other": "{{count}} उपकरण सामग्रियां",
+    "trainers_one": "{{count}} प्रशिक्षक",
+    "trainers_other": "{{count}} प्रशिक्षक",
+    "courses_one": "{{count}} पाठ्यक्रम लक्ष्य",
+    "courses_other": "{{count}} पाठ्यक्रम लक्ष्य"
+  },
+  "errors": {
+    "plan_already_published": "यह योजना पहले से प्रकाशित है और इसमें संशोधन नहीं किया जा सकता।",
+    "conflict_version_mismatch": "योजना संस्करण बेमेल है। किसी अन्य उपयोगकर्ता ने इसे अद्यतन किया है।"
+  }
+}
