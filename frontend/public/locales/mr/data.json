@@ -1,0 +1,43 @@
+{
+  "pagination": {
+    "range": "{{total}} पैकी {{from}}-{{to}}",
+    "prev": "मागील",
+    "next": "पुढील",
+    "page": "पृष्ठ",
+    "size": "प्रति पृष्ठ पंक्ती"
+  },
+  "table": {
+    "sort_asc": "चढत्या क्रमाने लावा",
+    "sort_desc": "उतरत्या क्रमाने लावा",
+    "sort_none": "क्रमवारी काढा",
+    "columns": "स्तंभ",
+    "select_all": "सर्व निवडा",
+    "selected": "{{count}} निवडले",
+    "selected_one": "{{count}} निवडले",
+    "selected_other": "{{count}} निवडले",
+    "clear_selection": "निवड रद्द करा"
+  },
+  "filters": {
+    "more": "अधिक फिल्टर्स",
+    "clear": "फिल्टर्स काढा",
+    "count": "फिल्टर्स ({{count}})",
+    "count_one": "फिल्टर ({{count}})",
+    "count_other": "फिल्टर्स ({{count}})",
+    "updated": "फिल्टर्स अद्यतनित केले",
+    "locked_scope": "{{scope}} मर्यादित",
+    "results": "{{count}} निकाल",
+    "results_one": "{{count}} निकाल",
+    "results_other": "{{count}} निकाल"
+  },
+  "chart": {
+    "view_table": "तक्त्यामध्ये पहा",
+    "view_chart": "आलेखामध्ये पहा",
+    "export": "निर्यात करा",
+    "forecast": "अंदाज",
+    "today": "आज",
+    "partial_note": "अपूर्ण कालावधी (अपूर्ण माहिती)"
+  },
+  "progress": {
+    "target": "लक्ष्य {{value}}"
+  }
+}

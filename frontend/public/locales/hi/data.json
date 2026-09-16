@@ -1,0 +1,43 @@
+{
+  "pagination": {
+    "range": "{{total}} में से {{from}}-{{to}}",
+    "prev": "पिछला",
+    "next": "अगला",
+    "page": "पृष्ठ",
+    "size": "प्रति पृष्ठ पंक्तियाँ"
+  },
+  "table": {
+    "sort_asc": "आरोही क्रम में क्रमबद्ध करें",
+    "sort_desc": "अवरोही क्रम में क्रमबद्ध करें",
+    "sort_none": "क्रमबद्धता हटाएं",
+    "columns": "कॉलम",
+    "select_all": "सभी चुनें",
+    "selected": "{{count}} चयनित",
+    "selected_one": "{{count}} चयनित",
+    "selected_other": "{{count}} चयनित",
+    "clear_selection": "चयन हटाएं"
+  },
+  "filters": {
+    "more": "अधिक फ़िल्टर",
+    "clear": "फ़िल्टर हटाएं",
+    "count": "फ़िल्टर ({{count}})",
+    "count_one": "फ़िल्टर ({{count}})",
+    "count_other": "फ़िल्टर ({{count}})",
+    "updated": "फ़िल्टर अपडेट किए गए",
+    "locked_scope": "{{scope}} तक सीमित",
+    "results": "{{count}} परिणाम",
+    "results_one": "{{count}} परिणाम",
+    "results_other": "{{count}} परिणाम"
+  },
+  "chart": {
+    "view_table": "तालिका के रूप में देखें",
+    "view_chart": "चार्ट के रूप में देखें",
+    "export": "निर्यात करें",
+    "forecast": "पूर्वानुमान",
+    "today": "आज",
+    "partial_note": "आंशिक अवधि (अपूर्ण डेटा)"
+  },
+  "progress": {
+    "target": "लक्ष्य {{value}}"
+  }
+}
