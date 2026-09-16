@@ -122,5 +122,8 @@
     "lakh": "lakh",
     "crore": "crore",
     "no_data": "No data"
+  },
+  "brand": {
+    "name": "MahaSkills"
   }
 }

@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { Globe, UserCircle } from 'lucide-react';
 import { DevRoleSwitcher } from '../common/DevRoleSwitcher';
 import { ThemeToggle } from '../common/ThemeToggle';
+import { BrandLogo } from '../common/BrandLogo';
 import { useAuthStore } from '../../features/auth/useAuthStore';
 
 export const Header: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const { currentPersona } = useAuthStore();
 
   const toggleLanguage = (lang: string) => {
@@ -17,19 +18,13 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur">
+      {/* 3px saffron brand top rule */}
+      <div className="h-[3px] w-full bg-accent" role="presentation" />
       <div className="container flex h-16 items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
-          <div className="flex h-10 w-10 items-center justify-center rounded bg-primary text-white font-bold text-lg shadow-sm">
-            म
-          </div>
-          <div>
-            <h1 className="text-lg font-bold leading-tight text-primary">
-              {t('app.title', 'महास्किल्स')}
-            </h1>
-            <p className="text-xs text-muted-foreground hidden sm:block">
-              {t('app.dept', 'महाराष्ट्र शासन · कौशल्य विभाग')}
-            </p>
-          </div>
+        <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity" aria-label="MahaSkills Home">
+          {/* State emblem placeholder per IMG-06 (renders nothing, preserves semantic slot) */}
+          <div data-slot="state-emblem" aria-hidden="true" />
+          <BrandLogo variant="lockup" />
         </Link>
 
         <div className="flex items-center gap-3">
