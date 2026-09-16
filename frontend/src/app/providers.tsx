@@ -16,7 +16,7 @@ i18n
     fallbackLng: 'mr',
     supportedLngs: ['mr', 'en', 'hi'],
     // One namespace per feature so parallel work never edits the same locale file.
-    ns: ['translation', 'ui', 'shell', 'data', 'gap', 'match', 'candidates', 'landing'],
+    ns: ['translation', 'ui', 'shell', 'data', 'gap', 'match', 'candidates', 'landing', 'recommendations', 'placements', 'plans', 'employer', 'admin', 'entities'],
     defaultNS: 'translation',
     fallbackNS: 'translation',
     backend: {
