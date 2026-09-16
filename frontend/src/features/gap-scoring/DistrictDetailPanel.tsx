@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DistrictGapAggregate } from '../../types/api';
 import { MOCK_GAP_SCORES, MOCK_OVERSUPPLY_ALERTS } from './gapScoringData';

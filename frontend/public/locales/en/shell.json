@@ -1,7 +1,13 @@
 {
   "language": "Language",
-  "theme": { "light": "Light", "dark": "Dark", "system": "System" },
-  "nav": { "main": "Main Navigation" },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "nav": {
+    "main": "Main Navigation"
+  },
   "persona": {
     "POLICY_MAKER": "Policy Maker",
     "DISTRICT_OFFICER": "District Officer",
@@ -10,5 +16,8 @@
     "SSC_REVIEWER": "SSC Reviewer",
     "ADMIN": "Admin",
     "CANDIDATE": "Candidate"
+  },
+  "brand": {
+    "short": "MahaSkills"
   }
 }

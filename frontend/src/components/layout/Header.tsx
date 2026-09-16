@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../../features/auth/useAuthStore';
 import { DevRoleSwitcher } from '../common/DevRoleSwitcher';
@@ -7,15 +6,49 @@ import { MobileNav } from './MobileNav';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import { Button } from '../ui/button';
 import { User, LogOut } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const Header = () => {
   const { currentPersona, isAuthenticated, logout } = useAuthStore();
+  const { t } = useTranslation(['shell', 'translation']);
+
+  const brandName = t('translation:brand.name', 'MahaSkills');
+  const shortBrandName = t('shell.brand.short', 'MahaSkills');
+  const deptName = t('translation:app.dept', 'महाराष्ट्र शासन · कौशल्य विभाग');
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background border-t-[3px] border-t-primary h-16 px-4 md:px-6 flex items-center justify-between">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         {isAuthenticated && <MobileNav />}
-        <Link to="/" className="font-bold text-lg tracking-tight">MahaSkills</Link>
+        <Link to="/" className="flex items-center gap-3">
+          <svg
+            width={32}
+            height={32}
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label={brandName}
+            className="shrink-0"
+          >
+            <title>{brandName}</title>
+            <rect x="4" y="18" width="6" height="12" rx="1.5" fill="hsl(var(--primary))" />
+            <rect x="13" y="11" width="6" height="19" rx="1.5" fill="hsl(var(--primary))" />
+            <rect x="22" y="6" width="6" height="24" rx="1.5" fill="hsl(var(--primary))" />
+            <polygon points="25,0 28,3 25,6 22,3" fill="hsl(var(--accent))" />
+          </svg>
+          <div className="flex flex-col">
+            <span className="text-lg font-bold leading-snug text-foreground hidden sm:block">
+              {brandName}
+            </span>
+            <span className="text-lg font-bold leading-snug text-foreground sm:hidden">
+              {shortBrandName}
+            </span>
+            <span className="text-xs text-muted-foreground hidden sm:block leading-snug">
+              {deptName}
+            </span>
+          </div>
+        </Link>
       </div>
       
       <div className="flex flex-1 items-center justify-end gap-2 md:gap-4">

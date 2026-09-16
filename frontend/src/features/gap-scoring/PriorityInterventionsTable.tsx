@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { GapScoreItem } from '../../types/api';
 import { MOCK_GAP_SCORES } from './gapScoringData';

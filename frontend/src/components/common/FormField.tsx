@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { OctagonAlert } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { Label } from '../ui/label';
