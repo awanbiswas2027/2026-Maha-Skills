@@ -30,7 +30,7 @@ graph TD
 ## 2. Key Screen & Interface Specifications
 
 ### 2.1 Policy Maker State Dashboard (`/dashboard/policy-maker`)
-* **Statewide Choropleth Heatmap:** Interactive map of Maharashtra highlighting all 36 districts colored by aggregated Skill Gap Intensity (`LOW`, `MODERATE`, `HIGH`, `CRITICAL`). Tooltip exposes active vacancies and ITI placement rates.
+* **Statewide Choropleth Heatmap:** Interactive map of Maharashtra highlighting all 36 districts colored by aggregated Skill Gap Intensity (`LOW`, `MEDIUM`, `HIGH`). Tooltip exposes active vacancies and ITI placement rates.
 * **Top 10 Priority Interventions:** Ranked tabular cards displaying trades requiring urgent curriculum update or seat expansion.
 * **Budget Model Visualizer:** Interactive bar charts contrasting proposed capital grant allocations against local industrial growth rates.
 

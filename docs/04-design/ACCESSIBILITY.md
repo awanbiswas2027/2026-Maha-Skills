@@ -28,7 +28,7 @@ Under India's **Rights of Persons with Disabilities Act, 2016** and **GIGW 3.0**
 
 ### 2.3 Contrast & Color Independence
 * **Text Contrast:** Normal body text satisfies a minimum contrast ratio of $4.5:1$ against the background; bold or large text ($\ge 18\text{pt}$) satisfies $3:1$.
-* **Information Independence:** Information is never conveyed by color alone. Heatmaps and gap status badges pair color fills with descriptive text (`Critical`, `High`, `Moderate`, `Low`) and distinct icon glyphs.
+* **Information Independence:** Information is never conveyed by color alone. Heatmaps and gap status badges pair color fills with descriptive text (`High`, `Medium`, `Low`) and distinct icon glyphs.
 
 ### 2.4 Multilingual Pronunciation & Language Attributes
 * **HTML `lang` Attribute:** Dynamically updates on the root `<html>` element (`lang="mr"`, `lang="hi"`, `lang="en"`) to instruct screen readers to load the correct speech synthesis phoneme engine.
