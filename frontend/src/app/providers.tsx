@@ -15,8 +15,12 @@ i18n
   .init({
     fallbackLng: 'mr',
     supportedLngs: ['mr', 'en', 'hi'],
+    // One namespace per feature so parallel work never edits the same locale file.
+    ns: ['translation', 'ui', 'shell', 'data', 'gap', 'match', 'candidates', 'landing'],
+    defaultNS: 'translation',
+    fallbackNS: 'translation',
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
     interpolation: {
       escapeValue: false,
