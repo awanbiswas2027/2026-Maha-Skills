@@ -11,7 +11,7 @@ describe('AuthStore & RBAC Persona Switcher (Slice 1 / TEST-SEC-002)', () => {
     const { currentPersona, isAuthenticated } = useAuthStore.getState();
     expect(isAuthenticated).toBe(true);
     expect(currentPersona.role).toBe('POLICY_MAKER');
-    expect(currentPersona.profile.full_name).toContain('IAS');
+    expect(currentPersona.profile.full_name).toContain('Demo');
   });
 
   it('should allow switching to DISTRICT_OFFICER with scoped jurisdiction', () => {
@@ -33,6 +33,6 @@ describe('AuthStore & RBAC Persona Switcher (Slice 1 / TEST-SEC-002)', () => {
     useAuthStore.getState().switchPersona('CANDIDATE');
     const { currentPersona } = useAuthStore.getState();
     expect(currentPersona.role).toBe('CANDIDATE');
-    expect(currentPersona.profile.full_name).toBe('Rahul Jadhav');
+    expect(currentPersona.profile.full_name).toBe('Candidate A. Demo');
   });
 });

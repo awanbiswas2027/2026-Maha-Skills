@@ -1,3 +1,4 @@
+
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { PublicShell } from '../components/layout/PublicShell';
 import { AppShell } from '../components/layout/AppShell';
@@ -7,13 +8,21 @@ import { LandingPage } from '../features/landing/LandingPage';
 import { CourseFinder, PathwayQuiz } from '../features/candidates';
 import { DashboardView, GapAnalysisView } from '../features/gap-scoring';
 
+import { RoleGuard } from '../features/auth/RoleGuard';
+import { TenantScopeGuard } from '../features/auth/TenantScopeGuard';
+
+import { NotFoundPage } from '../features/errors/NotFoundPage';
+import { ForbiddenPage } from '../features/errors/ForbiddenPage';
+import { ScopeDeniedPage } from '../features/errors/ScopeDeniedPage';
+import { ComingSoonPage } from '../features/errors/ComingSoonPage';
+
 // Placeholder Views for Vertical Slices
-const RecommendationsView = () => <div className="text-xl font-bold">Curriculum Update Recommendations & Reviews</div>;
-const TaxonomyView = () => <div className="text-xl font-bold">NSQF Skills & Occupational Taxonomy Tree</div>;
-const PlacementsView = () => <div className="text-xl font-bold">ITI Monthly Placement Return Upload Portal</div>;
-const DistrictPlansView = () => <div className="text-xl font-bold">Annual District Training Plans & Equipment Deficits</div>;
-const EmployerView = () => <div className="text-xl font-bold">Industry Partner Skill Needs & Validation</div>;
-const AdminView = () => <div className="text-xl font-bold">System Administration, Pipelines & Audit Logs</div>;
+const RecommendationsView = () => <ComingSoonPage />;
+const TaxonomyView = () => <ComingSoonPage />;
+const PlacementsView = () => <ComingSoonPage />;
+const DistrictPlansView = () => <ComingSoonPage />;
+const EmployerView = () => <ComingSoonPage />;
+const AdminView = () => <ComingSoonPage />;
 
 export const router = createBrowserRouter([
   // Public Shell
@@ -22,6 +31,11 @@ export const router = createBrowserRouter([
     element: <PublicShell />,
     children: [
       { index: true, element: <LandingPage /> },
+      { path: 'accessibility', element: <ComingSoonPage /> },
+      { path: 'privacy', element: <ComingSoonPage /> },
+      { path: 'terms', element: <ComingSoonPage /> },
+      { path: 'contact', element: <ComingSoonPage /> },
+      { path: 'sitemap', element: <ComingSoonPage /> },
     ],
   },
   // Candidate Shell
@@ -31,7 +45,7 @@ export const router = createBrowserRouter([
     children: [
       { path: 'courses', element: <CourseFinder /> },
       { path: 'pathway', element: <PathwayQuiz /> },
-      { path: 'dashboard', element: <div className="font-bold text-xl">My Enrolled Pathways (Mahaswayam SSO)</div> },
+      { path: 'dashboard', element: <ComingSoonPage /> },
     ],
   },
   // Government / Authenticated App Shell
@@ -39,14 +53,31 @@ export const router = createBrowserRouter([
     path: '/',
     element: <AppShell />,
     children: [
-      { path: 'dashboard', element: <DashboardView /> },
-      { path: 'gap-analysis', element: <GapAnalysisView /> },
-      { path: 'recommendations', element: <RecommendationsView /> },
-      { path: 'taxonomy', element: <TaxonomyView /> },
-      { path: 'placements/upload', element: <PlacementsView /> },
-      { path: 'district-plans', element: <DistrictPlansView /> },
-      { path: 'employer', element: <EmployerView /> },
-      { path: 'admin', element: <AdminView /> },
+      { path: 'dashboard', element: <Navigate to="/dashboard/policy-maker" replace /> },
+      { path: 'dashboard/policy-maker', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><DashboardView /></RoleGuard> },
+      { path: 'dashboard/district-officer', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><DashboardView /></RoleGuard> },
+      { path: 'dashboard/iti', element: <RoleGuard allowedRoles={['ITI_PRINCIPAL']}><ComingSoonPage /></RoleGuard> },
+      { path: 'gap-analysis', element: <RoleGuard allowedRoles={['POLICY_MAKER', 'DISTRICT_OFFICER']}><GapAnalysisView /></RoleGuard> },
+      { path: 'recommendations/approvals', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><RecommendationsView /></RoleGuard> },
+      { path: 'recommendations/review-queue', element: <RoleGuard allowedRoles={['SSC_REVIEWER']}><RecommendationsView /></RoleGuard> },
+      { path: 'recommendations/:id/dossier', element: <RoleGuard allowedRoles={['SSC_REVIEWER']}><RecommendationsView /></RoleGuard> },
+      { path: 'taxonomy', element: <RoleGuard allowedRoles={['ADMIN']}><TaxonomyView /></RoleGuard> },
+      { path: 'taxonomy/roles', element: <RoleGuard allowedRoles={['SSC_REVIEWER']}><TaxonomyView /></RoleGuard> },
+      { path: 'placements/upload', element: <RoleGuard allowedRoles={['ITI_PRINCIPAL']}><PlacementsView /></RoleGuard> },
+      { path: 'placements/benchmarks', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><PlacementsView /></RoleGuard> },
+      { path: 'district-plans', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><DistrictPlansView /></RoleGuard> },
+      { path: 'district-plans/budget-model', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><DistrictPlansView /></RoleGuard> },
+      { path: 'district-plans/equipment-deficits', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><DistrictPlansView /></RoleGuard> },
+      { path: 'employer/dashboard', element: <RoleGuard allowedRoles={['EMPLOYER']}><EmployerView /></RoleGuard> },
+      { path: 'employer/skill-needs', element: <RoleGuard allowedRoles={['EMPLOYER']}><EmployerView /></RoleGuard> },
+      { path: 'employer/curriculum-reviews', element: <RoleGuard allowedRoles={['EMPLOYER']}><EmployerView /></RoleGuard> },
+      { path: 'employer/surveys', element: <RoleGuard allowedRoles={['EMPLOYER']}><EmployerView /></RoleGuard> },
+      { path: 'admin', element: <RoleGuard allowedRoles={['ADMIN']}><AdminView /></RoleGuard> },
+      { path: 'admin/audit-logs', element: <RoleGuard allowedRoles={['ADMIN']}><AdminView /></RoleGuard> },
+      { path: 'analytics/lmi', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'courses/performance', element: <RoleGuard allowedRoles={['ITI_PRINCIPAL']}><ComingSoonPage /></RoleGuard> },
+      { path: 'iti/assets', element: <RoleGuard allowedRoles={['ITI_PRINCIPAL']}><ComingSoonPage /></RoleGuard> },
+      { path: 'districts/:id', element: <TenantScopeGuard><ComingSoonPage /></TenantScopeGuard> },
     ],
   },
   ...(import.meta.env.DEV
@@ -60,8 +91,10 @@ export const router = createBrowserRouter([
         },
       ]
     : []),
+  { path: '/forbidden', element: <PublicShell><ForbiddenPage /></PublicShell> },
+  { path: '/scope-denied', element: <PublicShell><ScopeDeniedPage /></PublicShell> },
   {
     path: '*',
-    element: <Navigate to="/" replace />,
+    element: <PublicShell><NotFoundPage /></PublicShell>,
   },
 ]);

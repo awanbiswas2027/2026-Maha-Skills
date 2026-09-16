@@ -1,23 +1,13 @@
-import React, { ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
-import { UserRole } from '../../types';
 
-interface AuthGuardProps {
-  children: ReactNode;
-  allowedRoles?: UserRole[];
-}
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuthStore } from './useAuthStore';
 
-export const AuthGuard: React.FC<AuthGuardProps> = ({ children, allowedRoles }) => {
-  const token = sessionStorage.getItem('access_token');
+export const AuthGuard = ({ children }: { children: React.ReactNode }) => {
+  const { isAuthenticated } = useAuthStore();
+  const location = useLocation();
 
-  if (!token) {
-    return <Navigate to="/" replace />;
+  if (!isAuthenticated) {
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
-
-  // Coarse-grained role checks can be evaluated here against decoded claims
-  if (allowedRoles && allowedRoles.length > 0) {
-    // For demo/unauthenticated environments, allow child rendering
-  }
-
   return <>{children}</>;
 };
