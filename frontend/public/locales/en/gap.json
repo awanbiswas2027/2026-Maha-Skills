@@ -1,0 +1,28 @@
+{
+  "severity": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "aria": "{{score}}, {{label}}"
+  },
+  "oversupply": "Oversupply",
+  "legend": {
+    "title": "Severity legend",
+    "low": "Low, below 40",
+    "medium": "Medium, 40 to 59",
+    "high": "High, 60 and above",
+    "no_data": "No data"
+  },
+  "calc": {
+    "title": "How is this score calculated?",
+    "formula_words": "Gap score is the difference between effective industry demand and effective trained supply, normalized on a 0 to 100 scale.",
+    "inputs": {
+      "demand": "Active industry demand",
+      "trend_factor": "Hiring trend multiplier",
+      "capacity": "Sanctioned ITI intake capacity",
+      "placement_rate": "Verified placement rate",
+      "normalisation": "State benchmark scaling constant (1000)",
+      "run": "Scoring engine run identifier"
+    }
+  }
+}
