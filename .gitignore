@@ -41,3 +41,7 @@ uploads/
 temp/
 logs/
 *.log
+
+# Orchestrator launcher (local binary + runtime status)
+orchestrator-launcher.exe
+.shared/
