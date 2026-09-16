@@ -1,1 +1,115 @@
-{}
+{
+  "stages": {
+    "demand_extraction": "Demand Extraction",
+    "demand_extraction_desc": "Synthesize live industrial vacancies and district labour market signals",
+    "iti_capacity": "ITI Capacity Allocation",
+    "iti_capacity_desc": "Allocate course intake targets and seat adjustments across district ITIs",
+    "equipment_review": "Equipment Deficit Review",
+    "equipment_review_desc": "Audit workshop machinery, tooling gaps, and trainer upskilling needs",
+    "submission": "Submission & Sanction",
+    "submission_desc": "Final district plan review, officer confirmation, and state sanction",
+    "step_announcement": "Step {{step}} of {{total}}, {{name}}",
+    "reasons": {
+      "demand_extraction_incomplete": "Demand extraction step must be initialized first",
+      "capacity_incomplete": "Course intake targets must be completed and validated",
+      "equipment_incomplete": "Equipment deficit review must be completed before submission"
+    }
+  },
+  "status": {
+    "draft": "Draft",
+    "submitted": "Submitted",
+    "published": "Published"
+  },
+  "fields": {
+    "status": "Plan Status",
+    "fiscal_year": "Fiscal Year",
+    "district_name": "District",
+    "intake_target": "Course Intake Target",
+    "equipment_deficit": "Equipment Deficit",
+    "trainer_upskilling": "Trainer Upskilling",
+    "course_code": "Course Code",
+    "course_title": "Course Title",
+    "current_seats": "Current Sanctioned Seats",
+    "proposed_seats": "Proposed Sanctioned Seats",
+    "demand_basis": "Demand Basis",
+    "justification": "Adjustment Justification",
+    "iti": "ITI Institute",
+    "equipment_item": "Equipment Item",
+    "qty": "Quantity",
+    "unit_cost": "Unit Cost (INR)",
+    "total_cost": "Total Cost (INR)",
+    "trade": "Trade",
+    "trainer_count": "Trainers to Upskill"
+  },
+  "helpers": {
+    "justification_hint": "Required when proposed seats change by more than 50% (minimum 20 characters).",
+    "total_cost_computed": "Total cost is automatically calculated from unit cost and quantity.",
+    "autosave_saved": "All changes saved to draft.",
+    "autosave_saving": "Saving draft changes..."
+  },
+  "actions": {
+    "save_draft": "Save Draft",
+    "continue": "Continue",
+    "back": "Back",
+    "submit_plan": "Submit District Plan",
+    "sanction_plan": "Sanction Plan",
+    "request_revisions": "Request Revisions",
+    "review_latest": "Review Latest Version",
+    "discard_changes": "Discard My Changes",
+    "reasons": {
+      "stages_incomplete": "All stages must be completed before submitting the plan.",
+      "no_targets": "At least one course intake target is required."
+    }
+  },
+  "conflict": {
+    "warning": "This plan was changed by someone else at {{time}}. Your edits are kept below.",
+    "side_by_side_title": "Version Conflict Comparison",
+    "your_changes": "Your Edits",
+    "server_version": "Latest Server Version"
+  },
+  "validation": {
+    "course_code_required": "Course code is required.",
+    "seat_count_required": "Seat count is required.",
+    "seat_count_integer": "Seat count must be a whole integer.",
+    "seat_count_min": "Seat count cannot be negative.",
+    "demand_basis_required": "Demand basis rationale is required.",
+    "justification_min_length": "Seat adjustment exceeding 50% requires at least 20 characters of justification.",
+    "equipment_item_required": "Equipment item description is required.",
+    "qty_required": "Equipment quantity is required.",
+    "qty_integer": "Quantity must be a whole integer.",
+    "qty_min": "Quantity cannot be negative.",
+    "unit_cost_required": "Unit cost is required.",
+    "unit_cost_min": "Unit cost cannot be negative.",
+    "trade_required": "Trade name is required.",
+    "trainer_count_required": "Trainer count is required.",
+    "trainer_count_integer": "Trainer count must be a whole integer.",
+    "trainer_count_min": "Trainer count cannot be negative.",
+    "district_required": "District identifier is required.",
+    "fy_format": "Fiscal year must follow YYYY-YY format (e.g. 2026-27).",
+    "at_least_one_target_required": "Plan must include at least one course intake target.",
+    "officer_confirmation_required": "District officer confirmation is required before submission.",
+    "plan_id_required": "Plan identifier is required."
+  },
+  "budget": {
+    "total_score": "Composite Budget Allocation Score",
+    "factors": {
+      "demand": "Industrial Demand Factor",
+      "capacity": "Existing ITI Capacity Factor",
+      "placement": "Historical Placement Factor"
+    }
+  },
+  "counts": {
+    "intake_seats_one": "{{count}} seat",
+    "intake_seats_other": "{{count}} seats",
+    "equipment_items_one": "{{count}} equipment item",
+    "equipment_items_other": "{{count}} equipment items",
+    "trainers_one": "{{count}} trainer",
+    "trainers_other": "{{count}} trainers",
+    "courses_one": "{{count}} course target",
+    "courses_other": "{{count}} course targets"
+  },
+  "errors": {
+    "plan_already_published": "This plan is already published and cannot be modified.",
+    "conflict_version_mismatch": "Plan version mismatch. Another user has updated this plan."
+  }
+}
