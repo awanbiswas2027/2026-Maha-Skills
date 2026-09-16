@@ -4,6 +4,8 @@
 Department of Skills, Employment, Entrepreneurship and Innovation (DSEEI) / Maharashtra State Innovation Society (MSInS)  
 **Problem Statement ID:** 26134  
 
+> 🐜 **Autonomous Engineering Swarm:** Engineered and continuously delivered via an autonomous colony of **Google Antigravity Ant Agents** directed by a **Claude Code Chief Architect** — achieving contract-first delivery, zero-merge-conflict parallel execution across isolated Git worktrees, and automated multi-viewport verification.
+
 ---
 
 ## 1. Project Overview
@@ -38,23 +40,23 @@ MahaSkills creates an empirical feedback loop between live industrial demand and
 
 ## 3. Autonomous Delivery Model — Chief Architect & Swarm of Ant Agents
 
-MahaSkills is engineered using an autonomous multi-agent engineering swarm. Architectural governance and quality gates are directed by a **Chief Architect**, while parallel implementation is executed by a **Swarm of Ant Agents** (Google Antigravity worker instances) operating concurrently in isolated Git worktrees.
+MahaSkills is engineered using an autonomous multi-agent software engineering swarm. Architectural governance, task decomposition, and integration quality gates are directed by the **Chief Architect** (Claude Code), while parallel feature implementation is performed by a **Swarm of Ant Agents** (Google Antigravity worker instances) operating concurrently in isolated Git worktrees.
 
 ### 3.1 Swarm Architecture & Topology
 
 ```mermaid
 flowchart TD
-    subgraph Architect["1. Governance & Orchestration"]
-        CA["Chief Architect\n(Claude Code / Human)"]
-        DOCS["Canonical Architecture & Specs\n(docs/01-10)"]
+    subgraph Architect["1. Governance & Architectural Authority"]
+        CA["Chief Architect\n(Claude Code / Human Lead)"]
+        DOCS["Canonical Architecture & Specs\n(docs/01-10 & openapi.yaml)"]
         ORDERS["Task Decomposition & Orders\n(TASKS/.../orders/ORDER-xxxx.json)"]
         CA --> DOCS
         CA --> ORDERS
     end
 
     subgraph Hive["2. Swarm Coordination (The Hive)"]
-        DISPATCH["Antigravity Hive Dispatcher\n(HIVE-v1 Loop)"]
-        REG["Agent Registry & Status\n(registry.json & status.json)"]
+        DISPATCH["Antigravity Hive Dispatcher\n(hive-dispatch.ps1 / HIVE-v1)"]
+        REG["Agent Registry & Live Status\n(registry.json & status.json)"]
         MB["Message Bus & Audit Logs\n(message_bus.jsonl & log.md)"]
         ORDERS --> DISPATCH
         DISPATCH <--> REG
@@ -63,57 +65,96 @@ flowchart TD
 
     subgraph Swarm["3. Swarm of Ant Agents (Parallel Execution)"]
         direction LR
-        ANT_A["Ant Agent A\n(worktree: ant-A)\nFeature / Domain A"]
-        ANT_B["Ant Agent B\n(worktree: ant-B)\nFeature / Domain B"]
-        ANT_C["Ant Agent C\n(worktree: ant-C)\nFeature / Domain C"]
-        ANT_D["Ant Agent D\n(worktree: ant-D)\nFeature / Domain D"]
-        DISPATCH -->|"agentapi dispatch"| ANT_A
-        DISPATCH -->|"agentapi dispatch"| ANT_B
-        DISPATCH -->|"agentapi dispatch"| ANT_C
-        DISPATCH -->|"agentapi dispatch"| ANT_D
+        ANT_E["Ant E: Shells & Nav\n(port: 3101)"]
+        ANT_F["Ant F: Data UI\n(port: 3102)"]
+        ANT_G["Ant G: 3D Landing\n(port: 3103)"]
+        ANT_Q["Ant Q: QA Auditor\n(port: 3104)"]
+        ANT_K["Ant K: Recommendations\n(port: 3105)"]
+        ANT_L["Ant L: Placements\n(port: 3106)"]
+        ANT_M["Ant M: District Plans\n(port: 3107)"]
+        ANT_N["Ant N: Admin Console\n(port: 3108)"]
+        DISPATCH -->|"agentapi new-conversation"| ANT_E
+        DISPATCH -->|"agentapi new-conversation"| ANT_F
+        DISPATCH -->|"agentapi new-conversation"| ANT_G
+        DISPATCH -->|"agentapi new-conversation"| ANT_Q
+        DISPATCH -->|"agentapi new-conversation"| ANT_K
+        DISPATCH -->|"agentapi new-conversation"| ANT_L
+        DISPATCH -->|"agentapi new-conversation"| ANT_M
+        DISPATCH -->|"agentapi new-conversation"| ANT_N
     end
 
-    subgraph Verification["4. Verification & Integration"]
-        GATES["Local Quality Gates\n(Lint · Strict TS · Tests · Build)"]
-        EVIDENCE["Evidence Dossiers\n(Playwright Captures & Response JSON)"]
-        MERGE["Architect Review & Branch Merge\n(Integration Baseline)"]
-        ANT_A --> GATES
-        ANT_B --> GATES
-        ANT_C --> GATES
-        ANT_D --> GATES
+    subgraph Verification["4. Verification & Integration Pipeline"]
+        GATES["Local Quality Gates\n(ESLint 0 errors · Strict TS · Vitest · Vite Build)"]
+        EVIDENCE["Evidence Dossiers\n(Playwright Captures L/T/M & Response JSON)"]
+        MERGE["Chief Architect Review & Merge\n(Integration Baseline on task branch)"]
+        Swarm --> GATES
         GATES --> EVIDENCE
         EVIDENCE --> MERGE
         MERGE --> CA
     end
 ```
 
-### 3.2 How the Ant Swarm Works
+### 3.2 Swarm Roles & Specialization Matrix
 
-1. **Architectural Decomposition (Chief Architect)**  
-   The Chief Architect translates canonical requirements from `docs/` into atomic, verifiable engineering tasks (`P00x`, `S00x`) and bundles them into structured orders (`ORDER-xxxx.json`). Each prompt declares explicit file boundaries, inputs, acceptance criteria, and expected verification evidence.
+Each Ant Agent operates within a dedicated worktree and focuses on a specialized domain with strict boundary encapsulation:
 
-2. **Hive Dispatcher (`HIVE-v1`)**  
-   The Antigravity Hive Dispatcher continuously monitors task orders, spawns subagent conversations via `agentapi`, manages concurrency caps (up to 4–6 parallel ants), tracks agent lifecycles in `registry.json`, and records immutable event streams in `log.md` and `message_bus.jsonl`.
+| Ant Agent | Specialized Domain | Core Deliverables & Scope | Isolation Boundary |
+|:---|:---|:---|:---|
+| **Ant A** *(Lead)* | Foundation & Design System | Token architecture, dark mode switcher, self-hosted `@fontsource` typography, `NUM-01..08` formatters, 25 Radix UI primitives, `/__ui` gallery. | Base tokens, primitives |
+| **Ant B** | Labour Market Gap Scoring | 3-tier severity scoring engine, React Query hooks, telemetry metadata mocks. | `features/gap-scoring/` |
+| **Ant C** | Deterministic Matching Engine | Explainable course matching algorithm, confidence scoring, pathway calculators. | `features/candidates/matching.ts` |
+| **Ant D** | URL State & Data Logic | Bidirectional URL state synchronization (`useUrlState`), pagination, multi-sort, facet filter logic. | `components/data/logic/**` |
+| **Ant E** | Shells, Navigation & RBAC | Role-based navigation layout, responsive public/app shells, mobile drawer, access boundary enforcement, DevPersona switcher. | `components/layout/**`, `app/routes.tsx` |
+| **Ant F** | Data Exploration Components | Enterprise Data Table, filter bars, trend charts, explainability popovers, UI component gallery extensions. | `components/data/**`, `UiGalleryPage.tsx` |
+| **Ant G** | Landing Page & 3D Interactive Hero | Modern responsive landing page, Three.js procedural logo visualizer, automated WebGL hardware probe, low-power fallback. | `features/landing/**`, fallback assets |
+| **Ant Q** | Autonomous QA & Accessibility Auditor | Multi-viewport screenshot captures (1366px, 768px, 360px), multi-theme verification, trilingual locale verification (`mr`/`hi`/`en`), axe-core WCAG 2.1 AA audits. | Read-only audit under `temp/ux-evidence/` |
+| **Ant K** | Curriculum Recommendations | Recommendation review workflows, evidence dossiers, stakeholder sign-off tracking. | `features/recommendations/**` |
+| **Ant L** | High-Throughput Placement Parser | Placement return CSV batch validator (RFC 4180 compliant, parses 50,000 rows in < 70ms), schema enforcement. | `features/placements/**` |
+| **Ant M** | District Training Plans | District-level skill demand forecasting, quota planning, schema validations. | `features/district-plans/**` |
+| **Ant N** | Employer Portal & Admin Operations | Live job posting intake, apprenticeship demand signals, system telemetry console. | `features/employers/**`, `features/admin/**` |
+| **Ant Y** | WCAG AA Contrast Remediation | High-contrast token tuning for badges, metric deltas, and accessible dark-mode surfaces. | Token contrast adjustments |
+
+### 3.3 How the Swarm Executes (The Colony Model)
+
+1. **Contract-First Decomposition (Chief Architect)**  
+   The Chief Architect translates canonical requirements from `docs/` and `openapi.yaml` into atomic, verifiable task prompts (`P001`–`P010`, `S1`–`S4`). Tasks are packaged into structured JSON orders (`ORDER-xxxx.json`) with strict file ownership declarations.
+
+2. **Autonomous Hive Dispatcher (`hive-dispatch.ps1`)**  
+   The Hive Dispatcher runs continuously inside Google Antigravity, polling the orders directory:
+   * Spawns worker conversations concurrently using `agentapi new-conversation`.
+   * Enforces concurrency throttling (e.g. max 4–6 parallel ants) and staggered starts ( $\ge 20$ seconds apart).
+   * Maintains real-time state in `registry.json` and records immutable event streams in `log.md`.
 
 3. **Isolated Parallel Worktrees (`_SWARM-v1`)**  
-   To prevent Git lock contention and conflicting edits, each ant agent operates in a dedicated **Git worktree** (e.g., `mahaskills-ants/ant-B`) on an isolated branch (e.g., `ant/TASK-*-B`). Ants never edit the central working tree or another ant's folder.
+   To prevent Git lock contention, each ant agent operates in a dedicated **Git worktree** (e.g., `mahaskills-ants/ant-E`) on its own branch (e.g., `ant/TASK-*-E`) with a unique dev server port (3101–3108).
 
-4. **Conflict-Prevention Rules**  
+4. **Zero-Conflict Boundary Rules**  
    Parallel ants respect strict modularity boundaries:
-   * **No Root Dependency Edits:** `package.json` and lockfiles are managed centrally.
-   * **Isolated Localization Namespaces:** Each ant writes exclusively to its assigned i18n namespace file (`frontend/public/locales/{mr,hi,en}/<namespace>.json`) rather than touching shared translation files.
-   * **Feature Route Fragments:** Routes are exported as modular route objects from feature directories (`features/<feature>/routes.tsx`) and integrated centrally.
-   * **Dedicated Query Keys:** Server cache keys live within feature scopes (`features/<feature>/queryKeys.ts`).
+   * **Centrally Managed Dependencies:** Root `package.json` and lockfiles are managed centrally; ants run `npm ci` without altering shared package manifests.
+   * **Partitioned i18n Namespaces:** Each ant writes exclusively to its assigned namespace file (`locales/{mr,hi,en}/<ns>.json`), preventing merge collisions across Marathi, Hindi, and English locales.
+   * **Modular Route Fragments:** Routes are exported as self-contained arrays (`features/<feature>/routes.tsx`) and composed into the central router.
+   * **Feature-Scoped Query Keys:** Server cache keys live within feature scopes (`features/<feature>/queryKeys.ts`).
 
-5. **Local Quality Gates & Evidence Dossiers**  
-   Before completing a task, every ant must execute and pass four mandatory local verification gates:
-   * **Lint Gate:** `npm run lint` (ESLint)
-   * **Typecheck Gate:** `npm run typecheck` (`tsc --noEmit` in strict mode)
-   * **Test Gate:** `npm test` (Unit and contract test suite)
+5. **Mandatory Quality Gates & Evidence Dossiers**  
+   Before claiming task completion, every ant must execute and pass four mandatory local verification gates:
+   * **Lint Gate:** `npm run lint` (ESLint: 0 errors)
+   * **Typecheck Gate:** `npm run typecheck` (`tsc --noEmit` in strict mode: 0 errors)
+   * **Test Gate:** `npm test` (Vitest unit and contract test suite: 100% green)
    * **Build Gate:** `npm run build` (Vite production bundle verification)
-   * **Visual Proof:** Playwright browser captures and UI snapshot evidence.
-   
-   Results are compiled into a structured response JSON dossier. The Chief Architect inspects the evidence, runs regression suites, and merges the verified worktree branch into `main`.
+   * **Visual Proof:** Playwright browser captures and UI snapshot evidence across viewports.
+
+6. **Architect Review & Integration**  
+   Results are compiled into a structured response JSON dossier (`communication/responses/MSG-xxxx.json`). The Chief Architect inspects the evidence, runs regression checks, and merges the verified branch into the main task integration line.
+
+### 3.4 Live Quality & Verification Baseline
+
+| Verification Gate | Command | Baseline Status | Coverage & Scope |
+|:---|:---|:---|:---|
+| **Unit & Contract Tests** | `npm test` | **369 / 369 passed (100%)** | 28 test suites covering gap scoring, matching, URL state, CSV parser, admin, district plans |
+| **Static Type Safety** | `npm run typecheck` | **0 errors (clean)** | TypeScript strict mode, zero implicit `any` |
+| **Code Style & Linting** | `npm run lint` | **0 errors** | ESLint with React Hooks and accessibility rules |
+| **Production Build** | `npm run build` | **Built in ~7.2s** | Vite minification, code-split chunks, CSS bundle |
+| **A11y & Visual Proof** | Playwright + Axe-core | **Verified** | Viewport matrix (1366px, 768px, 360px), Light/Dark themes, Marathi/Hindi/English |
 
 ---
 
