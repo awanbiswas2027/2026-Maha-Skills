@@ -54,14 +54,14 @@ export const GapAnalysisView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="rounded-xl border border-border bg-gradient-to-r from-primary/10 via-card to-card p-6 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-0.5 text-xs font-semibold text-primary mb-2">
               <BarChart3 className="h-3.5 w-3.5" />
               <span>{isMarathi ? 'साप्ताहिक अल्गोरिदम तूट निर्देशांक' : 'Weekly Algorithmic Gap Score Index'}</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
               {t('gap.page_title', 'Statewide Skill Gap Heatmap')}
             </h1>
             <p className="mt-1 text-xs sm:text-sm text-muted-foreground max-w-2xl">

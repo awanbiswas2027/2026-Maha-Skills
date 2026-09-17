@@ -439,7 +439,7 @@ export const UiGalleryPage: React.FC = () => {
           <div className="flex items-center justify-between">
             <span className="text-sm font-semibold">Technical Methodology & Weighting Notes</span>
             <CollapsibleTrigger asChild>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" aria-label={collapsibleOpen ? "Collapse methodology notes" : "Expand methodology notes"}>
                 <ChevronDown className={`h-4 w-4 transition-transform ${collapsibleOpen ? 'rotate-180' : ''}`} />
               </Button>
             </CollapsibleTrigger>

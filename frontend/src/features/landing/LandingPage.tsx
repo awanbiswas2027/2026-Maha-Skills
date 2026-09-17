@@ -39,7 +39,7 @@ export const LandingPage: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full overflow-x-hidden">
       {/* 1. Hero Section */}
       <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary/5 via-background to-background py-16 md:py-24">
         <div className="container px-4 mx-auto max-w-6xl">
@@ -102,7 +102,7 @@ export const LandingPage: React.FC = () => {
       <section className="py-16 bg-background border-b border-border">
         <div className="container px-4 mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="rounded-lg border border-border bg-card p-8 shadow-sm flex flex-col justify-between">
+            <div className="rounded-lg border border-border bg-card p-6 sm:p-8 shadow-sm flex flex-col justify-between">
               <div>
                 <h3 className="text-xl font-bold text-foreground mb-2">
                   {t('audiences.traineeTitle')}
@@ -119,12 +119,12 @@ export const LandingPage: React.FC = () => {
                   ))}
                 </ul>
               </div>
-              <div className="mt-8 flex items-center gap-3">
+              <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <Link
                   to="/candidate/courses"
                   className="flex-1 inline-flex items-center justify-center gap-2 rounded-md border border-border bg-muted/50 px-4 py-2 text-sm font-medium hover:bg-muted"
                 >
-                  <BookOpen className="h-4 w-4" />
+                  <BookOpen className="h-4 w-4 shrink-0" />
                   <span>{t('audiences.ctaTrainee')}</span>
                 </Link>
                 <Link
@@ -132,12 +132,12 @@ export const LandingPage: React.FC = () => {
                   className="flex-1 inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
                 >
                   <span>{t('audiences.ctaTrainee2')}</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 shrink-0" />
                 </Link>
               </div>
             </div>
 
-            <div className="rounded-lg border border-border bg-card p-8 shadow-sm flex flex-col justify-between">
+            <div className="rounded-lg border border-border bg-card p-6 sm:p-8 shadow-sm flex flex-col justify-between">
               <div>
                 <h3 className="text-xl font-bold text-foreground mb-2">
                   {t('audiences.officerTitle')}
@@ -154,14 +154,14 @@ export const LandingPage: React.FC = () => {
                   ))}
                 </ul>
               </div>
-              <div className="mt-8 flex items-center gap-3">
+              <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <Link
                   to="/dashboard"
                   className="flex-1 inline-flex items-center justify-center gap-2 rounded-md border border-border bg-muted/50 px-4 py-2 text-sm font-medium hover:bg-muted"
                 >
-                  <Building2 className="h-4 w-4" />
+                  <Building2 className="h-4 w-4 shrink-0" />
                   <span>{t('audiences.ctaOfficer')}</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 shrink-0" />
                 </Link>
               </div>
             </div>

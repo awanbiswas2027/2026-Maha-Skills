@@ -17,10 +17,10 @@ export const Header = () => {
   const deptName = t('translation:app.dept', 'महाराष्ट्र शासन · कौशल्य विभाग');
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background border-t-[3px] border-t-primary h-16 px-4 md:px-6 flex items-center justify-between">
-      <div className="flex items-center gap-3">
+    <header className="sticky top-0 z-40 w-full border-b bg-background border-t-[3px] border-t-primary h-16 px-3 sm:px-4 md:px-6 flex items-center justify-between">
+      <div className="flex items-center gap-2 sm:gap-3 min-w-0">
         {isAuthenticated && <MobileNav />}
-        <Link to="/" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
           <svg
             width={32}
             height={32}
@@ -37,11 +37,11 @@ export const Header = () => {
             <rect x="22" y="6" width="6" height="24" rx="1.5" fill="hsl(var(--primary))" />
             <polygon points="25,0 28,3 25,6 22,3" fill="hsl(var(--accent))" />
           </svg>
-          <div className="flex flex-col">
+          <div className="flex flex-col min-w-0">
             <span className="text-lg font-bold leading-snug text-foreground hidden sm:block">
               {brandName}
             </span>
-            <span className="text-lg font-bold leading-snug text-foreground sm:hidden">
+            <span className="text-base font-bold leading-snug text-foreground sm:hidden truncate">
               {shortBrandName}
             </span>
             <span className="text-xs text-muted-foreground hidden sm:block leading-snug">
@@ -51,7 +51,7 @@ export const Header = () => {
         </Link>
       </div>
       
-      <div className="flex flex-1 items-center justify-end gap-2 md:gap-4">
+      <div className="flex items-center justify-end gap-1.5 sm:gap-2 md:gap-4 shrink-0">
         <div className="hidden md:block flex-1 max-w-sm mx-4">
            {/* Global search placeholder */}
         </div>

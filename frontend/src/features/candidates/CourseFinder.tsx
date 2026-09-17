@@ -92,14 +92,14 @@ export const CourseFinder: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Top Header & Context Banner */}
-      <div className="rounded-xl border border-border bg-gradient-to-r from-primary/10 via-card to-card p-6 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-0.5 text-xs font-semibold text-primary mb-2">
               <ShieldCheck className="h-3.5 w-3.5" />
               <span>{t('candidates.verified_stats', 'Government-Verified Outcomes')}</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
               {t('candidates.course_finder_title', 'Verified Course Directory')}
             </h1>
             <p className="mt-1 text-xs sm:text-sm text-muted-foreground max-w-2xl">

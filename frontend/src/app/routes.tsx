@@ -1,5 +1,5 @@
 
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { PublicShell } from '../components/layout/PublicShell';
 import { AppShell } from '../components/layout/AppShell';
 import { CandidateShell } from '../components/layout/CandidateShell';
@@ -15,14 +15,7 @@ import { NotFoundPage } from '../features/errors/NotFoundPage';
 import { ForbiddenPage } from '../features/errors/ForbiddenPage';
 import { ScopeDeniedPage } from '../features/errors/ScopeDeniedPage';
 import { ComingSoonPage } from '../features/errors/ComingSoonPage';
-
-// Placeholder Views for Vertical Slices
-const RecommendationsView = () => <ComingSoonPage />;
-const TaxonomyView = () => <ComingSoonPage />;
-const PlacementsView = () => <ComingSoonPage />;
-const DistrictPlansView = () => <ComingSoonPage />;
-const EmployerView = () => <ComingSoonPage />;
-const AdminView = () => <ComingSoonPage />;
+import { DashboardRedirect, RecommendationsRedirect } from './RoleRedirects';
 
 export const router = createBrowserRouter([
   // Public Shell
@@ -53,27 +46,28 @@ export const router = createBrowserRouter([
     path: '/',
     element: <AppShell />,
     children: [
-      { path: 'dashboard', element: <Navigate to="/dashboard/policy-maker" replace /> },
+      { path: 'dashboard', element: <DashboardRedirect /> },
       { path: 'dashboard/policy-maker', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><DashboardView /></RoleGuard> },
       { path: 'dashboard/district-officer', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><DashboardView /></RoleGuard> },
       { path: 'dashboard/iti', element: <RoleGuard allowedRoles={['ITI_PRINCIPAL']}><ComingSoonPage /></RoleGuard> },
       { path: 'gap-analysis', element: <RoleGuard allowedRoles={['POLICY_MAKER', 'DISTRICT_OFFICER']}><GapAnalysisView /></RoleGuard> },
-      { path: 'recommendations/approvals', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><RecommendationsView /></RoleGuard> },
-      { path: 'recommendations/review-queue', element: <RoleGuard allowedRoles={['SSC_REVIEWER']}><RecommendationsView /></RoleGuard> },
-      { path: 'recommendations/:id/dossier', element: <RoleGuard allowedRoles={['SSC_REVIEWER']}><RecommendationsView /></RoleGuard> },
-      { path: 'taxonomy', element: <RoleGuard allowedRoles={['ADMIN']}><TaxonomyView /></RoleGuard> },
-      { path: 'taxonomy/roles', element: <RoleGuard allowedRoles={['SSC_REVIEWER']}><TaxonomyView /></RoleGuard> },
-      { path: 'placements/upload', element: <RoleGuard allowedRoles={['ITI_PRINCIPAL']}><PlacementsView /></RoleGuard> },
-      { path: 'placements/benchmarks', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><PlacementsView /></RoleGuard> },
-      { path: 'district-plans', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><DistrictPlansView /></RoleGuard> },
-      { path: 'district-plans/budget-model', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><DistrictPlansView /></RoleGuard> },
-      { path: 'district-plans/equipment-deficits', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><DistrictPlansView /></RoleGuard> },
-      { path: 'employer/dashboard', element: <RoleGuard allowedRoles={['EMPLOYER']}><EmployerView /></RoleGuard> },
-      { path: 'employer/skill-needs', element: <RoleGuard allowedRoles={['EMPLOYER']}><EmployerView /></RoleGuard> },
-      { path: 'employer/curriculum-reviews', element: <RoleGuard allowedRoles={['EMPLOYER']}><EmployerView /></RoleGuard> },
-      { path: 'employer/surveys', element: <RoleGuard allowedRoles={['EMPLOYER']}><EmployerView /></RoleGuard> },
-      { path: 'admin', element: <RoleGuard allowedRoles={['ADMIN']}><AdminView /></RoleGuard> },
-      { path: 'admin/audit-logs', element: <RoleGuard allowedRoles={['ADMIN']}><AdminView /></RoleGuard> },
+      { path: 'recommendations', element: <RecommendationsRedirect /> },
+      { path: 'recommendations/approvals', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'recommendations/review-queue', element: <RoleGuard allowedRoles={['SSC_REVIEWER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'recommendations/:id/dossier', element: <RoleGuard allowedRoles={['SSC_REVIEWER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'taxonomy', element: <RoleGuard allowedRoles={['ADMIN']}><ComingSoonPage /></RoleGuard> },
+      { path: 'taxonomy/roles', element: <RoleGuard allowedRoles={['SSC_REVIEWER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'placements/upload', element: <RoleGuard allowedRoles={['ITI_PRINCIPAL']}><ComingSoonPage /></RoleGuard> },
+      { path: 'placements/benchmarks', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'district-plans', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'district-plans/budget-model', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'district-plans/equipment-deficits', element: <RoleGuard allowedRoles={['DISTRICT_OFFICER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'employer/dashboard', element: <RoleGuard allowedRoles={['EMPLOYER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'employer/skill-needs', element: <RoleGuard allowedRoles={['EMPLOYER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'employer/curriculum-reviews', element: <RoleGuard allowedRoles={['EMPLOYER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'employer/surveys', element: <RoleGuard allowedRoles={['EMPLOYER']}><ComingSoonPage /></RoleGuard> },
+      { path: 'admin', element: <RoleGuard allowedRoles={['ADMIN']}><ComingSoonPage /></RoleGuard> },
+      { path: 'admin/audit-logs', element: <RoleGuard allowedRoles={['ADMIN']}><ComingSoonPage /></RoleGuard> },
       { path: 'analytics/lmi', element: <RoleGuard allowedRoles={['POLICY_MAKER']}><ComingSoonPage /></RoleGuard> },
       { path: 'courses/performance', element: <RoleGuard allowedRoles={['ITI_PRINCIPAL']}><ComingSoonPage /></RoleGuard> },
       { path: 'iti/assets', element: <RoleGuard allowedRoles={['ITI_PRINCIPAL']}><ComingSoonPage /></RoleGuard> },

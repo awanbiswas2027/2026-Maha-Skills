@@ -46,11 +46,11 @@ export const DashboardView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Dynamic Header based on Role */}
-      <div className="rounded-xl border border-border bg-gradient-to-r from-primary/10 via-card to-card p-6 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-0.5 text-xs font-semibold text-primary mb-2">
-              <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+              <span className="flex h-2 w-2 rounded-full bg-primary" />
               <span>
                 {userRole === 'DISTRICT_OFFICER'
                   ? `${isMarathi ? 'जिल्हा कार्यकक्ष' : 'District Workbench'} · ${userDistrictName}`
@@ -60,7 +60,7 @@ export const DashboardView: React.FC = () => {
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
               {userRole === 'DISTRICT_OFFICER'
                 ? `${t('dashboard.district_title', 'District Skill Officer Command Center')} (${userDistrictName})`
                 : t('dashboard.statewide_title', 'State Skill Intelligence Command Center')}

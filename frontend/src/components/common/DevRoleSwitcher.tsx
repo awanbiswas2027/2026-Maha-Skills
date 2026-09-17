@@ -23,8 +23,8 @@ export const DevRoleSwitcher = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" title="Development Persona & Role Switcher">
-          Dev: {t(`persona.${currentPersona.role}`)}
+        <Button variant="outline" size="sm" title="Development Persona & Role Switcher" className="text-xs px-2 py-1 h-8 max-w-[140px] sm:max-w-none truncate">
+          <span className="hidden sm:inline">Dev: </span><span className="truncate">{t(`persona.${currentPersona.role}`)}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

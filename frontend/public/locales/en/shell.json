@@ -6,7 +6,28 @@
     "system": "System"
   },
   "nav": {
-    "main": "Main Navigation"
+    "main": "Main Navigation",
+    "dashboard": "State Intelligence",
+    "approvals": "Curriculum Approvals",
+    "budget": "Budget Model",
+    "analytics": "LMI Analytics",
+    "gap-analysis": "Gap Analysis Heatmap",
+    "workbench": "Jurisdiction Workbench",
+    "plans": "District Training Plans",
+    "monitoring": "Placement Benchmarks",
+    "equipment": "Equipment Deficits",
+    "overview": "Institute Overview",
+    "upload": "Upload Placements",
+    "performance": "Trade Performance",
+    "assets": "Asset Inventory",
+    "dossier": "Recommendation Dossier",
+    "taxonomy": "Taxonomy Alignment",
+    "needs": "Skill Demand Requests",
+    "reviews": "Curriculum Feedback",
+    "surveys": "Employer Surveys",
+    "logs": "System Audit Logs",
+    "courses": "Find Vocational Courses",
+    "pathway": "Career Pathway Assessment"
   },
   "persona": {
     "POLICY_MAKER": "Policy Maker",

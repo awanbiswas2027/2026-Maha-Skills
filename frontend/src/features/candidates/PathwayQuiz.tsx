@@ -77,14 +77,14 @@ export const PathwayQuiz: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="rounded-xl border border-border bg-gradient-to-r from-primary/10 via-card to-card p-6 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-0.5 text-xs font-semibold text-primary mb-2">
-              <Compass className="h-3.5 w-3.5 animate-spin" style={{ animationDuration: '6s' }} />
+              <Compass className="h-3.5 w-3.5" />
               <span>{t('candidates.pathway_quiz_title', '5-Step Career Pathway Quiz')}</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
               {recommendations 
                 ? t('candidates.top_recommendations', 'Your Top 3 Recommended Career Pathways')
                 : (isMarathi ? 'आपल्यासाठी योग्य आयटीआय करिअर मार्ग शोधा' : isHindi ? 'अपने लिए उपयुक्त आईटीआई करियर मार्ग खोजें' : 'Find Your Ideal Vocational ITI Trade')}
