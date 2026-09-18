@@ -1,9 +1,11 @@
 import uuid
-from datetime import datetime
-from sqlalchemy import String, Integer, Numeric, Boolean, DateTime, ForeignKey
+
+from sqlalchemy import Boolean, ForeignKey, Integer, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
+
 from ..core.database import Base
+
 
 class Institute(Base):
     __tablename__ = "institutes"
@@ -16,6 +18,7 @@ class Institute(Base):
     institute_type: Mapped[str] = mapped_column(String(50), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
 
+
 class Course(Base):
     __tablename__ = "courses"
 
@@ -27,6 +30,7 @@ class Course(Base):
     duration_months: Mapped[int] = mapped_column(Integer, nullable=False)
     nsqf_level: Mapped[int] = mapped_column(Integer, nullable=False)
     status: Mapped[str] = mapped_column(String(30), default="ACTIVE", nullable=False)
+
 
 class InstituteCourse(Base):
     __tablename__ = "institute_courses"

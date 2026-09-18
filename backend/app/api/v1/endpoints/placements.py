@@ -1,8 +1,11 @@
 import uuid
-from fastapi import APIRouter, UploadFile, File, Form, status
+
+from fastapi import APIRouter, File, Form, UploadFile, status
+
 from ....schemas.common import ApiResponse
 
 router = APIRouter()
+
 
 @router.post("/upload", response_model=ApiResponse[dict], status_code=status.HTTP_202_ACCEPTED)
 async def upload_placement_csv(
@@ -17,6 +20,6 @@ async def upload_placement_csv(
             "batch_id": batch_id,
             "file_name": file.filename,
             "status": "VALIDATING",
-            "message": "Placement return queued for syntax and DPDP pseudonymization check."
-        }
+            "message": "Placement return queued for syntax and DPDP pseudonymization check.",
+        },
     )

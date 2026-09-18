@@ -1,9 +1,12 @@
 import uuid
-from datetime import date, datetime
-from sqlalchemy import String, Integer, Numeric, Date, DateTime, ForeignKey
+from datetime import date
+
+from sqlalchemy import Date, ForeignKey, Integer, Numeric, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
+
 from ..core.database import Base
+
 
 class GapScore(Base):
     __tablename__ = "gap_scores"

@@ -1,7 +1,10 @@
 from datetime import datetime
-from sqlalchemy import String, Integer, Numeric, Boolean, DateTime
+
+from sqlalchemy import Boolean, DateTime, Integer, Numeric, String
 from sqlalchemy.orm import Mapped, mapped_column
+
 from ..core.database import Base
+
 
 class District(Base):
     __tablename__ = "districts"

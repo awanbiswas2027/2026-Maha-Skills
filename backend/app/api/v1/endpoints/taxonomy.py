@@ -1,7 +1,9 @@
 from fastapi import APIRouter
+
 from ....schemas.common import ApiResponse
 
 router = APIRouter()
+
 
 @router.get("/tree", response_model=ApiResponse[list])
 async def get_taxonomy_tree():
@@ -21,9 +23,9 @@ async def get_taxonomy_tree():
                             "title_en": "Automotive EV Battery Technician",
                             "nsqf_level": 4,
                         }
-                    ]
+                    ],
                 }
-            ]
+            ],
         }
     ]
     return ApiResponse(success=True, data=tree)

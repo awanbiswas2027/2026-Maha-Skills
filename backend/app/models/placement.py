@@ -1,9 +1,12 @@
 import uuid
 from datetime import datetime
-from sqlalchemy import String, Integer, Numeric, Boolean, DateTime, ForeignKey, Text
+
+from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, Numeric, String, Text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
+
 from ..core.database import Base
+
 
 class PlacementBatch(Base):
     __tablename__ = "placement_batches"
@@ -18,6 +21,7 @@ class PlacementBatch(Base):
     uploaded_by: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
 
+
 class PlacementRecord(Base):
     __tablename__ = "placement_records"
 
@@ -29,6 +33,7 @@ class PlacementRecord(Base):
     batch_year: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False)
     is_placed: Mapped[bool] = mapped_column(Boolean, nullable=False)
     monthly_salary: Mapped[float] = mapped_column(Numeric(10, 2), nullable=True)
+
 
 class PlacementValidationError(Base):
     __tablename__ = "placement_validation_errors"

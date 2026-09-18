@@ -1,9 +1,11 @@
 import uuid
-from datetime import datetime
-from sqlalchemy import String, Integer, Text, DateTime, ForeignKey
-from sqlalchemy.dialects.postgresql import UUID, JSONB
+
+from sqlalchemy import ForeignKey, String, Text
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
+
 from ..core.database import Base
+
 
 class Recommendation(Base):
     __tablename__ = "recommendations"
@@ -18,11 +20,14 @@ class Recommendation(Base):
     status: Mapped[str] = mapped_column(String(50), default="DRAFT", nullable=False)
     assigned_ssc_id: Mapped[int] = mapped_column(ForeignKey("sscs.id"), nullable=True)
 
+
 class RecommendationEvidence(Base):
     __tablename__ = "recommendation_evidence"
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    recommendation_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("recommendations.id"), nullable=False)
+    recommendation_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("recommendations.id"), nullable=False
+    )
     evidence_type: Mapped[str] = mapped_column(String(50), nullable=False)
     payload: Mapped[dict] = mapped_column(JSONB, nullable=False)
     dossier_pdf_s3_key: Mapped[str] = mapped_column(String(500), nullable=True)

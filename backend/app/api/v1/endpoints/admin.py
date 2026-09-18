@@ -1,7 +1,9 @@
 from fastapi import APIRouter
+
 from ....schemas.common import ApiResponse
 
 router = APIRouter()
+
 
 @router.get("/health", response_model=ApiResponse[dict])
 async def get_system_health():

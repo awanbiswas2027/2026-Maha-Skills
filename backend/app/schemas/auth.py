@@ -1,13 +1,14 @@
-from typing import Optional, List
 from pydantic import BaseModel, EmailStr
+
 
 class UserProfileOut(BaseModel):
     id: str
     keycloak_sub: str
     email: EmailStr
     full_name: str
-    roles: List[str]
+    roles: list[str]
     scopes: dict = {}
+
 
 class GapScoreOut(BaseModel):
     id: str
@@ -21,12 +22,14 @@ class GapScoreOut(BaseModel):
     gap_score: float
     severity_level: str
 
+
 class PathwayQuizRequest(BaseModel):
     district_id: int
     education_level: str
-    sector_interest_ids: List[int]
+    sector_interest_ids: list[int]
     language_preference: str = "mr"
     willing_to_relocate: bool = False
+
 
 class PathwayRecommendationItem(BaseModel):
     course_id: str

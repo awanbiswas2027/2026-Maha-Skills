@@ -1,5 +1,6 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
@@ -25,5 +26,6 @@ class Settings(BaseSettings):
 
     # DPDP 2023 Pepper
     DPDP_TENANT_SALT: str = "development_hmac_sha256_pepper_secret_key_32bytes!"
+
 
 settings = Settings()

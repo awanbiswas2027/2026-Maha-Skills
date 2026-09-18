@@ -1,13 +1,14 @@
-from typing import Optional
 from fastapi import APIRouter, Query
+
 from ....schemas.common import ApiResponse
 
 router = APIRouter()
 
+
 @router.get("/aggregates", response_model=ApiResponse[dict])
 async def get_lmi_aggregates(
-    district_id: Optional[int] = Query(None),
-    sector_id: Optional[int] = Query(None),
+    district_id: int | None = Query(None),
+    sector_id: int | None = Query(None),
 ):
     data = {
         "total_vacancies": 48250,

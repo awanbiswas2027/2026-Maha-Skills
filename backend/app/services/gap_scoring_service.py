@@ -12,9 +12,11 @@ class GapScoringService:
         Gap Score = min(100, max(0, ((Demand * Trend) - (Trained * PlacementRate)) / Constant * 100))
         """
         effective_demand = demand_count * trend_factor
-        effective_supply = trained_capacity * (placement_rate / 100.0 if placement_rate > 1 else placement_rate)
+        effective_supply = trained_capacity * (
+            placement_rate / 100.0 if placement_rate > 1 else placement_rate
+        )
         raw_gap = effective_demand - effective_supply
-        
+
         normalized = (raw_gap / scaling_constant) * 100.0
         return round(min(100.0, max(0.0, normalized)), 2)
 

@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Query
+
 from ....schemas.common import ApiResponse
 
 router = APIRouter()
+
 
 @router.get("", response_model=ApiResponse[dict])
 async def get_district_plan(

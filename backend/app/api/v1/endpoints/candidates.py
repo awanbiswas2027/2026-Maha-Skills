@@ -1,15 +1,16 @@
-from typing import List, Optional
 from fastapi import APIRouter, Query
-from ....schemas.common import ApiResponse
+
 from ....schemas.auth import PathwayQuizRequest, PathwayRecommendationItem
+from ....schemas.common import ApiResponse
 
 router = APIRouter()
 
-@router.get("/courses", response_model=ApiResponse[List[dict]])
+
+@router.get("/courses", response_model=ApiResponse[list[dict]])
 async def search_courses(
-    search: Optional[str] = Query(None),
-    district_id: Optional[int] = Query(None),
-    sector_id: Optional[int] = Query(None),
+    search: str | None = Query(None),
+    district_id: int | None = Query(None),
+    sector_id: int | None = Query(None),
 ):
     courses = [
         {
@@ -25,7 +26,8 @@ async def search_courses(
     ]
     return ApiResponse(success=True, data=courses)
 
-@router.post("/pathway/recommend", response_model=ApiResponse[List[PathwayRecommendationItem]])
+
+@router.post("/pathway/recommend", response_model=ApiResponse[list[PathwayRecommendationItem]])
 async def recommend_pathway(req: PathwayQuizRequest):
     recs = [
         PathwayRecommendationItem(
@@ -33,7 +35,7 @@ async def recommend_pathway(req: PathwayQuizRequest):
             course_title="Electric Vehicle Technician",
             match_score=92,
             reason_en="Strong industrial demand in Pune automotive belt matching your mechanical interest.",
-            reason_mr="आपल्या यांत्रिकी आवडीनुसार पुणे ऑटोमोटिव्ह पट्ट्यात उच्च औद्योगिक मागणी."
+            reason_mr="आपल्या यांत्रिकी आवडीनुसार पुणे ऑटोमोटिव्ह पट्ट्यात उच्च औद्योगिक मागणी.",
         )
     ]
     return ApiResponse(success=True, data=recs)

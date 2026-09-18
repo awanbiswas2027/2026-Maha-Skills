@@ -1,9 +1,11 @@
 import uuid
-from datetime import datetime
-from sqlalchemy import String, Integer, Numeric, DateTime, ForeignKey
+
+from sqlalchemy import ForeignKey, Integer, Numeric, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
+
 from ..core.database import Base
+
 
 class DistrictPlan(Base):
     __tablename__ = "district_plans"
@@ -14,7 +16,10 @@ class DistrictPlan(Base):
     plan_type: Mapped[str] = mapped_column(String(30), default="ANNUAL", nullable=False)
     status: Mapped[str] = mapped_column(String(30), default="DRAFT", nullable=False)
     total_target_intake: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
-    total_estimated_budget: Mapped[float] = mapped_column(Numeric(14, 2), default=0.0, nullable=False)
+    total_estimated_budget: Mapped[float] = mapped_column(
+        Numeric(14, 2), default=0.0, nullable=False
+    )
+
 
 class DistrictPlanItem(Base):
     __tablename__ = "district_plan_items"

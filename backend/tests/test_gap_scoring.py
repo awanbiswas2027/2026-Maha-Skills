@@ -1,5 +1,6 @@
 from app.services.gap_scoring_service import GapScoringService
 
+
 def test_calculate_normalized_gap_score():
     score = GapScoringService.calculate_normalized_gap(
         demand_count=1200,
@@ -11,6 +12,7 @@ def test_calculate_normalized_gap_score():
     # effective_demand = 1440, effective_supply = 200, raw_gap = 1240 => normalized = 124.0 -> capped at 100.0
     assert score == 100.0
 
+
 def test_calculate_moderate_gap_score():
     score = GapScoringService.calculate_normalized_gap(
         demand_count=500,
@@ -21,6 +23,7 @@ def test_calculate_moderate_gap_score():
     )
     # effective_demand = 500, effective_supply = 200, raw_gap = 300 => normalized = 30.0
     assert score == 30.0
+
 
 def test_oversupply_detection():
     is_oversupplied = GapScoringService.is_structurally_oversupplied(

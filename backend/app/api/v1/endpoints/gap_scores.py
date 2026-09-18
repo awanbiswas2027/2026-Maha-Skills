@@ -1,15 +1,16 @@
-from typing import Optional, List
 from fastapi import APIRouter, Query
-from ....schemas.common import ApiResponse, PaginationMeta
+
 from ....schemas.auth import GapScoreOut
+from ....schemas.common import ApiResponse, PaginationMeta
 
 router = APIRouter()
 
-@router.get("", response_model=ApiResponse[List[GapScoreOut]])
+
+@router.get("", response_model=ApiResponse[list[GapScoreOut]])
 async def list_gap_scores(
-    district_id: Optional[int] = Query(None),
-    sector_id: Optional[int] = Query(None),
-    nsqf_level: Optional[int] = Query(None),
+    district_id: int | None = Query(None),
+    sector_id: int | None = Query(None),
+    nsqf_level: int | None = Query(None),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
 ):
@@ -37,16 +38,17 @@ async def list_gap_scores(
             placement_rate=68.0,
             gap_score=52.10,
             severity_level="MODERATE",
-        )
+        ),
     ]
     return ApiResponse(
         success=True,
         data=mock_items,
-        meta=PaginationMeta(page=page, limit=limit, total_count=len(mock_items), total_pages=1)
+        meta=PaginationMeta(page=page, limit=limit, total_count=len(mock_items), total_pages=1),
     )
 
-@router.get("/oversupply", response_model=ApiResponse[List[dict]])
-async def get_oversupply_alerts(district_id: Optional[int] = Query(None)):
+
+@router.get("/oversupply", response_model=ApiResponse[list[dict]])
+async def get_oversupply_alerts(district_id: int | None = Query(None)):
     alerts = [
         {
             "course_id": "e2a40192-4912-421b-8192-381920194812",

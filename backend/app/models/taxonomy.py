@@ -1,9 +1,11 @@
 import uuid
-from datetime import datetime
-from sqlalchemy import String, Integer, Text, Boolean, DateTime, ForeignKey
+
+from sqlalchemy import Boolean, ForeignKey, Integer, String, Text
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
+
 from ..core.database import Base
+
 
 class Sector(Base):
     __tablename__ = "sectors"
@@ -15,6 +17,7 @@ class Sector(Base):
     description: Mapped[str] = mapped_column(Text, nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
 
+
 class SectorSkillCouncil(Base):
     __tablename__ = "sscs"
 
@@ -23,6 +26,7 @@ class SectorSkillCouncil(Base):
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     sector_id: Mapped[int] = mapped_column(ForeignKey("sectors.id"), nullable=False)
     contact_email: Mapped[str] = mapped_column(String(255), nullable=False)
+
 
 class JobRole(Base):
     __tablename__ = "job_roles"
@@ -36,6 +40,7 @@ class JobRole(Base):
     nsqf_level: Mapped[int] = mapped_column(Integer, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
 
+
 class Skill(Base):
     __tablename__ = "skills"
 
@@ -45,6 +50,7 @@ class Skill(Base):
     name_mr: Mapped[str] = mapped_column(String(150), nullable=False)
     skill_type: Mapped[str] = mapped_column(String(50), default="TECHNICAL", nullable=False)
     is_emerging: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+
 
 class JobRoleSkill(Base):
     __tablename__ = "job_role_skills"
