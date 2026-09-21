@@ -1,13 +1,17 @@
+from typing import Any
+
 from pydantic import BaseModel, EmailStr
 
 
 class UserProfileOut(BaseModel):
     id: str
-    keycloak_sub: str
+    keycloak_sub: str | None = None
     email: EmailStr
     full_name: str
     roles: list[str]
-    scopes: dict = {}
+    account_status: str | None = None
+    issuer: str | None = None
+    scopes: dict[str, Any] = {}
 
 
 class GapScoreOut(BaseModel):

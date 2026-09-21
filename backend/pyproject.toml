@@ -22,3 +22,9 @@ extend-immutable-calls = [
 [tool.black]
 line-length = 100
 target-version = ['py311']
+
+[dependency-groups]
+dev = [
+    "argon2-cffi>=25.1.0",
+    "passlib[argon2]>=1.7.4",
+]

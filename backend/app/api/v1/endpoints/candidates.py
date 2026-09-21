@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query
 
+from ....core.security import SecurityContext, get_optional_security_context
 from ....schemas.auth import PathwayQuizRequest, PathwayRecommendationItem
 from ....schemas.common import ApiResponse
 
@@ -11,6 +12,7 @@ async def search_courses(
     search: str | None = Query(None),
     district_id: int | None = Query(None),
     sector_id: int | None = Query(None),
+    ctx: SecurityContext | None = Depends(get_optional_security_context),
 ):
     courses = [
         {
@@ -28,7 +30,10 @@ async def search_courses(
 
 
 @router.post("/pathway/recommend", response_model=ApiResponse[list[PathwayRecommendationItem]])
-async def recommend_pathway(req: PathwayQuizRequest):
+async def recommend_pathway(
+    req: PathwayQuizRequest,
+    ctx: SecurityContext | None = Depends(get_optional_security_context),
+):
     recs = [
         PathwayRecommendationItem(
             course_id="e2a40192-4912-421b-8192-381920194812",

@@ -1,9 +1,13 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query
 
+from ....core.rbac import DistrictScope, require_district_scope, require_roles
+from ....core.security import SecurityContext
 from ....schemas.auth import GapScoreOut
 from ....schemas.common import ApiResponse, PaginationMeta
 
 router = APIRouter()
+
+_require_gap_roles = require_roles("POLICY_MAKER", "ADMIN", "DISTRICT_OFFICER")
 
 
 @router.get("", response_model=ApiResponse[list[GapScoreOut]])
@@ -13,6 +17,8 @@ async def list_gap_scores(
     nsqf_level: int | None = Query(None),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
+    _: SecurityContext = Depends(_require_gap_roles),
+    scope: DistrictScope = Depends(require_district_scope),
 ):
     mock_items = [
         GapScoreOut(
@@ -48,7 +54,11 @@ async def list_gap_scores(
 
 
 @router.get("/oversupply", response_model=ApiResponse[list[dict]])
-async def get_oversupply_alerts(district_id: int | None = Query(None)):
+async def get_oversupply_alerts(
+    district_id: int | None = Query(None),
+    _: SecurityContext = Depends(_require_gap_roles),
+    scope: DistrictScope = Depends(require_district_scope),
+):
     alerts = [
         {
             "course_id": "e2a40192-4912-421b-8192-381920194812",
