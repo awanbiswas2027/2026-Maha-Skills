@@ -69,7 +69,6 @@ def test_refresh_token_model_columns_and_constraints():
     assert cols["id"].nullable is False
     assert cols["user_id"].nullable is False
     assert cols["token_hash"].nullable is False
-    assert cols["token_hash"].unique is True
     assert cols["family_id"].nullable is False
     assert cols["expires_at"].nullable is False
     assert cols["revoked_at"].nullable is True
@@ -82,9 +81,25 @@ def test_refresh_token_model_columns_and_constraints():
     assert fk.target_fullname == "users.id"
     assert fk.ondelete is not None and fk.ondelete.upper() == "CASCADE"
 
-    # Indexes on token_hash, family_id, user_id, expires_at
+    # Verify no separate UniqueConstraint for token_hash
+    from sqlalchemy import UniqueConstraint
+
+    unique_constraints = [c for c in table.constraints if isinstance(c, UniqueConstraint)]
+    token_hash_uqs = [
+        c for c in unique_constraints if {col.name for col in c.columns} == {"token_hash"}
+    ]
+    assert len(token_hash_uqs) == 0, "Should not have a separate UniqueConstraint on token_hash"
+
+    # Verify exactly one unique index on token_hash
+    token_hash_indexes = [
+        idx for idx in table.indexes if {col.name for col in idx.columns} == {"token_hash"}
+    ]
+    assert len(token_hash_indexes) == 1, "Should have exactly one index on token_hash"
+    assert token_hash_indexes[0].unique is True, "The index on token_hash must be unique"
+    assert token_hash_indexes[0].name == "ix_refresh_tokens_token_hash"
+
+    # Indexes on family_id, user_id, expires_at
     indexed_col_sets = [{c.name for c in idx.columns} for idx in table.indexes]
-    assert {"token_hash"} in indexed_col_sets
     assert {"family_id"} in indexed_col_sets
     assert {"user_id"} in indexed_col_sets
     assert {"expires_at"} in indexed_col_sets
