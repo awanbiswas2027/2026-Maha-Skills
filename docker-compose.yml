@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_DB: mahaskills
       POSTGRES_USER: mahaskills_user
-      POSTGRES_PASSWORD: mahaskills_secret
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
     ports:
       - "5432:5432"
     volumes:
@@ -34,6 +34,27 @@ services:
       timeout: 5s
       retries: 5
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0
+    container_name: mahaskills-keycloak
+    restart: unless-stopped
+    command: start-dev --import-realm
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:?KEYCLOAK_ADMIN must be set}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:?KEYCLOAK_ADMIN_PASSWORD must be set}
+      KEYCLOAK_CLIENT_SECRET: ${KEYCLOAK_CLIENT_SECRET:?KEYCLOAK_CLIENT_SECRET must be set}
+      KC_HEALTH_ENABLED: "true"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./infra/keycloak/realm-mahaskills.json:/opt/keycloak/data/import/realm-mahaskills.json:ro
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8080 && echo -e 'GET /health/ready HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n' >&3 && cat <&3 | grep -q '200 OK'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
   backend:
     build:
       context: ./backend
@@ -42,18 +63,24 @@ services:
     restart: unless-stopped
     environment:
       - ENVIRONMENT=development
-      - DATABASE_URL=postgresql+asyncpg://mahaskills_user:mahaskills_secret@postgres:5432/mahaskills
+      - DATABASE_URL=postgresql+asyncpg://mahaskills_user:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@postgres:5432/mahaskills
       - REDIS_URL=redis://redis:6379/0
       - KEYCLOAK_URL=http://keycloak:8080
       - KEYCLOAK_REALM=mahaskills
       - KEYCLOAK_CLIENT_ID=mahaskills-api
-      - DPDP_TENANT_SALT=development_hmac_sha256_pepper_secret_key_32bytes!
+      - KEYCLOAK_CLIENT_SECRET=${KEYCLOAK_CLIENT_SECRET:?KEYCLOAK_CLIENT_SECRET must be set}
+      - KEYCLOAK_AUDIENCE=mahaskills-api
+      # Generate with: python -c "import secrets; print(secrets.token_urlsafe(48))"
+      - AUTH_JWT_SECRET=${AUTH_JWT_SECRET:?AUTH_JWT_SECRET must be set (32+ bytes)}
+      - DPDP_TENANT_SALT=${DPDP_TENANT_SALT:?DPDP_TENANT_SALT must be set}
     ports:
       - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
       redis:
+        condition: service_healthy
+      keycloak:
         condition: service_healthy
 
   frontend:

@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query
 
+from ....core.rbac import DistrictScope, require_district_scope
 from ....schemas.common import ApiResponse
 
 router = APIRouter()
@@ -9,6 +10,7 @@ router = APIRouter()
 async def get_lmi_aggregates(
     district_id: int | None = Query(None),
     sector_id: int | None = Query(None),
+    scope: DistrictScope = Depends(require_district_scope),
 ):
     data = {
         "total_vacancies": 48250,

@@ -1,0 +1,215 @@
+name: Backend CI
+
+# Gate for TASK-20260918-2154-2CF6. The Alembic migration round trip cannot be run on the
+# development host (no container runtime, nothing listening on 5432), so the owner's decision was to
+# make CI the authority for it. Regression rows REG-SCH-005/006/008/009/010/012/013/014/015 in
+# TASKS/TASK-20260918-2154-2CF6/tests/regression_matrix.md are closed by this workflow, not locally.
+
+on:
+  push:
+    branches: [main, "task/**"]
+  pull_request:
+    branches: [main]
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+
+    env:
+      ENVIRONMENT: development
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Secrets
+        run: |
+          PG_PASSWORD=$(openssl rand -hex 16)
+          DPDP_TENANT_SALT=$(openssl rand -hex 16)
+          AUTH_JWT_SECRET=$(openssl rand -hex 16)
+          echo "::add-mask::$PG_PASSWORD"
+          echo "::add-mask::$DPDP_TENANT_SALT"
+          echo "::add-mask::$AUTH_JWT_SECRET"
+          echo "PG_PASSWORD=$PG_PASSWORD" >> "$GITHUB_ENV"
+          echo "DPDP_TENANT_SALT=$DPDP_TENANT_SALT" >> "$GITHUB_ENV"
+          echo "AUTH_JWT_SECRET=$AUTH_JWT_SECRET" >> "$GITHUB_ENV"
+          echo "DATABASE_URL=postgresql+asyncpg://mahaskills_user:$PG_PASSWORD@localhost:5432/mahaskills" >> "$GITHUB_ENV"
+
+      - name: Start Postgres
+        run: |
+          docker run -d \
+            --name postgres \
+            -e POSTGRES_USER=mahaskills_user \
+            -e POSTGRES_PASSWORD="$PG_PASSWORD" \
+            -e POSTGRES_DB=mahaskills \
+            -p 5432:5432 \
+            postgres:16-alpine
+          echo "Waiting for Postgres readiness..."
+          timeout 120 bash -c 'until docker exec postgres pg_isready -U mahaskills_user -d mahaskills; do sleep 2; done'
+          echo "Postgres is ready!"
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Verify requirements.txt is up to date
+        run: |
+          uv export --frozen --no-dev --no-hashes --no-emit-project -o /tmp/req_temp.txt
+          # uv export strips the [argon2] extra from passlib, so we restore it manually to match test_runtime_requirements.py
+          sed -i 's/^passlib==/passlib[argon2]==/' /tmp/req_temp.txt
+          # Compare without the top-level '#' header lines: uv embeds the -o path in its header.
+          diff <(grep -v '^#' requirements.txt) <(grep -v '^#' /tmp/req_temp.txt)
+
+      - name: Verify prod import
+        run: |
+          python -m venv /tmp/prod-venv
+          /tmp/prod-venv/bin/pip install -q -r requirements.txt
+          /tmp/prod-venv/bin/python -c "import app.main; print('prod-import-ok')"
+
+      - name: Lint
+        run: |
+          uv run ruff check app tests
+          uv run ruff format --check app tests
+
+      - name: Unit tests
+        run: uv run pytest -q
+
+      # The three steps below are the point of this workflow: they prove the migrations actually
+      # execute and that downgrade() is real, which no static check can establish.
+      - name: Migrations — upgrade to head
+        run: uv run alembic upgrade head
+
+      - name: Migrations — full downgrade, then upgrade again
+        run: |
+          uv run alembic downgrade base
+          uv run alembic upgrade head
+
+      - name: Migrations — models and migrations agree
+        # Fails if the models have drifted from the migration chain (REG-SCH-015).
+        run: uv run alembic check
+
+  keycloak-realm-verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    env:
+      KEYCLOAK_ADMIN: admin
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Secrets
+        run: |
+          KEYCLOAK_ADMIN_PASSWORD=$(openssl rand -hex 16)
+          KEYCLOAK_CLIENT_SECRET=$(openssl rand -hex 16)
+          STAFF_TEST_PASSWORD=$(openssl rand -base64 16)
+          echo "::add-mask::$KEYCLOAK_ADMIN_PASSWORD"
+          echo "::add-mask::$KEYCLOAK_CLIENT_SECRET"
+          echo "::add-mask::$STAFF_TEST_PASSWORD"
+          echo "KEYCLOAK_ADMIN_PASSWORD=$KEYCLOAK_ADMIN_PASSWORD" >> "$GITHUB_ENV"
+          echo "KEYCLOAK_CLIENT_SECRET=$KEYCLOAK_CLIENT_SECRET" >> "$GITHUB_ENV"
+          echo "STAFF_TEST_PASSWORD=$STAFF_TEST_PASSWORD" >> "$GITHUB_ENV"
+
+      - name: Start Keycloak with imported realm
+        run: |
+          docker run -d \
+            --name keycloak \
+            -p 8080:8080 \
+            -e KEYCLOAK_ADMIN="$KEYCLOAK_ADMIN" \
+            -e KEYCLOAK_ADMIN_PASSWORD="$KEYCLOAK_ADMIN_PASSWORD" \
+            -e KEYCLOAK_CLIENT_SECRET="$KEYCLOAK_CLIENT_SECRET" \
+            -e KC_HEALTH_ENABLED=true \
+            -v "$PWD/infra/keycloak/realm-mahaskills.json:/opt/keycloak/data/import/realm-mahaskills.json:ro" \
+            quay.io/keycloak/keycloak:26.0 \
+            start-dev --import-realm
+
+      - name: Wait for Keycloak healthcheck
+        run: |
+          echo "Waiting for Keycloak readiness..."
+          timeout 120 bash -c 'until curl -sf http://localhost:8080/realms/mahaskills > /dev/null; do sleep 2; done'
+          echo "Keycloak is ready!"
+
+      - name: Create staff user and verify direct access grant token
+        run: |
+          # 1. Obtain admin token from master realm
+          ADMIN_TOKEN=$(curl -s -f -X POST http://localhost:8080/realms/master/protocol/openid-connect/token \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "client_id=admin-cli" \
+            -d "username=$KEYCLOAK_ADMIN" \
+            -d "password=$KEYCLOAK_ADMIN_PASSWORD" \
+            -d "grant_type=password" | jq -r '.access_token')
+
+          # 2. Create staff user in mahaskills realm
+          curl -s -f -X POST http://localhost:8080/admin/realms/mahaskills/users \
+            -H "Authorization: Bearer $ADMIN_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "username": "dpo.pune",
+              "email": "dpo.pune@maharashtra.gov.in",
+              "firstName": "Rajesh",
+              "lastName": "Patil",
+              "enabled": true,
+              "emailVerified": true,
+              "attributes": {
+                "district_id": ["14"],
+                "district_name": ["Pune"],
+                "division": ["Pune"]
+              }
+            }'
+
+          USER_ID=$(curl -s -f -X GET "http://localhost:8080/admin/realms/mahaskills/users?username=dpo.pune" \
+            -H "Authorization: Bearer $ADMIN_TOKEN" | jq -r '.[0].id')
+
+          # Set password for staff user
+          curl -s -f -X PUT "http://localhost:8080/admin/realms/mahaskills/users/$USER_ID/reset-password" \
+            -H "Authorization: Bearer $ADMIN_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"type\": \"password\", \"value\": \"$STAFF_TEST_PASSWORD\", \"temporary\": false}"
+
+          # Assign DISTRICT_OFFICER realm role
+          ROLE_JSON=$(curl -s -f -X GET "http://localhost:8080/admin/realms/mahaskills/roles/DISTRICT_OFFICER" \
+            -H "Authorization: Bearer $ADMIN_TOKEN")
+          curl -s -f -X POST "http://localhost:8080/admin/realms/mahaskills/users/$USER_ID/role-mappings/realm" \
+            -H "Authorization: Bearer $ADMIN_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "[$ROLE_JSON]"
+
+          # 3. Fetch token via direct access grant
+          TOKEN_RESP=$(curl -s -f -X POST http://localhost:8080/realms/mahaskills/protocol/openid-connect/token \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "client_id=mahaskills-api" \
+            -d "client_secret=$KEYCLOAK_CLIENT_SECRET" \
+            -d "username=dpo.pune" \
+            -d "password=$STAFF_TEST_PASSWORD" \
+            -d "grant_type=password")
+
+          ACCESS_TOKEN=$(echo "$TOKEN_RESP" | jq -r '.access_token')
+
+          # 4. Assert token claims (iss, aud, realm_access.roles, district_id)
+          python3 -c "
+          import json, base64
+
+          token = '$ACCESS_TOKEN'
+          payload_b64 = token.split('.')[1] + '=='
+          payload = json.loads(base64.urlsafe_b64decode(payload_b64).decode())
+
+          print('Decoded token payload:', json.dumps(payload, indent=2))
+          assert payload['iss'] == 'http://localhost:8080/realms/mahaskills', f'Unexpected iss: {payload.get(\"iss\")}'
+          
+          aud = payload['aud']
+          aud_list = [aud] if isinstance(aud, str) else aud
+          assert 'mahaskills-api' in aud_list, f'mahaskills-api not in aud: {aud}'
+
+          roles = payload.get('realm_access', {}).get('roles', [])
+          assert 'DISTRICT_OFFICER' in roles, f'DISTRICT_OFFICER not in roles: {roles}'
+
+          assert payload.get('district_id') == 14 or payload.get('district_id') == '14', f'district_id claim mismatch: {payload.get(\"district_id\")}'
+          assert payload.get('district_name') == 'Pune', f'district_name mismatch: {payload.get(\"district_name\")}'
+          print('Keycloak realm token verification succeeded!')
+          "

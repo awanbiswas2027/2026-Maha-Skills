@@ -1,13 +1,17 @@
+from typing import Any
+
 from pydantic import BaseModel, EmailStr
 
 
 class UserProfileOut(BaseModel):
     id: str
-    keycloak_sub: str
+    keycloak_sub: str | None = None
     email: EmailStr
     full_name: str
     roles: list[str]
-    scopes: dict = {}
+    account_status: str | None = None
+    issuer: str | None = None
+    scopes: dict[str, Any] = {}
 
 
 class GapScoreOut(BaseModel):
@@ -37,3 +41,41 @@ class PathwayRecommendationItem(BaseModel):
     match_score: int
     reason_en: str
     reason_mr: str
+
+
+class RegisterRequest(BaseModel):
+    email: EmailStr
+    password: str
+    full_name: str
+    phone: str | None = None
+    role: str
+    organisation_name: str | None = None
+    gstin: str | None = None
+
+
+class VerifyEmailRequest(BaseModel):
+    email: EmailStr
+    code: str
+
+
+class ResendVerificationRequest(BaseModel):
+    email: EmailStr
+
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str
+
+
+class LoginResponse(BaseModel):
+    access_token: str
+
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    email: EmailStr
+    code: str
+    new_password: str

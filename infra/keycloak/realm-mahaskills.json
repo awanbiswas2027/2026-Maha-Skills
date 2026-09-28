@@ -1,0 +1,206 @@
+{
+  "id": "mahaskills",
+  "realm": "mahaskills",
+  "displayName": "MahaSkills",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "accessTokenLifespan": 900,
+  "ssoSessionIdleTimeout": 28800,
+  "ssoSessionMaxLifespan": 28800,
+  "offlineSessionIdleTimeout": 2592000,
+  "roles": {
+    "realm": [
+      {
+        "name": "POLICY_MAKER",
+        "description": "State-level policy maker with statewide oversight across all 36 districts"
+      },
+      {
+        "name": "DISTRICT_OFFICER",
+        "description": "District skill development officer strictly scoped to designated district"
+      },
+      {
+        "name": "ITI_PRINCIPAL",
+        "description": "Principal of Industrial Training Institute scoped to district and institute"
+      },
+      {
+        "name": "SSC_REVIEWER",
+        "description": "Sector Skill Council curriculum reviewer scoped to assigned sector domains"
+      },
+      {
+        "name": "ADMIN",
+        "description": "Platform and identity administrator with statewide access"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "mahaskills-api",
+      "name": "MahaSkills API",
+      "description": "Core REST API resource server and token client for MahaSkills",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "bearerOnly": false,
+      "publicClient": false,
+      "serviceAccountsEnabled": false,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "secret": "${KEYCLOAK_CLIENT_SECRET}",
+      "redirectUris": [
+        "http://localhost:3000/*",
+        "http://localhost:5173/*"
+      ],
+      "webOrigins": [
+        "http://localhost:3000",
+        "http://localhost:5173"
+      ],
+      "protocolMappers": [
+        {
+          "name": "mahaskills-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "mahaskills-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        },
+        {
+          "name": "realm roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "name": "district_id-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "district_id",
+            "claim.name": "district_id",
+            "jsonType.label": "int",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true"
+          }
+        },
+        {
+          "name": "district_name-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "district_name",
+            "claim.name": "district_name",
+            "jsonType.label": "String",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true"
+          }
+        },
+        {
+          "name": "division-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "division",
+            "claim.name": "division",
+            "jsonType.label": "String",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true"
+          }
+        },
+        {
+          "name": "institute_id-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "institute_id",
+            "claim.name": "institute_id",
+            "jsonType.label": "String",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true"
+          }
+        },
+        {
+          "name": "sector_ids-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "sector_ids",
+            "claim.name": "sector_ids",
+            "jsonType.label": "JSON",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true"
+          }
+        },
+        {
+          "name": "employer_id-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "employer_id",
+            "claim.name": "employer_id",
+            "jsonType.label": "String",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "example.staff",
+      "enabled": false,
+      "email": "example.staff@maharashtra.gov.in",
+      "firstName": "Example",
+      "lastName": "Officer",
+      "attributes": {
+        "district_id": [
+          "14"
+        ],
+        "district_name": [
+          "Pune"
+        ],
+        "division": [
+          "Pune"
+        ],
+        "institute_id": [
+          "ITI-PUN-001"
+        ],
+        "sector_ids": [
+          "[101, 102]"
+        ],
+        "employer_id": [
+          "EMP-001"
+        ]
+      },
+      "realmRoles": [
+        "DISTRICT_OFFICER"
+      ]
+    }
+  ]
+}

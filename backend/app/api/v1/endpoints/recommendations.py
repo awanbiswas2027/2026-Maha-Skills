@@ -1,5 +1,7 @@
-from fastapi import APIRouter, Path, Query
+from fastapi import APIRouter, Depends, Path, Query
 
+from ....core.rbac import require_auth
+from ....core.security import SecurityContext
 from ....schemas.common import ApiResponse, PaginationMeta
 
 router = APIRouter()
@@ -11,6 +13,7 @@ async def list_recommendations(
     ssc_id: int | None = Query(None),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
+    _: SecurityContext = Depends(require_auth),
 ):
     recs = [
         {
@@ -29,7 +32,10 @@ async def list_recommendations(
 
 
 @router.get("/{id}/dossier", response_model=ApiResponse[dict])
-async def get_dossier(id: str = Path(...)):
+async def get_dossier(
+    id: str = Path(...),
+    _: SecurityContext = Depends(require_auth),
+):
     dossier = {
         "recommendation_id": id,
         "recommendation_code": "REC-2026-0042",

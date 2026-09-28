@@ -1,12 +1,15 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
+from ....core.security import SecurityContext, get_optional_security_context
 from ....schemas.common import ApiResponse
 
 router = APIRouter()
 
 
 @router.get("/tree", response_model=ApiResponse[list])
-async def get_taxonomy_tree():
+async def get_taxonomy_tree(
+    ctx: SecurityContext | None = Depends(get_optional_security_context),
+):
     tree = [
         {
             "sector_id": 3,
