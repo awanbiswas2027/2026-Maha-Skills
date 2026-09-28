@@ -1,4 +1,5 @@
 import json
+import logging
 from typing import Any, Literal
 
 from pydantic import Field, field_validator, model_validator
@@ -7,6 +8,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 # Known compromised pepper committed to git history in earlier revisions.
 # Rejected in non-development environments to prevent dictionary attacks over candidate IDs.
 _COMPROMISED_SALT = "development_hmac_sha256_pepper_secret_key_32bytes!"
+
+MIN_JWT_SECRET_BYTES = 32
+
+logger = logging.getLogger(__name__)
 
 
 class Settings(BaseSettings):
@@ -89,9 +94,20 @@ class Settings(BaseSettings):
                 raise ValueError(
                     "KEYCLOAK_URL must use https:// when ENVIRONMENT is not 'development'"
                 )
-            if not self.AUTH_JWT_SECRET or len(self.AUTH_JWT_SECRET) < 32:
+            if (
+                not self.AUTH_JWT_SECRET
+                or len(self.AUTH_JWT_SECRET.encode("utf-8")) < MIN_JWT_SECRET_BYTES
+            ):
                 raise ValueError(
                     "AUTH_JWT_SECRET must be at least 32 characters long when ENVIRONMENT is not 'development'"
+                )
+        else:
+            if (
+                not self.AUTH_JWT_SECRET
+                or len(self.AUTH_JWT_SECRET.encode("utf-8")) < MIN_JWT_SECRET_BYTES
+            ):
+                logger.warning(
+                    "local CANDIDATE/EMPLOYER sign-in is disabled until AUTH_JWT_SECRET is set"
                 )
         return self
 

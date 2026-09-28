@@ -9,7 +9,12 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import ExpiredSignatureError, JWTError, jwt
 from pydantic import BaseModel
 
-from ..services.auth_token_service import ALL_ROLES, STAFF_ROLES
+from ..services.auth_token_service import (
+    ALL_ROLES,
+    STAFF_ROLES,
+    LocalSigningKeyUnavailableError,
+    require_local_signing_key,
+)
 from .config import settings
 from .jwks import get_jwks_client
 
@@ -105,13 +110,20 @@ def resolve_security_context(token: str) -> SecurityContext:
                 message="Invalid algorithm for local token issuer",
             )
         try:
+            key = require_local_signing_key()
             claims = jwt.decode(
                 token,
-                settings.AUTH_JWT_SECRET,
+                key,
                 algorithms=["HS256"],
                 audience=expected_aud,
                 options={"leeway": 60, "verify_exp": True, "verify_nbf": True},
             )
+        except LocalSigningKeyUnavailableError:
+            raise AuthException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                code="TOKEN_INVALID",
+                message="Token verification failed",
+            ) from None
         except ExpiredSignatureError as exc:
             logger.info("Local access token expired (jti=%s)", unverified_claims.get("jti"))
             raise AuthException(
@@ -124,7 +136,7 @@ def resolve_security_context(token: str) -> SecurityContext:
             raise AuthException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 code="TOKEN_INVALID",
-                message=f"Token verification failed: {exc}",
+                message="Token verification failed",
             ) from exc
 
         if claims.get("iss") != settings.AUTH_JWT_ISSUER:
@@ -196,7 +208,7 @@ def resolve_security_context(token: str) -> SecurityContext:
             raise AuthException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 code="TOKEN_INVALID",
-                message=f"Token verification failed: {exc}",
+                message="Token verification failed",
             ) from exc
 
         verified_iss = claims.get("iss", "")
