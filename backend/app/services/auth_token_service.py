@@ -1,12 +1,36 @@
 import hashlib
+import logging
 import secrets
 import time
 import uuid
 from typing import Any
 
+from fastapi import HTTPException
 from jose import jwt
 
-from ..core.config import settings
+from ..core.config import MIN_JWT_SECRET_BYTES, settings
+
+logger = logging.getLogger(__name__)
+
+
+class LocalSigningKeyUnavailableError(HTTPException):
+    def __init__(self) -> None:
+        super().__init__(
+            status_code=503,
+            detail={
+                "code": "LOCAL_AUTH_UNAVAILABLE",
+                "message": "Local sign-in is temporarily unavailable",
+            },
+        )
+
+
+def require_local_signing_key() -> str:
+    key = settings.AUTH_JWT_SECRET
+    if not key or len(key.encode("utf-8")) < MIN_JWT_SECRET_BYTES:
+        logger.error("local JWT signing key missing or too short")
+        raise LocalSigningKeyUnavailableError()
+    return key
+
 
 STAFF_ROLES: frozenset[str] = frozenset(
     {
@@ -77,6 +101,8 @@ def create_access_token(
     if unknown_roles:
         raise ValueError(f"Cannot issue token containing unknown roles: {unknown_roles}")
 
+    key = require_local_signing_key()
+
     # Extract user ID
     if hasattr(user, "id"):
         sub = str(user.id)
@@ -139,4 +165,4 @@ def create_access_token(
         "employer_id": employer_id,
     }
 
-    return jwt.encode(payload, settings.AUTH_JWT_SECRET, algorithm="HS256")
+    return jwt.encode(payload, key, algorithm="HS256")
