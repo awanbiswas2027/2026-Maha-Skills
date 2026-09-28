@@ -19,31 +19,37 @@ jobs:
   backend:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:16-alpine
-        env:
-          POSTGRES_USER: mahaskills_user
-          POSTGRES_PASSWORD: mahaskills_secret
-          POSTGRES_DB: mahaskills
-        ports: ["5432:5432"]
-        # Without a health check the job races the container and fails intermittently.
-        options: >-
-          --health-cmd "pg_isready -U mahaskills_user -d mahaskills"
-          --health-interval 5s
-          --health-timeout 5s
-          --health-retries 10
-
     env:
-      DATABASE_URL: postgresql+asyncpg://mahaskills_user:mahaskills_secret@localhost:5432/mahaskills
-      # Non-secret CI values. DPDP_TENANT_SALT is a required setting with no default by design, and
-      # AUTH_JWT_SECRET must be 32+ characters outside development. Neither is a real credential.
-      DPDP_TENANT_SALT: ci_only_pepper_value_not_a_real_secret
-      AUTH_JWT_SECRET: ci_only_jwt_signing_key_not_a_real_secret
       ENVIRONMENT: development
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Generate Secrets
+        run: |
+          PG_PASSWORD=$(openssl rand -hex 16)
+          DPDP_TENANT_SALT=$(openssl rand -hex 16)
+          AUTH_JWT_SECRET=$(openssl rand -hex 16)
+          echo "::add-mask::$PG_PASSWORD"
+          echo "::add-mask::$DPDP_TENANT_SALT"
+          echo "::add-mask::$AUTH_JWT_SECRET"
+          echo "PG_PASSWORD=$PG_PASSWORD" >> "$GITHUB_ENV"
+          echo "DPDP_TENANT_SALT=$DPDP_TENANT_SALT" >> "$GITHUB_ENV"
+          echo "AUTH_JWT_SECRET=$AUTH_JWT_SECRET" >> "$GITHUB_ENV"
+          echo "DATABASE_URL=postgresql+asyncpg://mahaskills_user:$PG_PASSWORD@localhost:5432/mahaskills" >> "$GITHUB_ENV"
+
+      - name: Start Postgres
+        run: |
+          docker run -d \
+            --name postgres \
+            -e POSTGRES_USER=mahaskills_user \
+            -e POSTGRES_PASSWORD="$PG_PASSWORD" \
+            -e POSTGRES_DB=mahaskills \
+            -p 5432:5432 \
+            postgres:16-alpine
+          echo "Waiting for Postgres readiness..."
+          timeout 120 bash -c 'until docker exec postgres pg_isready -U mahaskills_user -d mahaskills; do sleep 2; done'
+          echo "Postgres is ready!"
 
       - uses: astral-sh/setup-uv@v5
         with:
@@ -51,6 +57,20 @@ jobs:
 
       - name: Install dependencies
         run: uv sync --frozen
+
+      - name: Verify requirements.txt is up to date
+        run: |
+          uv export --frozen --no-dev --no-hashes --no-emit-project -o /tmp/req_temp.txt
+          # uv export strips the [argon2] extra from passlib, so we restore it manually to match test_runtime_requirements.py
+          sed -i 's/^passlib==/passlib[argon2]==/' /tmp/req_temp.txt
+          # Compare without the top-level '#' header lines: uv embeds the -o path in its header.
+          diff <(grep -v '^#' requirements.txt) <(grep -v '^#' /tmp/req_temp.txt)
+
+      - name: Verify prod import
+        run: |
+          python -m venv /tmp/prod-venv
+          /tmp/prod-venv/bin/pip install -q -r requirements.txt
+          /tmp/prod-venv/bin/python -c "import app.main; print('prod-import-ok')"
 
       - name: Lint
         run: |
@@ -81,11 +101,20 @@ jobs:
         working-directory: .
     env:
       KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: ci_keycloak_admin_env
-      KEYCLOAK_CLIENT_SECRET: ci_keycloak_client_secret_env
-      STAFF_TEST_PASSWORD: StaffPassword123!
     steps:
       - uses: actions/checkout@v4
+
+      - name: Generate Secrets
+        run: |
+          KEYCLOAK_ADMIN_PASSWORD=$(openssl rand -hex 16)
+          KEYCLOAK_CLIENT_SECRET=$(openssl rand -hex 16)
+          STAFF_TEST_PASSWORD=$(openssl rand -base64 16)
+          echo "::add-mask::$KEYCLOAK_ADMIN_PASSWORD"
+          echo "::add-mask::$KEYCLOAK_CLIENT_SECRET"
+          echo "::add-mask::$STAFF_TEST_PASSWORD"
+          echo "KEYCLOAK_ADMIN_PASSWORD=$KEYCLOAK_ADMIN_PASSWORD" >> "$GITHUB_ENV"
+          echo "KEYCLOAK_CLIENT_SECRET=$KEYCLOAK_CLIENT_SECRET" >> "$GITHUB_ENV"
+          echo "STAFF_TEST_PASSWORD=$STAFF_TEST_PASSWORD" >> "$GITHUB_ENV"
 
       - name: Start Keycloak with imported realm
         run: |
